@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Abteilungen">
+      <EntityTypeMapping TypeName="Model.Abteilungen">
+        <MappingFragment StoreEntitySet="Abteilungen">
+          <ScalarProperty Name="AbteilungsID" ColumnName="AbteilungsID" />
+          <ScalarProperty Name="Abteilungsname" ColumnName="Abteilungsname" />
+          <ScalarProperty Name="StandardBetriebsmode" ColumnName="StandardBetriebsmode" />
+          <ScalarProperty Name="Abteilungsvorstand" ColumnName="Abteilungsvorstand" />
+          <ScalarProperty Name="Abteilungswart1" ColumnName="Abteilungswart1" />
+          <ScalarProperty Name="Abteilungswart2" ColumnName="Abteilungswart2" />
+          <ScalarProperty Name="Abteilungssprecher" ColumnName="Abteilungssprecher" />
+          <ScalarProperty Name="Samstag" ColumnName="Samstag" />
+          <ScalarProperty Name="AbteilungsInfo" ColumnName="AbteilungsInfo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Betriebsanzeige">
+      <EntityTypeMapping TypeName="Model.Betriebsanzeige">
+        <MappingFragment StoreEntitySet="Betriebsanzeige">
+          <ScalarProperty Name="BildschirmID" ColumnName="BildschirmID" />
+          <ScalarProperty Name="BetriebsmodeID" ColumnName="BetriebsmodeID" />
+          <ScalarProperty Name="DateiID" ColumnName="DateiID" />
+          <ScalarProperty Name="Stundenplan" ColumnName="Stundenplan" />
+          <ScalarProperty Name="Klasseninfo" ColumnName="Klasseninfo" />
+          <ScalarProperty Name="Abteilungsinfo" ColumnName="Abteilungsinfo" />
+          <ScalarProperty Name="Sprechstunden" ColumnName="Sprechstunden" />
+          <ScalarProperty Name="Raumaufteilung" ColumnName="Raumaufteilung" />
+          <ScalarProperty Name="Supplierplan" ColumnName="Supplierplan" />
+          <ScalarProperty Name="AktuelleSupplierungen" ColumnName="AktuelleSupplierungen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Betriebsmodi">
+      <EntityTypeMapping TypeName="Model.Betriebsmodi">
+        <MappingFragment StoreEntitySet="Betriebsmodi">
+          <ScalarProperty Name="BetriebsmodeID" ColumnName="BetriebsmodeID" />
+          <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bildschirme">
+      <EntityTypeMapping TypeName="Model.Bildschirme">
+        <MappingFragment StoreEntitySet="Bildschirme">
+          <ScalarProperty Name="AbteilungsID" ColumnName="AbteilungsID" />
+          <ScalarProperty Name="Gebäude" ColumnName="Gebäude" />
+          <ScalarProperty Name="Raum" ColumnName="Raum" />
+          <ScalarProperty Name="BildschirmID" ColumnName="BildschirmID" />
+          <ScalarProperty Name="Anzeigeart" ColumnName="Anzeigeart" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dateien">
+      <EntityTypeMapping TypeName="Model.Dateien">
+        <MappingFragment StoreEntitySet="Dateien">
+          <ScalarProperty Name="BetriebsmodeID" ColumnName="BetriebsmodeID" />
+          <ScalarProperty Name="DateiID" ColumnName="DateiID" />
+          <ScalarProperty Name="Dateiname" ColumnName="Dateiname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fächer">
+      <EntityTypeMapping TypeName="Model.Fächer">
+        <MappingFragment StoreEntitySet="Fächer">
+          <ScalarProperty Name="FachKürzel" ColumnName="FachKürzel" />
+          <ScalarProperty Name="Fach" ColumnName="Fach" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gruppenrechte">
+      <EntityTypeMapping TypeName="Model.Gruppenrechte">
+        <MappingFragment StoreEntitySet="Gruppenrechte">
+          <ScalarProperty Name="GruppenrechtID" ColumnName="GruppenrechtID" />
+          <ScalarProperty Name="GruppenrechtBezeichnung" ColumnName="GruppenrechtBezeichnung" />
+          <ScalarProperty Name="Stundenplan" ColumnName="Stundenplan" />
+          <ScalarProperty Name="Supplierung" ColumnName="Supplierung" />
+          <ScalarProperty Name="Klasseninfo" ColumnName="Klasseninfo" />
+          <ScalarProperty Name="Abteilungsinfo" ColumnName="Abteilungsinfo" />
+          <ScalarProperty Name="Sprechstunden" ColumnName="Sprechstunden" />
+          <ScalarProperty Name="Tests" ColumnName="Tests" />
+          <ScalarProperty Name="Klassen" ColumnName="Klassen" />
+          <ScalarProperty Name="Räume" ColumnName="Räume" />
+          <ScalarProperty Name="Bildschirme" ColumnName="Bildschirme" />
+          <ScalarProperty Name="Gruppenrechte1" ColumnName="Gruppenrechte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Klassen">
+      <EntityTypeMapping TypeName="Model.Klassen">
+        <MappingFragment StoreEntitySet="Klassen">
+          <ScalarProperty Name="Klassenvorstand" ColumnName="Klassenvorstand" />
+          <ScalarProperty Name="AbteilungsID" ColumnName="AbteilungsID" />
+          <ScalarProperty Name="Klasse" ColumnName="Klasse" />
+          <ScalarProperty Name="Klassensprecher" ColumnName="Klassensprecher" />
+          <ScalarProperty Name="Klasseninfo" ColumnName="Klasseninfo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lehrer">
+      <EntityTypeMapping TypeName="Model.Lehrer">
+        <MappingFragment StoreEntitySet="Lehrer">
+          <ScalarProperty Name="LehrerKuerzel" ColumnName="LehrerKuerzel" />
+          <ScalarProperty Name="Vorname" ColumnName="Vorname" />
+          <ScalarProperty Name="Nachname" ColumnName="Nachname" />
+          <ScalarProperty Name="Abteilungen" ColumnName="Abteilungen" />
+          <ScalarProperty Name="Sprechstunde" ColumnName="Sprechstunde" />
+          <ScalarProperty Name="Tag" ColumnName="Tag" />
+          <ScalarProperty Name="Gebäude" ColumnName="Gebäude" />
+          <ScalarProperty Name="Raum" ColumnName="Raum" />
+          <ScalarProperty Name="Durchwahl" ColumnName="Durchwahl" />
+          <ScalarProperty Name="KlassenvorstandAbteilungsId" ColumnName="KlassenvorstandAbteilungsId" />
+          <ScalarProperty Name="KlassenvorstandKlasse" ColumnName="KlassenvorstandKlasse" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Raeume">
+      <EntityTypeMapping TypeName="Model.Raeume">
+        <MappingFragment StoreEntitySet="Raeume">
+          <ScalarProperty Name="AbteilungsID" ColumnName="AbteilungsID" />
+          <ScalarProperty Name="Gebäude" ColumnName="Gebäude" />
+          <ScalarProperty Name="Raum" ColumnName="Raum" />
+          <ScalarProperty Name="StandardKlasse" ColumnName="StandardKlasse" />
+          <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stundenplan">
+      <EntityTypeMapping TypeName="Model.Stundenplan">
+        <MappingFragment StoreEntitySet="Stundenplan">
+          <ScalarProperty Name="AbteilungsID" ColumnName="AbteilungsID" />
+          <ScalarProperty Name="Klasse" ColumnName="Klasse" />
+          <ScalarProperty Name="Wochentag" ColumnName="Wochentag" />
+          <ScalarProperty Name="Stunde" ColumnName="Stunde" />
+          <ScalarProperty Name="FachKürzel" ColumnName="FachKürzel" />
+          <ScalarProperty Name="LehrerKürzel" ColumnName="LehrerKürzel" />
+          <ScalarProperty Name="Standardraum" ColumnName="Standardraum" />
+          <ScalarProperty Name="Gebäude" ColumnName="Gebäude" />
+          <ScalarProperty Name="Raum" ColumnName="Raum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Superadmins">
+      <EntityTypeMapping TypeName="Model.Superadmins">
+        <MappingFragment StoreEntitySet="Superadmins">
+          <ScalarProperty Name="LoginKürzel" ColumnName="LoginKürzel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supplierungen">
+      <EntityTypeMapping TypeName="Model.Supplierungen">
+        <MappingFragment StoreEntitySet="Supplierungen">
+          <ScalarProperty Name="AbteilungsID" ColumnName="AbteilungsID" />
+          <ScalarProperty Name="Klasse" ColumnName="Klasse" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="Stunde" ColumnName="Stunde" />
+          <ScalarProperty Name="ErsatzFach" ColumnName="ErsatzFach" />
+          <ScalarProperty Name="ErsatzLehrerKürzel" ColumnName="ErsatzLehrerKürzel" />
+          <ScalarProperty Name="StattLehrerKürzel" ColumnName="StattLehrerKürzel" />
+          <ScalarProperty Name="Entfällt" ColumnName="Entfällt" />
+          <ScalarProperty Name="ZiehtVor" ColumnName="ZiehtVor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Testarten">
+      <EntityTypeMapping TypeName="Model.Testarten">
+        <MappingFragment StoreEntitySet="Testarten">
+          <ScalarProperty Name="TestartID" ColumnName="TestartID" />
+          <ScalarProperty Name="Testart" ColumnName="Testart" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tests">
+      <EntityTypeMapping TypeName="Model.Tests">
+        <MappingFragment StoreEntitySet="Tests">
+          <ScalarProperty Name="AbteilungsID" ColumnName="AbteilungsID" />
+          <ScalarProperty Name="Klasse" ColumnName="Klasse" />
+          <ScalarProperty Name="FachKürzel" ColumnName="FachKürzel" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="Stunde" ColumnName="Stunde" />
+          <ScalarProperty Name="Dauer" ColumnName="Dauer" />
+          <ScalarProperty Name="LehrerKürzel" ColumnName="LehrerKürzel" />
+          <ScalarProperty Name="TestartID" ColumnName="TestartID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Wochentage">
+      <EntityTypeMapping TypeName="Model.Wochentage">
+        <MappingFragment StoreEntitySet="Wochentage">
+          <ScalarProperty Name="WochentagID" ColumnName="WochentagID" />
+          <ScalarProperty Name="WochentagKürzel" ColumnName="WochentagKürzel" />
+          <ScalarProperty Name="Wochentag" ColumnName="Wochentag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

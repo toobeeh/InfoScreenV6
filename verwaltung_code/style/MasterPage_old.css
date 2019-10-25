@@ -1,0 +1,182 @@
+﻿html, form {
+    height:100%;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font-family: Arial, Verdana;
+    height: 100%;
+}
+
+.clear{
+    clear: both;
+}
+
+#scale {
+    min-height: 100% !important;
+    height: 100%;
+}
+
+#TopBarS {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    height: 30px;
+    background: #2F4348;
+    border-bottom: #1A2528 solid 2px;
+    color: #ffffff;
+    text-align: right;
+}
+#TopBarS p {
+    height: 24px;
+    padding-right: 40px;
+    padding-top: 6px;
+    color: #ffffff;
+    display: inline-block;
+    float: right;
+    margin: 0px;
+    font-style: italic;
+}
+#TopBarS a {
+    border-left: #ffffff solid thin;
+    height: 24px;
+    padding: 20px;
+    padding-top: 6px;
+    padding-bottom: inherit;
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    float: right;
+    margin: 0px;
+}
+#TopBarS a:hover {
+    background: #4D6600;
+}
+
+#LeftBarS {
+    width: 250px;
+    min-height: 100%;
+    padding-top: 32px;
+    background: #2F4348;
+    border-right: #1A2528 solid 2px;
+    color: #ffffff;
+    padding-bottom: 20px;
+}
+    #LeftBarS h1 {
+        font-size: 22px;
+        font-style: normal;
+        font-stretch: normal;
+        margin: 0px;
+        margin-left: 10px;
+        margin-top: 15px;
+    }
+    #LeftBarS h1:before {
+        content: "☛ "
+    }
+    #LeftBarS a {
+        display: block;
+        left: 0px;
+        right: 0px;
+        background: #99CC00;
+        box-shadow: 3px 3px 10px #4D6600;
+        border: #ACE600 solid 1px;
+        margin: 5px;
+        padding: 5px;
+        padding-left: 25px;
+        color: #ffffff;
+        text-decoration: none;
+    }
+    #LeftBarS a:hover {
+        background: #4D6600 !important;
+    }
+    #LeftBarS div a:hover {
+        background: #4D6600 !important;
+    }
+
+#ContentS {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 252px;
+    padding: 8px;
+    padding-top: 34px;
+    background: #ffffff;
+}
+
+.table {
+    border-collapse:collapse;
+    border-spacing: 0px;
+    width: 100%;
+}
+.table td {
+    border: thin solid #808080;
+    padding: 5px;
+}
+.table .head {
+    background: #99CC00;
+    font-size: 20px;
+}
+.table .änderung { /* Hell Rot */
+    background: #fc7979;
+}
+.table .vorgezogen { /* dunkles Blau */
+    background: #0008ff;
+}
+.table .suppliert { /* helles Rot*/
+    background: #fc7979;
+}
+.table .entfällt { /* Knall Rot */
+    color: #ff0000;
+}
+
+.tableSupplierung {
+    border-collapse:collapse;
+    border-spacing: 0px;
+    width: 100%;
+    text-align:center;
+}
+.tableSupplierung td {
+    border: thin solid #808080;
+    padding: 5px;
+}
+.tableSupplierung .head {
+    background: #99CC00;
+    font-size: 20px;
+}
+.tableSupplierung .änderung { /* Hell Rot */
+    background: #fc7979;
+}
+.tableSupplierung .vorgezogen { /* dunkles Blau */
+    background: #0008ff;
+}
+.tableSupplierung .suppliert { /* helles Rot*/
+    background: #fc7979;
+}
+.tableSupplierung .entfällt { /* Knall Rot */
+    color: #ff0000;
+}
+
+#Content_Stundenplan.links {
+    background: #2F4348;
+}
+#Content_Stundenplan.änderung { /* Knall Rot */
+    background: #ff0000; 
+}
+#Content_Stundenplan.vorgezogen { /* dunkles Blau */
+    background: #0008ff;
+}
+
+#Content_lbAbteilungsinfo {
+    text-align: center;
+}
+#Content_Test{/*rosa*/
+    background:#ef9bee;
+}
+
+#drüber {
+    border-bottom: solid thin #1A2528;
+}

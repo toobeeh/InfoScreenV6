@@ -1,0 +1,73 @@
+﻿<%@ Master Language="C#" inherits="Infoscreen_Verwaltung.Master" %>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server" >
+<meta charset="utf-8" /> 
+    
+    <link rel="stylesheet" id="MasterStyle" type="text/css" href="~/style/MasterPage.css" />
+    <link rel="stylesheet" id="InputStyles" type="text/css" href="~/style/InputStyles.css" />
+
+    <script>
+        var isIE = window.navigator.userAgent.indexOf("MSIE ");
+        if (isIE > 0) {            
+            //document.getElementById('MasterStyle').setAttribute('href', '../../style/IE_MasterPage.css');
+            //document.getElementById('InputStyles').setAttribute('href', '');
+        }
+    </script>
+
+    <title><asp:ContentPlaceHolder id="titel" runat="server">Infoscreen - Verwaltung</asp:ContentPlaceHolder></title>
+
+    <link rel="stylesheet" type="text/css" href="~/scripts/jquery-ui-1.11.1/jquery-ui.min.css" />
+
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/scripts/jquery-1.11.1.min.js") %>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/scripts/jquery-ui-1.11.1/jquery-ui.min.js") %>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/scripts/MasterScript.js") %>"></script>
+
+    <asp:ContentPlaceHolder id="head" runat="server" />
+
+</head>
+<body >
+    
+   <form id="data" runat="server">
+
+         <div id="HomeAnker" onclick="window.location.href = 'https://elv-screen-2/default.aspx';"></div>
+        <div id="TopBarS"><asp:ContentPlaceHolder id="TopBar" runat="server" />  
+            
+            <div id="Title" >InfoScreen V6</div>
+        </div>
+        <div id="scale">
+            
+            <div id="LeftBarS">
+                <asp:ContentPlaceHolder id="LeftBar" runat="server" />
+                
+                <br/><p id='pInfo'></p>  
+            </div>
+
+            <div id="ContentS">
+                <asp:ContentPlaceHolder id="Content" runat="server" />  
+                <div id="ScrollDown" onclick="scrollDown()" style="display:none;">𐠠</div>
+            </div>
+        </div>     
+        <div id="ContentRoundCorner">
+            <div id="ContentRoundCornerForeground"></div>
+        </div>
+
+    </form>
+    
+    <script>
+        function showInfo() {
+            var isIE = window.navigator.userAgent.indexOf("MSIE ");
+            if (isIE > 0) document.getElementById('pInfo').innerHTML = "Achtung - Browser veraltet! Bei IE Kompatibilitätsmodus für Intranetseiten deaktivieren!";
+        }
+        showInfo();
+    </script>
+
+
+    <footer>
+    
+
+    </footer>
+
+</body>
+
+</html>

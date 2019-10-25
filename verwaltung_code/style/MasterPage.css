@@ -1,0 +1,364 @@
+﻿html, form {
+    height: 100%;
+}
+
+
+
+body {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font-family: Arial, Verdana;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.clear {
+    clear: both;
+}
+
+#scale {
+    padding-top: 30px;
+    position:relative;
+}
+
+
+hr {
+    border: none;
+    border-top: 1.5px dashed #131313;
+}
+
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+#ContentRoundCorner {
+    position: fixed;
+    left: 220px !important;
+    top: 32px !important;
+    width: 2%;
+    height: 4%;
+    z-index: 11;
+    background: #131313;
+    overflow:hidden;
+}
+
+#ContentRoundCornerForeground {
+    z-index: 12;
+    width: 150%;
+    height: 150%;
+    background-color: white;
+    border-top-left-radius: 50%;
+    box-shadow: inset 0px 0px 5px #333333;
+}
+
+
+
+#Title {
+    float: left;
+    margin-left: 220px;
+    margin-top: 5px;
+    font-size: 20px;
+    color: #99CC00;
+    font-weight: bold;
+    padding-left:2%;
+}
+
+#HomeAnker {
+    position:fixed;
+    top:0px;
+    left:60px;
+    border: none;
+
+    height: 25px;
+    width: 100px;
+    background-color: #99CC00;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    font-size: 100%;
+    text-align: center;
+    vertical-align: bottom;
+    transition: height 0.2s ease, background-color 0.3s ease, padding-top 0.2s ease;
+    font-weight: bold;
+    z-index: 12;
+}
+
+    #HomeAnker::before {
+        content: '𐠠';
+        display: block;
+        margin-top: 0px;
+        color: white;
+    }
+
+    #HomeAnker:hover::before {
+        content: '𐱄';
+    }
+
+    #HomeAnker:hover::after {
+        content: 'Home';
+        color: white;
+        padding-top: 10px;
+        display: block;
+    }
+
+    #HomeAnker::after {
+        content: '';
+        color: transparent;
+        transition: color 0.3s ease;
+        transition-delay: 0.1s;
+    }
+
+    #HomeAnker:hover {
+        height: 60px;
+        cursor: pointer;
+        background-color: #99CC00;
+        padding-top: 0px;
+    }
+
+#ContentS {
+    margin-left: 220px;
+    padding-left: 2%;
+    padding-bottom: 3%;
+    padding-right: 2%;
+    background: #ffffff;
+}
+
+#TopBarS {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    height: 32px;
+    background: #131313;
+    z-index: 10;
+    color: #99CC00;
+    text-align: right;
+    padding-right: 2%;
+    box-shadow: 10px 0px 5px #333333;
+    
+}
+
+    #TopBarS p {
+        height: 24px;
+        padding-right: 40px;
+        padding-top: 6px;
+        color: white;
+        display: inline-block;
+        float: right;
+        margin: 0px;
+        font-size: 15px;
+    }
+
+    #TopBarS a {
+        
+        height: 24px;
+        padding: 20px;
+        padding-top: 6px;
+        padding-bottom: inherit;
+        color: #99CC00;
+        display: inline-block;
+        float: right;
+        margin: 0px;
+        margin-left: 1%;
+        text-decoration: none;
+        transition: background 0.2s ease;
+        font-weight: 600;
+    }
+
+        #TopBarS a:hover {
+            background: #1a1a1a;
+            border-radius: 2px;
+            
+        }
+
+#LeftBarS {
+    background: #131313;
+    color: #ffffff;
+    padding-bottom: 20px;
+    width: 220px !important;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    height: 100%;
+    margin-top: 30px;
+    padding-top: 5%;
+    z-index: 11;
+    box-shadow: 0px 10px 5px #333333;
+}
+
+#LeftBarS h1 {
+    font-size: 18px;
+    font-style: normal;
+    font-stretch: normal;
+    margin: 0px;
+    margin-left: 5%;
+    margin-top: 15%;
+    cursor: pointer;
+    transition: margin 0.2s ease;
+    color: #99CC00;
+}
+
+    #LeftBarS h1:hover {
+        margin-left: 10%;
+    }
+
+        #LeftBarS h1:hover:before {
+            margin-left: 0px;
+            opacity: 1;
+        }
+
+    #LeftBarS h1:before {
+        content: '➜ ';
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+#LeftBarS a {
+    display: block;
+    left: 0px;
+    right: 0px;
+    background: inherit;
+    border-radius: 1px;
+    margin: 5px;
+    padding: 5px;
+    padding-left: 25px;
+    color: white;
+    text-decoration: none;
+    transition: margin-right 0.25s, margin-left 0.25s;
+    overflow: hidden;
+    max-height: 100%;
+    font-weight: 500;
+}
+
+    #LeftBarS a:before {
+        content: '⨯';
+        padding-right: 3px;
+    }
+
+    #LeftBarS a:hover {
+        background: #1a1a1a !important;
+        margin-right: 2px;
+        margin-left: 2px;
+        color: #99cc00;
+    }
+
+#Content_Stundenplan tr:nth-child(3n+1) {
+    border-bottom: 3px solid #99CC00 !important;
+}
+
+.table {
+    border-collapse: collapse;
+    border-spacing: 0px;
+    width: 100%;
+    border: 0px;
+    text-align: center;
+}
+
+    .table td {
+        padding: 5px;
+    }
+
+    .table tr:nth-child(even) {
+        background-color: #f5f5f0;
+    }
+
+    .table tr:nth-child(odd) {
+        background-color: #ebebe0;
+    }
+
+    .table .head {
+        background: #99CC00;
+        font-size: 20px;
+        border-bottom: 4px #86b300 solid;
+    }
+
+    .table .änderung {
+        /* Hell Rot */
+        background: #fc7979;
+    }
+
+    .table .vorgezogen {
+        /* dunkles Blau (#0008ff), geändert auf Helleres Blau(#0050ff) für bessere Lesbarkeit */
+        background: #0050ff;
+    }
+
+    .table .suppliert {
+        /* helles Rot*/
+        background: #fc7979;
+    }
+
+    .table .entfällt {
+        /* Knall Rot */
+        color: #ff0000;
+    }
+
+.tableSupplierung {
+    border-collapse: collapse;
+    border-spacing: 0px;
+    width: 100%;
+    border: 0px;
+    text-align:center;
+}
+
+    .tableSupplierung td {
+        padding: 5px;
+    }
+
+    .tableSupplierung .head {
+        background: #99CC00;
+        font-size: 20px;
+        border-bottom: 4px #86b300 solid;
+    }
+
+
+    .tableSupplierung tr:nth-child(even) {
+        background-color: #f5f5f0;
+    }
+
+    .tableSupplierung tr:nth-child(odd) {
+        background-color: #ebebe0;
+    }
+
+    .tableSupplierung .suppliert {
+        /* helles Rot*/
+        color: #fc7979 !important;
+    }
+
+    .tableSupplierung .entfällt {
+        /* Knall Rot */
+        color: #ff0000 !important;
+    }
+
+.table .test {
+    background: firebrick;
+    font-size: 20px;
+}
+
+#Content_Stundenplan.links {
+    background: #2F4348;
+}
+
+#Content_Stundenplan.änderung {
+    /* Knall Rot */
+    background: #ff0000;
+}
+
+#Content_Stundenplan.vorgezogen {
+    /* dunkles Blau */
+    background: #0008ff;
+}
+
+#Content_lbAbteilungsinfo {
+    text-align: center;
+}
+
+#Content_Test {
+    /*rosa*/
+    background: #ef9bee;
+}
+
+
+
+
