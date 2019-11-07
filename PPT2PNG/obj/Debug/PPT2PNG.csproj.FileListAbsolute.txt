@@ -1,0 +1,7 @@
+C:\Users\Tobi\Desktop\Schule\Diplomarbeit\InfoScreenRepo\PPT2PNG\bin\Debug\PPT2PNG.exe.config
+C:\Users\Tobi\Desktop\Schule\Diplomarbeit\InfoScreenRepo\PPT2PNG\bin\Debug\PPT2PNG.exe
+C:\Users\Tobi\Desktop\Schule\Diplomarbeit\InfoScreenRepo\PPT2PNG\bin\Debug\PPT2PNG.pdb
+C:\Users\Tobi\Desktop\Schule\Diplomarbeit\InfoScreenRepo\PPT2PNG\obj\Debug\PPT2PNG.csprojAssemblyReference.cache
+C:\Users\Tobi\Desktop\Schule\Diplomarbeit\InfoScreenRepo\PPT2PNG\obj\Debug\PPT2PNG.csproj.CoreCompileInputs.cache
+C:\Users\Tobi\Desktop\Schule\Diplomarbeit\InfoScreenRepo\PPT2PNG\obj\Debug\PPT2PNG.exe
+C:\Users\Tobi\Desktop\Schule\Diplomarbeit\InfoScreenRepo\PPT2PNG\obj\Debug\PPT2PNG.pdb
