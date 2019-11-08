@@ -22,7 +22,7 @@ namespace PPT2PNG
             if (args[0] == "help")
             {
                 string help = "~~~ PPT to PNG Converter ~~~\n \n Written by Tobias Scharsching for InfoScreen V6 Diploma Thesis 2019/20\n\n";
-                help += "Parameter: operating directory\nSearches for ppt file in directory and converts each slide to a single png using the Office CMD interface";
+                help += "Parameter: operating directory\nSearches for pptx/ppt file in directory and converts each slide to a single png using the Office CMD interface";
                 Console.WriteLine(help);    
             }
 
@@ -51,7 +51,7 @@ namespace PPT2PNG
                     }
                     catch
                     {
-                        Console.WriteLine("No valid PPT found! 'Datei.ppt', 'Datei.pptx'");
+                        Console.WriteLine("No valid PPT found or MS Office is not installed! 'Datei.ppt', 'Datei.pptx'");
                         return;
                     }
                 }
