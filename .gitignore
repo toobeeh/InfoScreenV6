@@ -1,5 +1,5 @@
 ﻿################################################################################
-# Diese .gitignore-Datei wurde von Microsoft(R) Visual Studio automatisch erstellt.
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/PPT2PNG/.vs/PPT2PNG/v15
+/.vs
