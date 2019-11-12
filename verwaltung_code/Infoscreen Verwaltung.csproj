@@ -1,0 +1,542 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4DC4579B-16B3-4FDB-9D1B-9A22CE691DB1}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Infoscreen_Verwaltung</RootNamespace>
+    <AssemblyName>Infoscreen Verwaltung</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.PowerPoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.PowerPoint.15.0.4420.1017\lib\net20\Microsoft.Office.Interop.PowerPoint.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="admin\bildschirm-einstellungen\add.aspx" />
+    <Content Include="admin\bildschirm-einstellungen\betriebsmode\default.aspx" />
+    <Content Include="admin\bildschirm-einstellungen\betriebsmode\upload.aspx" />
+    <Content Include="admin\bildschirm-einstellungen\default.aspx" />
+    <Content Include="admin\klassen\add.aspx" />
+    <Content Include="admin\klassen\default.aspx" />
+    <Content Include="admin\lehrer\default.aspx" />
+    <Content Include="admin\raeume\default.aspx" />
+    <Content Include="config.aspx" />
+    <Content Include="conf\abteilungsinfo.aspx" />
+    <Content Include="conf\klasseninfo.aspx" />
+    <Content Include="conf\stundenplan.aspx" />
+    <Content Include="conf\supplierungen\add.aspx" />
+    <Content Include="conf\supplierungen\lehrersupplierung.aspx" />
+    <Content Include="conf\supplierungen\globalsupplierung.aspx" />
+    <Content Include="conf\supplierungen\default.aspx" />
+    <Content Include="conf\supplierungen\table.aspx" />
+    <Content Include="conf\tests\default.aspx" />
+    <Content Include="conf\tests\modify.aspx" />
+    <Content Include="info\impressum.aspx" />
+    <Content Include="info\kontakt.aspx" />
+    <Content Include="info\version.aspx" />
+    <Content Include="ISv6.gif" />
+    <Content Include="login.aspx" />
+    <Content Include="logout.aspx" />
+    <Content Include="scripts\bbc\de.js" />
+    <Content Include="scripts\bbc\jquery.wysibb.min.js" />
+    <Content Include="scripts\bbc\wbbtheme.css" />
+    <Content Include="scripts\jquery-1.11.1.js" />
+    <Content Include="scripts\jquery-1.11.1.min.js" />
+    <Content Include="scripts\jquery-ui-1.11.1\external\jquery\jquery.js" />
+    <Content Include="scripts\jquery-ui-1.11.1\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="scripts\jquery-ui-1.11.1\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="scripts\jquery-ui-1.11.1\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="scripts\jquery-ui-1.11.1\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="scripts\jquery-ui-1.11.1\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="scripts\jquery-ui-1.11.1\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="scripts\jquery-ui-1.11.1\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="scripts\jquery-ui-1.11.1\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="scripts\jquery-ui-1.11.1\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="scripts\jquery-ui-1.11.1\images\ui-icons_222222_256x240.png" />
+    <Content Include="scripts\jquery-ui-1.11.1\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="scripts\jquery-ui-1.11.1\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="scripts\jquery-ui-1.11.1\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="scripts\jquery-ui-1.11.1\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="scripts\jquery-ui-1.11.1\index.html" />
+    <Content Include="scripts\jquery-ui-1.11.1\jquery-ui.css" />
+    <Content Include="scripts\jquery-ui-1.11.1\jquery-ui.js" />
+    <Content Include="scripts\jquery-ui-1.11.1\jquery-ui.min.css" />
+    <Content Include="scripts\jquery-ui-1.11.1\jquery-ui.min.js" />
+    <Content Include="scripts\jquery-ui-1.11.1\jquery-ui.structure.css" />
+    <Content Include="scripts\jquery-ui-1.11.1\jquery-ui.structure.min.css" />
+    <Content Include="scripts\jquery-ui-1.11.1\jquery-ui.theme.css" />
+    <Content Include="scripts\jquery-ui-1.11.1\jquery-ui.theme.min.css" />
+    <Content Include="show\abteilungsinfo.aspx" />
+    <Content Include="show\klasseninfo.aspx" />
+    <Content Include="show\sprechstunden.aspx" />
+    <Content Include="show\stundenplan.aspx" />
+    <Content Include="show\supplierungen.aspx" />
+    <Content Include="show\tests.aspx" />
+    <Content Include="style\IE_MasterPage.css" />
+    <Content Include="style\InputStyles.css" />
+    <Content Include="style\MasterPage.master" />
+    <EntityDeploy Include="classes\Datenbankverbindung.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Datenbankverbindung.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="classes\Datenbankverbindung.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Datenbankverbindung.edmx</DependentUpon>
+      <LastGenOutput>Datenbankverbindung.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="classes\Datenbankverbindung.edmx.diagram">
+      <DependentUpon>Datenbankverbindung.edmx</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="classes\Datenbankverbindung.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Datenbankverbindung.edmx</DependentUpon>
+      <LastGenOutput>Datenbankverbindung.cs</LastGenOutput>
+    </Content>
+    <Content Include="packages.config" />
+    <Content Include="ClassDiagram1.cd" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="style\MasterPage.css" />
+    <Content Include="scripts\MasterScript.js" />
+    <Content Include="test.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="admin\bildschirm-einstellungen\add.aspx.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\bildschirm-einstellungen\add.aspx.designer.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\bildschirm-einstellungen\betriebsmode\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\bildschirm-einstellungen\betriebsmode\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\bildschirm-einstellungen\betriebsmode\upload.aspx.cs">
+      <DependentUpon>upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\bildschirm-einstellungen\betriebsmode\upload.aspx.designer.cs">
+      <DependentUpon>upload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\bildschirm-einstellungen\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\bildschirm-einstellungen\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\klassen\add.aspx.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\klassen\add.aspx.designer.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\klassen\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\klassen\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\lehrer\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\lehrer\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\raeume\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\raeume\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Abteilungen.cs">
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Anzeige.cs" />
+    <Compile Include="classes\Authentifizierung.cs" />
+    <Compile Include="classes\Betriebsanzeige.cs">
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\BetriebsmodeRow.cs" />
+    <Compile Include="classes\Betriebsmodi.cs">
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Bildschirme.cs">
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Dateien.cs">
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\DatenbankAbrufen.cs" />
+    <Compile Include="classes\DatenbankSchreiben.cs" />
+    <Compile Include="classes\Datenbankverbindung.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Datenbankverbindung.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Datenbankverbindung.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Datenbankverbindung.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Datenbankverbindung.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Fächer.cs">
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Gruppenrechte.cs">
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Helper.cs" />
+    <Compile Include="classes\Klassen.cs">
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\LehrerTesten1.cs">
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Login.cs" />
+    <Compile Include="classes\PowerPoint.cs" />
+    <Compile Include="classes\Raeume.cs">
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Structuren.cs" />
+    <Compile Include="classes\Stundenplan.cs">
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Superadmins.cs">
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Supplierungen.cs">
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Testarten.cs">
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Tests.cs">
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Wochentage.cs">
+      <DependentUpon>Datenbankverbindung.tt</DependentUpon>
+    </Compile>
+    <Compile Include="config.aspx.cs">
+      <DependentUpon>config.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="config.aspx.designer.cs">
+      <DependentUpon>config.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="conf\abteilungsinfo.aspx.cs">
+      <DependentUpon>abteilungsinfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="conf\abteilungsinfo.aspx.designer.cs">
+      <DependentUpon>abteilungsinfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="conf\klasseninfo.aspx.cs">
+      <DependentUpon>klasseninfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="conf\klasseninfo.aspx.designer.cs">
+      <DependentUpon>klasseninfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="conf\stundenplan.aspx.cs">
+      <DependentUpon>stundenplan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="conf\stundenplan.aspx.designer.cs">
+      <DependentUpon>stundenplan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="conf\supplierungen\add.aspx.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="conf\supplierungen\add.aspx.designer.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="conf\supplierungen\lehrersupplierung.aspx.cs">
+      <DependentUpon>lehrersupplierung.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="conf\supplierungen\lehrersupplierung.aspx.designer.cs">
+      <DependentUpon>lehrersupplierung.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="conf\supplierungen\globalsupplierung.aspx.cs">
+      <DependentUpon>globalsupplierung.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="conf\supplierungen\globalsupplierung.aspx.designer.cs">
+      <DependentUpon>globalsupplierung.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="conf\supplierungen\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="conf\supplierungen\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="conf\supplierungen\table.aspx.cs">
+      <DependentUpon>table.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="conf\supplierungen\table.aspx.designer.cs">
+      <DependentUpon>table.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="conf\tests\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="conf\tests\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="conf\tests\modify.aspx.cs">
+      <DependentUpon>modify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="conf\tests\modify.aspx.designer.cs">
+      <DependentUpon>modify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="info\impressum.aspx.cs">
+      <DependentUpon>impressum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="info\impressum.aspx.designer.cs">
+      <DependentUpon>impressum.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="info\kontakt.aspx.cs">
+      <DependentUpon>kontakt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="info\kontakt.aspx.designer.cs">
+      <DependentUpon>kontakt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="info\version.aspx.cs">
+      <DependentUpon>version.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="info\version.aspx.designer.cs">
+      <DependentUpon>version.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="show\abteilungsinfo.aspx.cs">
+      <DependentUpon>abteilungsinfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="show\abteilungsinfo.aspx.designer.cs">
+      <DependentUpon>abteilungsinfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="show\klasseninfo.aspx.cs">
+      <DependentUpon>klasseninfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="show\klasseninfo.aspx.designer.cs">
+      <DependentUpon>klasseninfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="show\sprechstunden.aspx.cs">
+      <DependentUpon>sprechstunden.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="show\sprechstunden.aspx.designer.cs">
+      <DependentUpon>sprechstunden.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="show\stundenplan.aspx.cs">
+      <DependentUpon>stundenplan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="show\stundenplan.aspx.designer.cs">
+      <DependentUpon>stundenplan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="show\supplierungen.aspx.cs">
+      <DependentUpon>supplierungen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="show\supplierungen.aspx.designer.cs">
+      <DependentUpon>supplierungen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="show\tests.aspx.cs">
+      <DependentUpon>tests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="show\tests.aspx.designer.cs">
+      <DependentUpon>tests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="style\master.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Dateien\1\" />
+    <Folder Include="Dateien\2\" />
+    <Folder Include="Models\" />
+    <Folder Include="sql\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>16781</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:16648/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

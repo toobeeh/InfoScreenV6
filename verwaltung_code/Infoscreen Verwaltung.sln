@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infoscreen Verwaltung", "Infoscreen Verwaltung.csproj", "{4DC4579B-16B3-4FDB-9D1B-9A22CE691DB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPT2PNG", "..\PPT2PNG\PPT2PNG.csproj", "{95EFA3B6-69E9-4D7C-948B-FBDD0EB7EB09}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4DC4579B-16B3-4FDB-9D1B-9A22CE691DB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DC4579B-16B3-4FDB-9D1B-9A22CE691DB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DC4579B-16B3-4FDB-9D1B-9A22CE691DB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DC4579B-16B3-4FDB-9D1B-9A22CE691DB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95EFA3B6-69E9-4D7C-948B-FBDD0EB7EB09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95EFA3B6-69E9-4D7C-948B-FBDD0EB7EB09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95EFA3B6-69E9-4D7C-948B-FBDD0EB7EB09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95EFA3B6-69E9-4D7C-948B-FBDD0EB7EB09}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E4F082ED-2B2D-4B61-9B80-A6F563E91D2E}
+	EndGlobalSection
+EndGlobal
