@@ -3,8 +3,4 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <StartArguments>E:\infoscreen\bildschirm_code\presentations\21\10343</StartArguments>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartWorkingDirectory>C:\Users\Tobi\Desktop\Schule\Englisch\Comm_Volvo\</StartWorkingDirectory>
-    <StartArguments>C:\Users\Tobi\Desktop\Schule\Englisch\Comm_Volvo\</StartArguments>
-  </PropertyGroup>
 </Project>

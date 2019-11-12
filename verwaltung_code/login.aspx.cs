@@ -20,6 +20,7 @@ namespace Infoscreen_Verwaltung
 
             TopMenu.Text = classes.Anzeige.TopBar(ebene);
             Menu.Text = classes.Anzeige.Menue(ebene, "login");
+            TextBoxUser.Focus();
         }
 
         protected void ButtonLogin_Click(object sender, EventArgs e)

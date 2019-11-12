@@ -1,0 +1,7 @@
+E:\infoscreen\PPT2PNG\obj\Release\PPT2PNG.csprojAssemblyReference.cache
+E:\infoscreen\PPT2PNG\obj\Release\PPT2PNG.csproj.CoreCompileInputs.cache
+E:\infoscreen\PPT2PNG\bin\Release\PPT2PNG.exe.config
+E:\infoscreen\PPT2PNG\bin\Release\PPT2PNG.exe
+E:\infoscreen\PPT2PNG\bin\Release\PPT2PNG.pdb
+E:\infoscreen\PPT2PNG\obj\Release\PPT2PNG.exe
+E:\infoscreen\PPT2PNG\obj\Release\PPT2PNG.pdb

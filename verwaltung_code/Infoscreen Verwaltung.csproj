@@ -99,6 +99,10 @@
     <Content Include="info\impressum.aspx" />
     <Content Include="info\kontakt.aspx" />
     <Content Include="info\version.aspx" />
+<<<<<<< HEAD
+=======
+    <Content Include="ISv6.gif" />
+>>>>>>> dev
     <Content Include="login.aspx" />
     <Content Include="logout.aspx" />
     <Content Include="scripts\bbc\de.js" />

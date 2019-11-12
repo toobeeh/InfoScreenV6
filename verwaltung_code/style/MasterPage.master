@@ -33,9 +33,11 @@
          <div id="HomeAnker" onclick="window.location.href = 'https://elv-screen-2/default.aspx';"></div>
         <div id="TopBarS"><asp:ContentPlaceHolder id="TopBar" runat="server" />  
             
-            <div id="Title" >InfoScreen V6</div>
+            <%--<div id="Title" >InfoScreen V6</div>--%>
+            <div id="Title" ><img src="ISv6.gif" height="25px"/></div>
+
         </div>
-        <div id="scale">
+        <div id="scale">l
             
             <div id="LeftBarS">
                 <asp:ContentPlaceHolder id="LeftBar" runat="server" />

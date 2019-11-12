@@ -22,7 +22,7 @@ namespace PPT2PNG
             if (args[0] == "help")
             {
                 string help = "~~~ PPT to PNG Converter ~~~\n \n Written by Tobias Scharsching for InfoScreen V6 Diploma Thesis 2019/20\n\n";
-                help += "Parameter: operating directory\nSearches for pptx/ppt file in directory and converts each slide to a single png using the Office CMD interface";
+                help += "Parameter: operating directory\nSearches for ppt file in directory and converts each slide to a single png using the Office CMD interface";
                 Console.WriteLine(help);    
             }
 
@@ -37,35 +37,17 @@ namespace PPT2PNG
                 Console.WriteLine(args[0]);
                 
                 var app = new Powerpoint.Application();
-                Powerpoint.Presentation ppt;
 
-                try
-                {
-                    ppt = app.Presentations.Open(args[0] + @"\Datei.pptx", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse);
-                }
-                catch
-                {
-                    try
-                    {
-                        ppt = app.Presentations.Open(args[0] + @"\Datei.ppt", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse);
-                    }
-                    catch
-                    {
-                        Console.WriteLine("No valid PPT found or MS Office is not installed! 'Datei.ppt', 'Datei.pptx'");
-                        return;
-                    }
-                }
+                Powerpoint.Presentation ppt = app.Presentations.Open(args[0]+@"\Datei.pptx");
 
                 Console.WriteLine("Starting Converting " + ppt.Path);
 
-                for (int i= 1; i<= ppt.Slides.Count; i++)
+                for (int i= 0; i< ppt.Slides.Count; i++)
                 {
-                    ppt.Slides[i].Export(args[0] + @"\" + i+ ".png", "PNG");
+                    ppt.Slides[i].Export(args[0] + @"\" + i, "PNG");
                 }
-
-                Console.WriteLine("Slides successfully converted");
-                ppt.Close();
             }
+
         }
     }
 }

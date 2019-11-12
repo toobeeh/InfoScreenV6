@@ -16,7 +16,7 @@
     <asp:Table ID="TableLoginForm" runat="server" Width="30%">
         <asp:TableRow>
             <asp:TableHeaderCell Style="text-align:left;"><asp:Label ID="LabelUser" runat="server" Text="Benutzername " ></asp:Label></asp:TableHeaderCell>
-            <asp:TableCell><asp:TextBox ID="TextBoxUser" style="width:100%" runat="server"></asp:TextBox></asp:TableCell>
+            <asp:TableCell><asp:TextBox ID="TextBoxUser"  style="width:100%" runat="server"></asp:TextBox></asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableHeaderCell Style="text-align:left;"><asp:Label ID="LabelPassword" runat="server" Text="Kennwort "></asp:Label></asp:TableHeaderCell>

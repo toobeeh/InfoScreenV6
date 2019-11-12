@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Abteilungen">
+    <Key>
+      <PropertyRef Name="AbteilungsID" />
+    </Key>
+    <Property Name="AbteilungsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Abteilungsname" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="StandardBetriebsmode" Type="int" Nullable="false" />
+    <Property Name="Abteilungsvorstand" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Abteilungswart1" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Abteilungswart2" Type="varchar" MaxLength="45" />
+    <Property Name="Abteilungssprecher" Type="varchar" MaxLength="45" />
+    <Property Name="Samstag" Type="bit" />
+    <Property Name="AbteilungsInfo" Type="varchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Betriebsanzeige">
+    <Key>
+      <PropertyRef Name="BildschirmID" />
+      <PropertyRef Name="BetriebsmodeID" />
+    </Key>
+    <Property Name="BildschirmID" Type="int" Nullable="false" />
+    <Property Name="BetriebsmodeID" Type="int" Nullable="false" />
+    <Property Name="DateiID" Type="int" Nullable="false" />
+    <Property Name="Stundenplan" Type="bit" />
+    <Property Name="Klasseninfo" Type="bit" />
+    <Property Name="Abteilungsinfo" Type="bit" />
+    <Property Name="Sprechstunden" Type="bit" />
+    <Property Name="Raumaufteilung" Type="bit" />
+    <Property Name="Supplierplan" Type="bit" />
+    <Property Name="AktuelleSupplierungen" Type="bit" />
+  </EntityType>
+  <EntityType Name="Betriebsmodi">
+    <Key>
+      <PropertyRef Name="BetriebsmodeID" />
+    </Key>
+    <Property Name="BetriebsmodeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Bezeichnung" Type="varchar" MaxLength="45" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bildschirme">
+    <Key>
+      <PropertyRef Name="AbteilungsID" />
+      <PropertyRef Name="Gebäude" />
+      <PropertyRef Name="Raum" />
+      <PropertyRef Name="BildschirmID" />
+    </Key>
+    <Property Name="AbteilungsID" Type="int" Nullable="false" />
+    <Property Name="Gebäude" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Raum" Type="int" Nullable="false" />
+    <Property Name="BildschirmID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Anzeigeart" Type="int" />
+  </EntityType>
+  <EntityType Name="Dateien">
+    <Key>
+      <PropertyRef Name="BetriebsmodeID" />
+      <PropertyRef Name="DateiID" />
+    </Key>
+    <Property Name="BetriebsmodeID" Type="int" Nullable="false" />
+    <Property Name="DateiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dateiname" Type="varchar" MaxLength="45" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fächer">
+    <Key>
+      <PropertyRef Name="FachKürzel" />
+    </Key>
+    <Property Name="FachKürzel" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Fach" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="Gruppenrechte">
+    <Key>
+      <PropertyRef Name="GruppenrechtID" />
+    </Key>
+    <Property Name="GruppenrechtID" Type="int" Nullable="false" />
+    <Property Name="GruppenrechtBezeichnung" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Stundenplan" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Supplierung" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Klasseninfo" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Abteilungsinfo" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Sprechstunden" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Tests" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Klassen" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Räume" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Bildschirme" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Gruppenrechte" Type="varchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Klassen">
+    <Key>
+      <PropertyRef Name="AbteilungsID" />
+      <PropertyRef Name="Klasse" />
+    </Key>
+    <Property Name="AbteilungsID" Type="int" Nullable="false" />
+    <Property Name="Klasse" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Klassensprecher" Type="varchar" MaxLength="45" />
+    <Property Name="Klasseninfo" Type="varchar" MaxLength="60" />
+    <Property Name="Klassenvorstand" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="Lehrer">
+    <Key>
+      <PropertyRef Name="LehrerKuerzel" />
+    </Key>
+    <Property Name="LehrerKuerzel" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Vorname" Type="varchar" MaxLength="45" />
+    <Property Name="Nachname" Type="varchar" MaxLength="45" />
+    <Property Name="Abteilungen" Type="varchar" MaxLength="250" />
+    <Property Name="Sprechstunde" Type="int" />
+    <Property Name="Tag" Type="int" />
+    <Property Name="Gebäude" Type="varchar" MaxLength="45" />
+    <Property Name="Raum" Type="int" />
+    <Property Name="Durchwahl" Type="varchar" MaxLength="45" />
+    <Property Name="KlassenvorstandAbteilungsId" Type="int" />
+    <Property Name="KlassenvorstandKlasse" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="Raeume">
+    <Key>
+      <PropertyRef Name="AbteilungsID" />
+      <PropertyRef Name="Gebäude" />
+      <PropertyRef Name="Raum" />
+    </Key>
+    <Property Name="AbteilungsID" Type="int" Nullable="false" />
+    <Property Name="Gebäude" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Raum" Type="int" Nullable="false" />
+    <Property Name="StandardKlasse" Type="varchar" MaxLength="45" />
+    <Property Name="Bezeichnung" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="Stundenplan">
+    <Key>
+      <PropertyRef Name="AbteilungsID" />
+      <PropertyRef Name="Klasse" />
+      <PropertyRef Name="Wochentag" />
+      <PropertyRef Name="Stunde" />
+      <PropertyRef Name="FachKürzel" />
+      <PropertyRef Name="LehrerKürzel" />
+    </Key>
+    <Property Name="AbteilungsID" Type="int" Nullable="false" />
+    <Property Name="Klasse" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Wochentag" Type="int" Nullable="false" />
+    <Property Name="Stunde" Type="int" Nullable="false" />
+    <Property Name="FachKürzel" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="LehrerKürzel" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Standardraum" Type="bit" />
+    <Property Name="Gebäude" Type="varchar" MaxLength="45" />
+    <Property Name="Raum" Type="int" />
+  </EntityType>
+  <EntityType Name="Superadmins">
+    <Key>
+      <PropertyRef Name="LoginKürzel" />
+    </Key>
+    <Property Name="LoginKürzel" Type="varchar" MaxLength="45" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Supplierungen">
+    <Key>
+      <PropertyRef Name="AbteilungsID" />
+      <PropertyRef Name="Klasse" />
+      <PropertyRef Name="Datum" />
+      <PropertyRef Name="Stunde" />
+      <PropertyRef Name="StattLehrerKürzel" />
+    </Key>
+    <Property Name="AbteilungsID" Type="int" Nullable="false" />
+    <Property Name="Klasse" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Datum" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Stunde" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="ErsatzFach" Type="varchar" MaxLength="45" />
+    <Property Name="ErsatzLehrerKürzel" Type="varchar" MaxLength="45" />
+    <Property Name="StattLehrerKürzel" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Entfällt" Type="bit" />
+    <Property Name="ZiehtVor" Type="int" />
+  </EntityType>
+  <EntityType Name="Testarten">
+    <Key>
+      <PropertyRef Name="TestartID" />
+    </Key>
+    <Property Name="TestartID" Type="int" Nullable="false" />
+    <Property Name="Testart" Type="varchar" MaxLength="45" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tests">
+    <Key>
+      <PropertyRef Name="AbteilungsID" />
+      <PropertyRef Name="Klasse" />
+      <PropertyRef Name="FachKürzel" />
+      <PropertyRef Name="Datum" />
+      <PropertyRef Name="Stunde" />
+    </Key>
+    <Property Name="AbteilungsID" Type="int" Nullable="false" />
+    <Property Name="Klasse" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="FachKürzel" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Datum" Type="date" Nullable="false" />
+    <Property Name="Stunde" Type="int" Nullable="false" />
+    <Property Name="Dauer" Type="int" Nullable="false" />
+    <Property Name="LehrerKürzel" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="TestartID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Wochentage">
+    <Key>
+      <PropertyRef Name="WochentagID" />
+    </Key>
+    <Property Name="WochentagID" Type="int" Nullable="false" />
+    <Property Name="WochentagKürzel" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Wochentag" Type="varchar" MaxLength="45" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Abteilungen" EntityType="Self.Abteilungen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Betriebsanzeige" EntityType="Self.Betriebsanzeige" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Betriebsmodi" EntityType="Self.Betriebsmodi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bildschirme" EntityType="Self.Bildschirme" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dateien" EntityType="Self.Dateien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fächer" EntityType="Self.Fächer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gruppenrechte" EntityType="Self.Gruppenrechte" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Klassen" EntityType="Self.Klassen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lehrer" EntityType="Self.Lehrer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Raeume" EntityType="Self.Raeume" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stundenplan" EntityType="Self.Stundenplan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Superadmins" EntityType="Self.Superadmins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Supplierungen" EntityType="Self.Supplierungen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Testarten" EntityType="Self.Testarten" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tests" EntityType="Self.Tests" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Wochentage" EntityType="Self.Wochentage" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
