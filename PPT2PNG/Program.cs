@@ -13,7 +13,10 @@ namespace PPT2PNG
     {
         static void Main(string[] args)
         {
-            if(args.Length < 1)
+            Console.WriteLine(System.Security.Principal.WindowsIdentity.GetCurrent().Name);
+
+
+            if (args.Length < 1)
             {
                 Console.Write("Error: Parameter 'operating directory' is missing!");
                 return;
@@ -35,18 +38,30 @@ namespace PPT2PNG
             else
             {
                 Console.WriteLine(args[0]);
-                
-                var app = new Powerpoint.Application();
+
+                Powerpoint.Application app;
                 Powerpoint.Presentation ppt;
+                try
+                {
+                    app = new Powerpoint.Application();
+                }
+
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    return;
+                }
 
                 try
                 {
+                    Console.WriteLine("Looking for Datei.pptx");
                     ppt = app.Presentations.Open(args[0] + @"\Datei.pptx", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse);
                 }
                 catch
                 {
                     try
                     {
+                        Console.WriteLine("Looking for Datei.ppt");
                         ppt = app.Presentations.Open(args[0] + @"\Datei.ppt", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse);
                     }
                     catch

@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Themes\Standarddesign\Standarddesign.skin" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
