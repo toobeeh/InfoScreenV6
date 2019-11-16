@@ -18,14 +18,14 @@ namespace PPT2PNG
 
             if (args.Length < 1)
             {
-                Console.Write("Error: Parameter 'operating directory' is missing!");
-                return;
+                Console.Write("Parameter 'operating directory' is missing, setting working directory " + Directory.GetCurrentDirectory() + " as directory");
+                args = new string[] { Directory.GetCurrentDirectory() };
             }
 
             if (args[0] == "help")
             {
                 string help = "~~~ PPT to PNG Converter ~~~\n \n Written by Tobias Scharsching for InfoScreen V6 Diploma Thesis 2019/20\n\n";
-                help += "Parameter: operating directory\nSearches for pptx/ppt file in directory and converts each slide to a single png using the Office CMD interface";
+                help += "Parameter: operating directory\nWaits for a convert.txt in specified folder. The convert.txt has to contain the path to the directory of the powerpoint which should be converted.";
                 Console.WriteLine(help);    
             }
 
@@ -37,50 +37,77 @@ namespace PPT2PNG
 
             else
             {
-                Console.WriteLine(args[0]);
+                Console.WriteLine("Spectating now on " +  args[0]);
+                WaitForTextEvent(args[0]);
+                
+            }
+        }
 
-                Powerpoint.Application app;
-                Powerpoint.Presentation ppt;
-                try
+
+        static void WaitForTextEvent(string dir)
+        {
+
+            while (true)
+            {
+                Console.WriteLine("Searching " + dir + @"\convert.txt ...");
+
+                if (File.Exists(dir + @"\convert.txt"))
                 {
-                    app = new Powerpoint.Application();
+                    string[] lines = System.IO.File.ReadAllLines(dir + @"\convert.txt");
+
+                    File.Delete(dir + @"\convert.txt");
+
+                    foreach(string line in lines)
+                    {
+                        
+                        ConvertPowerpoint(line);
+                    }
+
                 }
 
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.ToString());
-                    return;
-                }
+                Console.WriteLine("Sleeping...");
+                System.Threading.Thread.Sleep(5000);
+            }
+            
+        }
 
+        static void ConvertPowerpoint(string path)
+        {
+
+            Console.WriteLine("Initiating Conversion...");
+            
+            Powerpoint.Application app;
+            Powerpoint.Presentation ppt;
+            app = new Powerpoint.Application();
+
+            try
+            {
+                Console.WriteLine("Looking for Datei.pptx");
+                ppt = app.Presentations.Open(path + @"\Datei.pptx", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse);
+            }
+            catch
+            {
                 try
                 {
-                    Console.WriteLine("Looking for Datei.pptx");
-                    ppt = app.Presentations.Open(args[0] + @"\Datei.pptx", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse);
+                    Console.WriteLine("Looking for Datei.ppt");
+                    ppt = app.Presentations.Open(path + @"\Datei.ppt", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse);
                 }
                 catch
                 {
-                    try
-                    {
-                        Console.WriteLine("Looking for Datei.ppt");
-                        ppt = app.Presentations.Open(args[0] + @"\Datei.ppt", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse);
-                    }
-                    catch
-                    {
-                        Console.WriteLine("No valid PPT found or MS Office is not installed! 'Datei.ppt', 'Datei.pptx'");
-                        return;
-                    }
+                    Console.WriteLine("No valid PPT found or MS Office is not installed! 'Datei.ppt', 'Datei.pptx'");
+                    return;
                 }
-
-                Console.WriteLine("Starting Converting " + ppt.Path);
-
-                for (int i= 1; i<= ppt.Slides.Count; i++)
-                {
-                    ppt.Slides[i].Export(args[0] + @"\" + i+ ".png", "PNG");
-                }
-
-                Console.WriteLine("Slides successfully converted");
-                ppt.Close();
             }
+
+            Console.WriteLine("Starting Converting " + ppt.Path);
+
+            for (int i = 1; i <= ppt.Slides.Count; i++)
+            {
+                ppt.Slides[i].Export(path + @"\" + i + ".png", "PNG");
+            }
+
+            Console.WriteLine("Slides successfully converted");
+            ppt.Close();
         }
     }
 }
