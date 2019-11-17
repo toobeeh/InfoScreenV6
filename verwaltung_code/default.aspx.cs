@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Diagnostics;
+using System.Security;
 using System.IO;
 
 namespace Infoscreen_Verwaltung
@@ -22,9 +23,17 @@ namespace Infoscreen_Verwaltung
 
         protected void Click(object o, EventArgs e)
         {
-            File.AppendAllLines(@"D:\infoscreen_publish\PPT2PNG\convert.txt", new string[] {@"D:\infoscreen_publish\Screen\presentations\21\10343" });
-            ((Button)o).Text = File.ReadAllText(@"D:\infoscreen_publish\PPT2PNG\convert.txt");
+            Process converter = new Process();
+
+            converter.StartInfo.FileName = @"D:\infoscreen_publish\PPT2PNG\PPT2PNG.exe";
+            converter.StartInfo.Arguments = @"D:\infoscreen_publish\Screen\presentations\21\10343";
+            converter.StartInfo.LoadUserProfile = true;
+            converter.Start();
+
+            converter.WaitForExit();
+
         }
-        
+
+
     }
 }

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 12.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
-<FxCopReport Version="12.0">
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio\2017\enterprise\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="15.0">
  <Targets>
-  <Target Name="C:\Users\Stevie\Desktop\Infoscreen_Bildschirmsoftware_1.4\Bildschirme\bin\Bildschirme.dll">
+  <Target Name="C:\Users\Tobi\source\repos\InfoScreenV6\bildschirm_code\bin\Bildschirme.dll">
    <Modules>
     <Module Name="bildschirme.dll">
      <Namespaces>
@@ -10,77 +10,77 @@
        <Types>
         <Type Name="Abteilungsinfo" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2014-05-11 13:33:40Z" FixCategory="DependsOnFix">
+          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2019-11-17 21:26:08Z" FixCategory="DependsOnFix">
            <Issue Certainty="90" Level="Error">'Abteilungsinfo' ist als ComVisible(true) markiert, verfügt jedoch in der Objekthierarchie über die folgenden ComVisible(false)-Typen: 'Page', 'TemplateControl', 'Control'</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="Abteilungsscreen" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2014-05-11 13:33:40Z" FixCategory="DependsOnFix">
+          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2019-11-17 21:26:08Z" FixCategory="DependsOnFix">
            <Issue Certainty="90" Level="Error">'Abteilungsscreen' ist als ComVisible(true) markiert, verfügt jedoch in der Objekthierarchie über die folgenden ComVisible(false)-Typen: 'Page', 'TemplateControl', 'Control'</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="Global" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2014-05-11 13:33:40Z" FixCategory="DependsOnFix">
+          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2019-11-17 21:26:08Z" FixCategory="DependsOnFix">
            <Issue Certainty="90" Level="Error">'Global' ist als ComVisible(true) markiert, verfügt jedoch in der Objekthierarchie über die folgenden ComVisible(false)-Typen: 'HttpApplication'</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="Lehrerscreen" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2014-05-11 13:33:40Z" FixCategory="DependsOnFix">
+          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2019-11-17 21:26:08Z" FixCategory="DependsOnFix">
            <Issue Certainty="90" Level="Error">'Lehrerscreen' ist als ComVisible(true) markiert, verfügt jedoch in der Objekthierarchie über die folgenden ComVisible(false)-Typen: 'Page', 'TemplateControl', 'Control'</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="main" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2014-05-11 13:33:40Z" FixCategory="DependsOnFix">
+          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2019-11-17 21:26:08Z" FixCategory="DependsOnFix">
            <Issue Certainty="90" Level="Error">'main' ist als ComVisible(true) markiert, verfügt jedoch in der Objekthierarchie über die folgenden ComVisible(false)-Typen: 'Page', 'TemplateControl', 'Control'</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="NichtStoeren" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2014-05-11 13:33:40Z" FixCategory="DependsOnFix">
+          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2019-11-17 21:26:08Z" FixCategory="DependsOnFix">
            <Issue Certainty="90" Level="Error">'NichtStoeren' ist als ComVisible(true) markiert, verfügt jedoch in der Objekthierarchie über die folgenden ComVisible(false)-Typen: 'Page', 'TemplateControl', 'Control'</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="PowerPoint" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2014-05-11 13:33:40Z" FixCategory="DependsOnFix">
+          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2019-11-17 21:26:08Z" FixCategory="DependsOnFix">
            <Issue Certainty="90" Level="Error">'PowerPoint' ist als ComVisible(true) markiert, verfügt jedoch in der Objekthierarchie über die folgenden ComVisible(false)-Typen: 'Page', 'TemplateControl', 'Control'</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="Raumaufteilung" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2014-05-11 13:33:40Z" FixCategory="DependsOnFix">
+          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2019-11-17 21:26:08Z" FixCategory="DependsOnFix">
            <Issue Certainty="90" Level="Error">'Raumaufteilung' ist als ComVisible(true) markiert, verfügt jedoch in der Objekthierarchie über die folgenden ComVisible(false)-Typen: 'Page', 'TemplateControl', 'Control'</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="Sprechstunden" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2014-05-11 13:33:40Z" FixCategory="DependsOnFix">
+          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2019-11-17 21:26:08Z" FixCategory="DependsOnFix">
            <Issue Certainty="90" Level="Error">'Sprechstunden' ist als ComVisible(true) markiert, verfügt jedoch in der Objekthierarchie über die folgenden ComVisible(false)-Typen: 'Page', 'TemplateControl', 'Control'</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="Stundenanzeige" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2014-05-11 13:33:40Z" FixCategory="DependsOnFix">
+          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2019-11-17 21:26:08Z" FixCategory="DependsOnFix">
            <Issue Certainty="90" Level="Error">'Stundenanzeige' ist als ComVisible(true) markiert, verfügt jedoch in der Objekthierarchie über die folgenden ComVisible(false)-Typen: 'Page', 'TemplateControl', 'Control'</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="Supplierungen" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2014-05-11 13:33:40Z" FixCategory="DependsOnFix">
+          <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Status="Active" Created="2019-11-17 21:26:08Z" FixCategory="DependsOnFix">
            <Issue Certainty="90" Level="Error">'Supplierungen' ist als ComVisible(true) markiert, verfügt jedoch in der Objekthierarchie über die folgenden ComVisible(false)-Typen: 'Page', 'TemplateControl', 'Control'</Issue>
           </Message>
          </Messages>
@@ -101,17 +101,17 @@
    <Url>http://msdn.microsoft.com/library/ms182202.aspx</Url>
    <Email>[none]</Email>
    <MessageLevel Certainty="90">Error</MessageLevel>
-   <File Name="interoperabilityrules.dll" Version="12.0.0.0" />
+   <File Name="interoperabilityrules.dll" Version="15.0.0.0" />
   </Rule>
  </Rules>
  <Localized>
   <String Key="Category">Kategorie</String>
   <String Key="Certainty">Sicherheit</String>
-  <String Key="CollapseAll">Alle reduzieren</String>
+  <String Key="CollapseAll">Alle zuklappen</String>
   <String Key="CheckId">Prüf-ID</String>
   <String Key="Error">Fehler</String>
   <String Key="Errors">Fehler</String>
-  <String Key="ExpandAll">Alle erweitern</String>
+  <String Key="ExpandAll">Alle aufklappen</String>
   <String Key="Help">Hilfe</String>
   <String Key="Line">Zeile</String>
   <String Key="Messages">Meldung(en)</String>
