@@ -1,0 +1,11 @@
+C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe.config
+C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.pdb
+C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\obj\Debug\PPTConverterService.csprojAssemblyReference.cache
+C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\obj\Debug\PPTConverterService.csproj.ResolveComReference.cache
+C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\obj\Debug\PPTConverterService.PPTConverter.resources
+C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\obj\Debug\PPTConverterService.ProjectInstaller.resources
+C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\obj\Debug\PPTConverterService.csproj.GenerateResource.cache
+C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\obj\Debug\PPTConverterService.csproj.CoreCompileInputs.cache
+C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\obj\Debug\PPTConverterService.exe
+C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\obj\Debug\PPTConverterService.pdb

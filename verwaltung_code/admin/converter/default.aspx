@@ -18,7 +18,6 @@
     <br />
     <h2>Status</h2>
     <asp:Label ID="Status" runat="server" Text=""> </asp:Label>
-    <br />
     <hr />
     <br />
     <h2>Funktionsweise</h2>

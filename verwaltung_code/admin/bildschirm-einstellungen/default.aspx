@@ -19,12 +19,13 @@
         <asp:DropDownList ID="dropDownBetriebsmode" runat="server"></asp:DropDownList>
     </div>
     <asp:Button ID="btÜbernehmen" CssClass="SaveButton" runat="server" Text="Anzeigen" OnClick="btÜbernehmen_Click" ToolTip="ausgewählten Betriebsmode auf Monitoren anzeigen" />
-    <asp:Button ID="btLöschen" runat="server" CssClass="DeleteButton" Text="Betriebsmode Löschen" Visible="false" OnClick="btLöschen_Click" ToolTip="ausgewählten Betriebsmode löschen" />
+    <asp:Button ID="btBetriebsmodeEinstellungen" CssClass="ActionButton" runat="server" Text="Einstellungen zum Betriebsmode" OnClick="btBetriebsmodeEinstellungen_Click" ToolTip="Einstellungen zum ausgewählten Betriebsmode ändern" />
     
     <br/><hr/><br/>
+    <asp:Button ID="btLöschen" runat="server" CssClass="DeleteButton" Text="Betriebsmode Löschen" Visible="false" OnClick="btLöschen_Click" ToolTip="ausgewählten Betriebsmode löschen" />
     <asp:Button ID="btNeu" runat="server" CssClass="ActionButton" Text="Neuer Betriebsmode" Visible="false" OnClick="btNeu_Click" ToolTip="neuen Betriebsmode hinzufügen" />
     <asp:Button ID="btÄndern" runat="server" CssClass="ActionButton" Text="Betriebsmode Umbenennen" Visible="false" OnClick="btÄndern_Click" ToolTip="ausgewählten Betriebsmode umbenennen" />
-    <asp:Button ID="btBetriebsmodeEinstellungen" CssClass="ActionButton" runat="server" Text="Einstellungen zum Betriebsmode" OnClick="btBetriebsmodeEinstellungen_Click" ToolTip="Einstellungen zum ausgewählten Betriebsmode ändern" />
+    
 
     <br/><hr/>
     <h1>Zeitgesteuerte Anzeige</h1>

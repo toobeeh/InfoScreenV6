@@ -1,0 +1,207 @@
+﻿Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird installiert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird zurückgesetzt.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Während der Rollbackphase des Installers System.ServiceProcess.ServiceProcessInstaller ist eine Ausnahme aufgetreten.
+System.NullReferenceException: Der Objektverweis wurde nicht auf eine Objektinstanz festgelegt.
+Während der Rollbackphase der Installation ist eine Ausnahme aufgetreten. Diese Ausnahme wird ignoriert, und der Rollback wird fortgesetzt. Der ursprüngliche Zustand des Computers wird jedoch möglicherweise nicht vollständig wiederhergestellt, nachdem der Rollback beendet ist.
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird installiert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird zurückgesetzt.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Während der Rollbackphase des Installers System.ServiceProcess.ServiceProcessInstaller ist eine Ausnahme aufgetreten.
+System.NullReferenceException: Der Objektverweis wurde nicht auf eine Objektinstanz festgelegt.
+Während der Rollbackphase der Installation ist eine Ausnahme aufgetreten. Diese Ausnahme wird ignoriert, und der Rollback wird fortgesetzt. Der ursprüngliche Zustand des Computers wird jedoch möglicherweise nicht vollständig wiederhergestellt, nachdem der Rollback beendet ist.
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird installiert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Dienst PPTConverter wird installiert...
+Die EventLog-Quelle PPTConverter im Protokoll Application wird erstellt...
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird zurückgesetzt.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Der vorherige Zustand des Ereignisprotokolls für die Quelle PPTConverter wird wiederhergestellt.
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird installiert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Dienst PPTConverter wird installiert...
+Die EventLog-Quelle PPTConverter im Protokoll Application wird erstellt...
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird zurückgesetzt.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Der vorherige Zustand des Ereignisprotokolls für die Quelle PPTConverter wird wiederhergestellt.
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird installiert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Dienst PPTConverter wird installiert...
+Die EventLog-Quelle PPTConverter im Protokoll Application wird erstellt...
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird zurückgesetzt.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Der vorherige Zustand des Ereignisprotokolls für die Quelle PPTConverter wird wiederhergestellt.
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird installiert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Dienst PPTConverter wird installiert...
+Die EventLog-Quelle PPTConverter im Protokoll Application wird erstellt...
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird zurückgesetzt.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Der vorherige Zustand des Ereignisprotokolls für die Quelle PPTConverter wird wiederhergestellt.
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird installiert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Dienst PPTConverter wird installiert...
+Die EventLog-Quelle PPTConverter im Protokoll Application wird erstellt...
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird zurückgesetzt.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Der vorherige Zustand des Ereignisprotokolls für die Quelle PPTConverter wird wiederhergestellt.
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird installiert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Dienst PPTConverter wird installiert...
+Dienst PPTConverter wurde installiert.
+Die EventLog-Quelle PPTConverter im Protokoll Application wird erstellt...
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird ausgeführt.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird installiert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Dienst PPTConverter wird installiert...
+Die EventLog-Quelle PPTConverter im Protokoll Application wird erstellt...
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird zurückgesetzt.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Der vorherige Zustand des Ereignisprotokolls für die Quelle PPTConverter wird wiederhergestellt.
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird deinstalliert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Die EventLog-Quelle PPTConverter wird entfernt.
+Der Dienst PPTConverter wird vom System entfernt...
+Dienst PPTConverter wurde vom System entfernt.
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird installiert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Dienst PPTConverter wird installiert...
+Dienst PPTConverter wurde installiert.
+Die EventLog-Quelle PPTConverter im Protokoll Application wird erstellt...
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird ausgeführt.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird deinstalliert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Die EventLog-Quelle PPTConverter wird entfernt.
+Der Dienst PPTConverter wird vom System entfernt...
+Dienst PPTConverter wurde vom System entfernt.
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird installiert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Dienst PPTConverter wird installiert...
+Die EventLog-Quelle PPTConverter im Protokoll Application wird erstellt...
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird zurückgesetzt.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Der vorherige Zustand des Ereignisprotokolls für die Quelle PPTConverter wird wiederhergestellt.
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird installiert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Dienst PPTConverter wird installiert...
+Die EventLog-Quelle PPTConverter im Protokoll Application wird erstellt...
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird zurückgesetzt.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Der vorherige Zustand des Ereignisprotokolls für die Quelle PPTConverter wird wiederhergestellt.
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird deinstalliert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Die EventLog-Quelle PPTConverter wird entfernt.
+Warnung: Die Quelle PPTConverter ist nicht auf dem lokalen Computer registriert.
+Der Dienst PPTConverter wird vom System entfernt...
+Dienst PPTConverter wurde vom System entfernt.
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird installiert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Dienst PPTConverter wird installiert...
+Die EventLog-Quelle PPTConverter im Protokoll Application wird erstellt...
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird zurückgesetzt.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Der vorherige Zustand des Ereignisprotokolls für die Quelle PPTConverter wird wiederhergestellt.
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird installiert.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
+Dienst PPTConverter wird installiert...
+Dienst PPTConverter wurde installiert.
+Die EventLog-Quelle PPTConverter im Protokoll Application wird erstellt...
+Assembly C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe wird ausgeführt.
+Betroffene Parameter:
+   logtoconsole = 
+   logfile = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.InstallLog
+   assemblypath = C:\Users\Tobi\source\repos\InfoScreenV6\PPTConverterService\bin\Debug\PPTConverterService.exe
