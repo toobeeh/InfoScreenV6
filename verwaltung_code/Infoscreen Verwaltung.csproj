@@ -81,6 +81,7 @@
     <Content Include="admin\bildschirm-einstellungen\betriebsmode\default.aspx" />
     <Content Include="admin\bildschirm-einstellungen\betriebsmode\upload.aspx" />
     <Content Include="admin\bildschirm-einstellungen\default.aspx" />
+    <Content Include="admin\converter\default.aspx" />
     <Content Include="admin\klassen\add.aspx" />
     <Content Include="admin\klassen\default.aspx" />
     <Content Include="admin\lehrer\default.aspx" />
@@ -206,6 +207,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\bildschirm-einstellungen\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\converter\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\converter\default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\klassen\add.aspx.cs">

@@ -25,7 +25,7 @@ namespace PPT2PNG
 
             if(lines.Count > 1 )
             {
-                DateTime lastsync = Convert.ToDateTime(lines[0]);
+                DateTime lastsync = DateTime.ParseExact(lines[0], "MM/dd/yyyy HH:mm:ss", null);
                 DateTime now = DateTime.Now;
                 double secs = (now - lastsync).TotalSeconds;
 
@@ -37,7 +37,7 @@ namespace PPT2PNG
                 }  
             }
            
-            File.WriteAllText(Directory.GetCurrentDirectory() + @"\run.txt", DateTime.Now.ToLongTimeString() + "\n" + Environment.UserName);
+            File.WriteAllText(Directory.GetCurrentDirectory() + @"\run.txt", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "\n" + Environment.UserName);
 
             if (args.Length < 1)
             {
@@ -73,6 +73,7 @@ namespace PPT2PNG
             while (true)
             {
                 Console.WriteLine("Searching " + dir + @"\convert.txt ...");
+                File.WriteAllText(Directory.GetCurrentDirectory() + @"\run.txt", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "\n" + Environment.UserName);
 
                 if (File.Exists(dir + @"\convert.txt"))
                 {
@@ -81,7 +82,7 @@ namespace PPT2PNG
 
                     foreach(string line in lines)
                     {
-                        File.WriteAllText(Directory.GetCurrentDirectory() + @"\run.txt", DateTime.Now.ToLongTimeString() + "\n" + Environment.UserName);
+                        File.WriteAllText(Directory.GetCurrentDirectory() + @"\run.txt", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "\n" + Environment.UserName);
                         if (Directory.Exists(line)) ConvertPowerpoint(line);
                     }
                 }

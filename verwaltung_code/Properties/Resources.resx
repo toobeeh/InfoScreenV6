@@ -154,7 +154,7 @@
     <comment>Der Benutzername, welcher in der Domaine zum lesen alleer Informationen berechtigt ist.</comment>
   </data>
   <data name="speicherort" xml:space="preserve">
-    <value>E:\infoscreen\bildschirm_code\presentations\</value>
+    <value>D:\infoscreen_publish\Screen\presentations\</value>
     <comment>Der Pfad zum Ordner, an welchem die Präsentationen gespeichert werden.</comment>
   </data>
   <data name="PfadPowerPointTextDatei" xml:space="preserve">

@@ -7,10 +7,10 @@
 // </automatisch generiert>
 //------------------------------------------------------------------------------
 
-namespace Infoscreen_Verwaltung {
+namespace Infoscreen_Verwaltung.admin.converter {
     
     
-    public partial class _default {
+    public partial class Converter {
         
         /// <summary>
         /// TopMenu-Steuerelement
@@ -29,5 +29,14 @@ namespace Infoscreen_Verwaltung {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Menu;
+        
+        /// <summary>
+        /// Status-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Status;
     }
 }

@@ -18,12 +18,8 @@ namespace Infoscreen_Verwaltung.classes
         /// <param name="_datei">Der Name der PowerPoint Datei</param>
         public static void ZuBild(string _pfad, string _datei)
         {
-            StreamWriter sr = new StreamWriter(Properties.Resources.PfadPowerPointTextDatei, true);
-            sr.WriteLine(_pfad + _datei);
-            sr.Flush();
-            sr.Close();
-            sr.Dispose();
-            File.Copy(Properties.Resources.StandardBild, _pfad + "1.png");
+            File.AppendAllText(@"D:\infoscreen_publish\PPT2PNG\convert.txt", _pfad + "\n");
+            File.Copy(@"D:\infoscreen_publish\Screen\presentations\standard.png", _pfad + "1.png");
         }
     }
 }

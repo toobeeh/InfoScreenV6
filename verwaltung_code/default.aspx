@@ -15,5 +15,5 @@
     <br />
     <br />
     <img src="https://media.giphy.com/media/3ohuP8gmeoBeA0xvgI/giphy.gif" alt="gif image" style="height:30%;" />
-    <asp:Button Text="sdfgsdfg" OnClick="Click" runat="server"/>
+   
 </asp:Content>

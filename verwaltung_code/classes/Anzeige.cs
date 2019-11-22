@@ -57,6 +57,7 @@ namespace Infoscreen_Verwaltung.classes
             wrap = "<div class='navContainer' " + displayNav(dir, "admin") + ">";
             temp  = "";
             if (Login.Rechte.Bildschirme.OneBiggerThan(1)) temp += "<a href='" + _Ebene + "admin/bildschirm-einstellungen/'>Bildschirm-Modi</a>\r\n";
+            if (Login.Rechte.Bildschirme.OneBiggerThan(1)) temp += "<a href='" + _Ebene + "admin/converter/'>PPT Converter</a>\r\n";
             //if (Login.Rechte.Gruppenrechte.OneBiggerThan(1)) temp += "<a href='" + _Ebene + "admin/x.aspx'>Berechtigungen</a>\r\n";
             if (Login.Rechte.Klassen.OneBiggerThan(1)) temp += "<a href='" + _Ebene + "admin/klassen/'>Klasseneigenschaften</a>\r\n";        
             if (Login.Rechte.Superadmin) temp += "<a href='" + _Ebene + "admin/lehrer/'>Lehrereigenschaften</a>\r\n";

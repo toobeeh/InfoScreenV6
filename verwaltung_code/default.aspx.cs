@@ -21,12 +21,7 @@ namespace Infoscreen_Verwaltung
             Menu.Text = classes.Anzeige.Menue(ebene, "");
         }
 
-        protected void Click(object o, EventArgs e)
-        {
-            File.AppendAllText(@"D:\infoscreen_publish\PPT2PNG\convert.txt", @"D:\infoscreen_publish\Screen\presentations\21\10343");
-
-        }
-
+        
 
     }
 }
