@@ -23,14 +23,7 @@ namespace Infoscreen_Verwaltung
 
         protected void Click(object o, EventArgs e)
         {
-            Process converter = new Process();
-
-            converter.StartInfo.FileName = @"D:\infoscreen_publish\PPT2PNG\PPT2PNG.exe";
-            converter.StartInfo.Arguments = @"D:\infoscreen_publish\Screen\presentations\21\10343";
-            converter.StartInfo.LoadUserProfile = true;
-            converter.Start();
-
-            converter.WaitForExit();
+            File.AppendAllText(@"D:\infoscreen_publish\PPT2PNG\convert.txt", @"D:\infoscreen_publish\Screen\presentations\21\10343");
 
         }
 

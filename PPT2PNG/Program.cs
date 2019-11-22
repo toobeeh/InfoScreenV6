@@ -11,23 +11,37 @@ namespace PPT2PNG
 {
     class Program
     {
-
-        static string msg;
         static void Main(string[] args)
         {
 
-            
-            msg = "";
+            string running_info = "";
 
-            msg += System.Security.Principal.WindowsIdentity.GetCurrent().Name + "\n";
-            File.WriteAllText(args[0] + @"\out.txt", msg);
+            if (File.Exists(Directory.GetCurrentDirectory() + @"\run.txt"))
+            {
+                running_info = File.ReadAllText(Directory.GetCurrentDirectory() + @"\run.txt");
+            }
 
+            List<string> lines = running_info.Split('\n').ToList<string>();
+
+            if(lines.Count > 1 )
+            {
+                DateTime lastsync = Convert.ToDateTime(lines[0]);
+                DateTime now = DateTime.Now;
+                double secs = (now - lastsync).TotalSeconds;
+
+                if (secs < 10)
+                {
+                    Console.WriteLine("PPT Converter is already running on user " + lines[1] + ". \n Press any Key to exit.");
+                    Console.ReadKey();
+                    return;
+                }  
+            }
+           
+            File.WriteAllText(Directory.GetCurrentDirectory() + @"\run.txt", DateTime.Now.ToLongTimeString() + "\n" + Environment.UserName);
 
             if (args.Length < 1)
             {
-                Console.Write("Parameter 'operating directory' is missing, setting working directory " + Directory.GetCurrentDirectory() + " as directory");
-                msg += "Parameter 'operating directory' is missing, setting working directory " + Directory.GetCurrentDirectory() + " as directory\n";
-                File.WriteAllText(args[0] + @"\out.txt", msg);
+                Console.Write("Parameter 'operating directory' is missing, setting working directory " + Directory.GetCurrentDirectory() + " as directory \n");
                 args = new string[] { Directory.GetCurrentDirectory() };
             }
 
@@ -35,27 +49,26 @@ namespace PPT2PNG
             {
                 string help = "~~~ PPT to PNG Converter ~~~\n \n Written by Tobias Scharsching for InfoScreen V6 Diploma Thesis 2019/20\n\n";
                 help += "Parameter: operating directory\nWaits for a convert.txt in specified folder. The convert.txt has to contain the path to the directory of the powerpoint which should be converted.";
+                help += "\nThe converter service can only run if any user is signed up on the infoscreen server. Otherwise, powerpoints wont be automatically converted until a user logs in.";
                 Console.WriteLine(help);    
             }
 
             if (!Directory.Exists(args[0]))
             {
                 Console.WriteLine("Error: Specified operating directory doesn't exist!");
-                msg += "Error: Specified operating directory doesn't exist!\n";
-                File.WriteAllText(args[0] + @"\out.txt", msg);
+                File.Delete(Directory.GetCurrentDirectory() + @"\run.txt");
                 return;
             }
 
             else
             {
-                ConvertPowerpoint(args[0]);
-                File.WriteAllText(args[0] + @"\out.txt", msg);
+                WaitForTextEvent(args[0]);
             }
         }
 
-        // for Polling, REMOVED
         static void WaitForTextEvent(string dir)
         {
+            
 
             while (true)
             {
@@ -64,15 +77,13 @@ namespace PPT2PNG
                 if (File.Exists(dir + @"\convert.txt"))
                 {
                     string[] lines = System.IO.File.ReadAllLines(dir + @"\convert.txt");
-
                     File.Delete(dir + @"\convert.txt");
 
                     foreach(string line in lines)
                     {
-                        
-                        ConvertPowerpoint(line);
+                        File.WriteAllText(Directory.GetCurrentDirectory() + @"\run.txt", DateTime.Now.ToLongTimeString() + "\n" + Environment.UserName);
+                        if (Directory.Exists(line)) ConvertPowerpoint(line);
                     }
-
                 }
 
                 Console.WriteLine("Sleeping...");
@@ -83,27 +94,11 @@ namespace PPT2PNG
 
         static void ConvertPowerpoint(string path)
         {
-            msg += "Initiating Conversion...\n";
-            File.WriteAllText(path + @"\out.txt", msg);
             Console.WriteLine("Initiating Conversion...");
-
-            try
-            {
-                Powerpoint.Application appd;
-                Powerpoint.Presentation pptd;
-                appd = new Powerpoint.Application();
-            }
-            catch(Exception e)
-            {
-                msg += "STUCK HERE\n" + e;
-                File.WriteAllText(path + @"\out.txt", msg);
-            }
-
 
             Powerpoint.Application app;
             Powerpoint.Presentation ppt;
             app = new Powerpoint.Application();
-
 
             try
             {
@@ -117,18 +112,14 @@ namespace PPT2PNG
                     Console.WriteLine("Looking for Datei.ppt");
                     ppt = app.Presentations.Open(path + @"\Datei.ppt", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoFalse);
                 }
-                catch(Exception e)
+                catch
                 {
-                    msg += e+ "\n";
-                    File.WriteAllText(path + @"\out.txt", msg);
                     Console.WriteLine("No valid PPT found or MS Office is not installed! 'Datei.ppt', 'Datei.pptx'");
                     return;
                 }
             }
 
             Console.WriteLine("Starting Converting " + ppt.Path);
-            msg += "Starting Converting " + ppt.Path + "\n";
-            File.WriteAllText(path + @"\out.txt", msg);
 
             for (int i = 1; i <= ppt.Slides.Count; i++)
             {
@@ -136,8 +127,6 @@ namespace PPT2PNG
             }
 
             Console.WriteLine("Slides successfully converted");
-            msg += "Slides converted";
-            File.WriteAllText(path + @"\out.txt", msg);
             ppt.Close();
         }
     }
