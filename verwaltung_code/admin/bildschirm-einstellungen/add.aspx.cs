@@ -87,7 +87,7 @@ namespace Infoscreen_Verwaltung.admin.bildschirm_einstellungen
                     Session["21_Daten"] = temp;
 
                     //if (cbBildschirmeHinzu.Checked)
-                    //    DatenbankSchreiben.BetriebsmodeBildschirmEinerAbteilungHinzufügen(temp.id, Session["21_Abteilung"].ToString());
+                    DatenbankSchreiben.BetriebsmodeBildschirmEinerAbteilungHinzufügen(temp.id, Session["21_Abteilung"].ToString());
 
                     // Session["21_Art"] = null; ISv6: Reset Art in default.aspx on btFertig click, otherwise Art isnt set when navigating back to add.aspx
                     Response.Redirect("./betriebsmode/");

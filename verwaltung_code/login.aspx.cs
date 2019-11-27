@@ -25,38 +25,38 @@ namespace Infoscreen_Verwaltung
 
         protected void ButtonLogin_Click(object sender, EventArgs e)
         {
-#if DEBUG
-/* Wenn es nicht funktioniert: -) Hashtags auskommentieren 
-                               -) Alles zwischen #else und #endif auskommentieren */
-            if (TextBoxUser.Text.ToLower() == "czak" && TextBoxPassword.Text == "2580")
-            {
-                classes.Login.Angemeldet = true;
-                classes.Login.Name = "Debug User";
-                classes.Login.User = "czak";
-                classes.Login.Abteilungen = new string[] { "Elektronik" };
-                classes.Login.StammAbteilung = "Elektronik";
-                classes.Login.StammKlasse = "2AHEL";
-                classes.Login.Rechte.Abteilungsinfo = "010";
-                classes.Login.Rechte.Bildschirme = "000";
-                classes.Login.Rechte.Gruppenrechte = "100";
-                classes.Login.Rechte.Klassen = "000";
-                classes.Login.Rechte.Klasseninfo = "010";
-                classes.Login.Rechte.Lehrer = true;
-                classes.Login.Rechte.Räume = "000";
-                classes.Login.Rechte.Sprechstunden = "210";
-                classes.Login.Rechte.Stundenplan = "100";
-                classes.Login.Rechte.Superadmin = false;
-                classes.Login.Rechte.Supplierung = "010";
-                classes.Login.Rechte.Tests = "210";
+//#if DEBUG
+            /* Wenn es nicht funktioniert: -) Hashtags auskommentieren 
+                                           -) Alles zwischen #else und #endif auskommentieren */
+            //if (TextBoxUser.Text.ToLower() == "czak" && TextBoxPassword.Text == "2580")
+            //{
+            //    classes.Login.Angemeldet = true;
+            //    classes.Login.Name = "Debug User";
+            //    classes.Login.User = "czak";
+            //    classes.Login.Abteilungen = new string[] { "Elektronik" };
+            //    classes.Login.StammAbteilung = "Elektronik";
+            //    classes.Login.StammKlasse = "2AHEL";
+            //    classes.Login.Rechte.Abteilungsinfo = "010";
+            //    classes.Login.Rechte.Bildschirme = "000";
+            //    classes.Login.Rechte.Gruppenrechte = "100";
+            //    classes.Login.Rechte.Klassen = "000";
+            //    classes.Login.Rechte.Klasseninfo = "010";
+            //    classes.Login.Rechte.Lehrer = true;
+            //    classes.Login.Rechte.Räume = "000";
+            //    classes.Login.Rechte.Sprechstunden = "210";
+            //    classes.Login.Rechte.Stundenplan = "100";
+            //    classes.Login.Rechte.Superadmin = false;
+            //    classes.Login.Rechte.Supplierung = "010";
+            //    classes.Login.Rechte.Tests = "210";
 
-                Response.Redirect("./");
-            }
-            else
-            {
-                Error.Text = "Der Infoscreen befindet sich derzeit im Wartungsmodus.\r\nEine anmeldung ist daher derzeit nicht möglich.";
-                Error.Visible = true;
-            }
-#else
+            //    Response.Redirect("./");
+            //}
+            //else
+            //{
+            //    Error.Text = "Der Infoscreen befindet sich derzeit im Wartungsmodus.\r\nEine anmeldung ist daher derzeit nicht möglich.";
+            //    Error.Visible = true;
+            //}
+//#else
             string domain = Properties.Resources.standardDomain;
             string user = TextBoxUser.Text;
             if (TextBoxUser.Text.Contains('\\'))
@@ -108,7 +108,7 @@ namespace Infoscreen_Verwaltung
             {
                 Error.Visible = true;
             }
-#endif
+//#endif
         }
     }
 }
