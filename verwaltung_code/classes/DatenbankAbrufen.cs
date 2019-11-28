@@ -1324,7 +1324,7 @@ WHERE [Abteilungen].[Abteilungsname]='" + _Abteilung + "'";
         /// <summary>
         /// Schließt die Abteilungs-ID aus dem Abteilungsnamen und gibt diese zurück.
         /// </summary>
-        /// <param name="_Abteilungsname">Der Abteilungsname aus welchem die Abteilungs-ID refferenziert werden soll.</param>
+        /// <param name="_Abteilungsname">Der Abteilungsname aus welchem die Abteilungs-ID referenziert werden soll.</param>
         /// <returns>Die Abteilungs-ID des Abteilungsnamen</returns>
         static public int GetAbteilungsIdVonAbteilungsname(string _Abteilungsname)
         {

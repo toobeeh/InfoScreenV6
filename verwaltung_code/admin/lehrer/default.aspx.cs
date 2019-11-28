@@ -283,6 +283,7 @@ namespace Infoscreen_Verwaltung.admin.lehrer
 
                         Button btnL = new Button();
                         btnL.ID = Data[i].LehrerKuerzel + "-btnL";
+                        btnL.CssClass = "DeleteButton";
                         btnL.Text = "Löschen";
                         btnL.Click += btnL_Click;
 
