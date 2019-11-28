@@ -18,7 +18,7 @@ namespace Infoscreen_Bildschirme
         {
             // Variablen anlegen
             int Seitenanzahl;
-            string Stammpfad = @"E:\infoscreen\bildschirm_code\presentations";
+            string Stammpfad = @"D:\infoscreen_publish\Screen\presentations"; // new path for ISv6
             string StammpfadWeb = @"./presentations/";
 
             string id = Request.QueryString["id"];
@@ -42,7 +42,7 @@ namespace Infoscreen_Bildschirme
             Bilderpfade = Directory.GetFiles(PresentationsOrdner, "*.png", SearchOption.TopDirectoryOnly);
             Seitenanzahl = Bilderpfade.Length;
 
-            // Überprüfen, ob überhaubt Bilder vorhanden sind
+            // Überprüfen, ob überhaupt Bilder vorhanden sind
             if (Seitenanzahl == 0)
             {
                 // Fehler
