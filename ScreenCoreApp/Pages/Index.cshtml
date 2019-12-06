@@ -1,11 +1,26 @@
 ﻿@page
 @model ScreenCoreApp.Pages.IndexModel
 @{
-    ViewData["Title"] = "Index";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html>
 
-<h2>Betriebsmodus wird geladen... ID: @ViewData["ID"]</h2>
+    <head>
 
+        <meta name="viewport" content="width=device-width" />
+        <title>InfoScreenV6 @ViewData["Title"]</title>
 
+        <link rel="stylesheet" href="~/CSS/Index.css">
+        <script src="~/JS/Index.js"></script>
 
+    </head>
 
+    <body>
+
+        <iframe id ="view_frame" class="iframe_full"></iframe>
+        <iframe id="preload_frame" style="display: none" class="iframe_full"></iframe>
+
+    </body>
+
+</html>

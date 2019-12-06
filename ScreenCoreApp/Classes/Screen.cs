@@ -13,20 +13,22 @@ namespace ScreenCoreApp
     {
         public static int GetSessionScreenID(HttpContext current)
         {
-            int? id = current.Session.GetInt32("screen-id");
-            if (id == null) return -1;
-            else return id.GetValueOrDefault();
+            return GetIntSessionVal("screen-id", current);
         }
 
         private static void SetSessionScreenID(string val, HttpContext current)
         {
-            int id;
-            try
-            {
-                id = Convert.ToInt32(val);
-                current.Session.SetInt32("screen-id", id);
-            }
-            catch{}  
+            SetIntSessionVal("screen-id", val, current);
+        }
+
+        public static int GetPageCycleIndex(HttpContext current)
+        {
+            return GetIntSessionVal("page-cycle-index", current);
+        }
+
+        public static void SetPageCycleIndex(string val, HttpContext current)
+        {
+            SetIntSessionVal("page-cycle-index", val, current);
         }
 
         public static void CheckScreenID(IQueryCollection querystring, HttpContext context)
@@ -36,6 +38,25 @@ namespace ScreenCoreApp
             {
                 SetSessionScreenID(querystring["id"].ToString(), context);
             }
+        }
+
+
+        private static int GetIntSessionVal(string key, HttpContext current)
+        {           
+            int? val = current.Session.GetInt32(key);
+            if (val == null) return -1;
+            else return val.GetValueOrDefault();
+        }
+
+        private static void SetIntSessionVal(string key, string val, HttpContext current)
+        {
+            int value;
+            try
+            {
+                value = Convert.ToInt32(val);
+                current.Session.SetInt32(key, value);
+            }
+            catch { }
         }
 
     }
