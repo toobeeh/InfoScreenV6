@@ -1,0 +1,17 @@
+c:\users\tobi\source\repos\ScreenCoreApp\ScreenCoreApp\bin\Debug\netcoreapp2.0\ScreenCoreApp.deps.json
+c:\users\tobi\source\repos\ScreenCoreApp\ScreenCoreApp\bin\Debug\netcoreapp2.0\ScreenCoreApp.runtimeconfig.json
+c:\users\tobi\source\repos\ScreenCoreApp\ScreenCoreApp\bin\Debug\netcoreapp2.0\ScreenCoreApp.runtimeconfig.dev.json
+c:\users\tobi\source\repos\ScreenCoreApp\ScreenCoreApp\bin\Debug\netcoreapp2.0\ScreenCoreApp.dll
+c:\users\tobi\source\repos\ScreenCoreApp\ScreenCoreApp\obj\Debug\netcoreapp2.0\ScreenCoreApp.csprojAssemblyReference.cache
+c:\users\tobi\source\repos\ScreenCoreApp\ScreenCoreApp\obj\Debug\netcoreapp2.0\ScreenCoreApp.csproj.CoreCompileInputs.cache
+c:\users\tobi\source\repos\ScreenCoreApp\ScreenCoreApp\obj\Debug\netcoreapp2.0\ScreenCoreApp.AssemblyInfoInputs.cache
+c:\users\tobi\source\repos\ScreenCoreApp\ScreenCoreApp\obj\Debug\netcoreapp2.0\ScreenCoreApp.AssemblyInfo.cs
+c:\users\tobi\source\repos\ScreenCoreApp\ScreenCoreApp\bin\Debug\netcoreapp2.0\ScreenCoreApp.pdb
+c:\users\tobi\source\repos\ScreenCoreApp\ScreenCoreApp\obj\Debug\netcoreapp2.0\ScreenCoreApp.dll
+c:\users\tobi\source\repos\ScreenCoreApp\ScreenCoreApp\obj\Debug\netcoreapp2.0\ScreenCoreApp.pdb
+C:\Users\Tobi\source\repos\ScreenCoreApp\ScreenCoreApp\bin\Debug\netcoreapp2.0\Bibliotheken.dll
+C:\Users\Tobi\source\repos\ScreenCoreApp\ScreenCoreApp\bin\Debug\netcoreapp2.0\Infoscreen Verwaltung.dll
+C:\Users\Tobi\source\repos\ScreenCoreApp\ScreenCoreApp\bin\Debug\netcoreapp2.0\EntityFramework.dll
+C:\Users\Tobi\source\repos\ScreenCoreApp\ScreenCoreApp\bin\Debug\netcoreapp2.0\Infoscreen Verwaltung.pdb
+C:\Users\Tobi\source\repos\ScreenCoreApp\ScreenCoreApp\bin\Debug\netcoreapp2.0\Infoscreen Verwaltung.dll.config
+C:\Users\Tobi\source\repos\ScreenCoreApp\ScreenCoreApp\obj\Debug\netcoreapp2.0\ScreenCoreApp.csproj.CopyComplete

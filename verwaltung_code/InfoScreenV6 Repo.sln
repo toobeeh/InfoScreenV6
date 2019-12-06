@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPT2PNG", "..\PPT2PNG\PPT2P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bildschirme", "..\bildschirm_code\Bildschirme.csproj", "{136D25D0-09A3-4D4D-B49C-8B1B84103FE4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScreenCoreApp", "..\ScreenCoreApp\ScreenCoreApp.csproj", "{3390E5CC-B6F3-41F9-9FD8-A9009C81F93A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{136D25D0-09A3-4D4D-B49C-8B1B84103FE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{136D25D0-09A3-4D4D-B49C-8B1B84103FE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{136D25D0-09A3-4D4D-B49C-8B1B84103FE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3390E5CC-B6F3-41F9-9FD8-A9009C81F93A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3390E5CC-B6F3-41F9-9FD8-A9009C81F93A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3390E5CC-B6F3-41F9-9FD8-A9009C81F93A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3390E5CC-B6F3-41F9-9FD8-A9009C81F93A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
