@@ -11,13 +11,22 @@ namespace ScreenCoreApp.Pages
 {
     public class InitModel : PageModel
     {
+        /*
+         * Checks screen ID and associated display modes
+         * 
+         * Display mode is incremented to display the next mode
+         * Redirects to sub-razorpage to display the mode
+         * -> no actual content in this page
+         */
+         
 
         public void OnGet()
         {
+            // Get ID per Querystring
             Screen.CheckScreenID(Request.Query, HttpContext);
             ViewData["ID"] = "Eingegebene ID per QS:" + Screen.GetSessionScreenID(HttpContext);
 
-
+            // Checks if ID is set
             int screenID = Screen.GetSessionScreenID(HttpContext);
             if (screenID < 0)
             {
@@ -29,19 +38,18 @@ namespace ScreenCoreApp.Pages
             // Refresh mode depending on ZGA (if active)
             TimeSensitiveMode.ZGAAbfragen(screenID);
 
-            // Check mode page-cycle index per cookies
-
+            // Check mode page-cycle index per session state
             Structuren.AnzeigeElemente pages = DatenbankAbrufen.AnzuzeigendeElemente(Convert.ToString(screenID));
             int cycle_index = Screen.GetPageCycleIndex(HttpContext);
 
-            if (cycle_index == -1) SetCycleIndex(ref cycle_index, 1); // Initialize cycle variable
-            else // If already initialized, get next mode
+            if (cycle_index == -1) SetCycleIndex(ref cycle_index, 1);       // Initialize cycle variable
+            else                                                            // If already initialized, get next mode
             {
                 GetNextCylceIndex(pages, ref cycle_index);
                 SetCycleIndex(ref cycle_index, cycle_index);
             }
             
-
+            // Get next mode and redirect
             switch (cycle_index)
             {
                 case 1: // Timetable
@@ -97,7 +105,7 @@ namespace ScreenCoreApp.Pages
             int i = cycle_index;
             do
             {
-                i++;
+                if (!(i==6 && Screen.GetPresentationRunningStatus(HttpContext))) i++; // If Powerpoint is shown and the presentation hasnt finished
                 if (i > pageList.Count) i = 1;
             }
             while (!pageList[i-1]);
@@ -105,6 +113,8 @@ namespace ScreenCoreApp.Pages
             cycle_index = i;
             return;
         }
+
+        
 
     }
 }
