@@ -40,6 +40,17 @@ namespace ScreenCoreApp
             }
         }
 
+        public static bool GetPresentationRunningStatus(HttpContext current)
+        {
+            if (GetIntSessionVal("page-cycle-index", current) <1) return false;
+            else return true;
+        }
+
+        public static void SetPresentationRunningStatus(bool val, HttpContext current)
+        {
+            SetIntSessionVal("page-cycle-index", val? "1" : "0", current);
+        }
+
 
         private static int GetIntSessionVal(string key, HttpContext current)
         {           
