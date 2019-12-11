@@ -21,6 +21,11 @@
         <iframe id ="view_frame" class="iframe_full"></iframe>
         <iframe id="preload_frame" style="display: none" class="iframe_full"></iframe>
 
+        <table>
+            @Html.Raw(Model.GeneratePreloadHtmlCode())
+        </table>
+
+
     </body>
 
 </html>
