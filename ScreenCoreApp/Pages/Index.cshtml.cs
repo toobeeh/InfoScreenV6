@@ -12,14 +12,7 @@ namespace ScreenCoreApp.Pages
         public void OnGet()
         {
             Screen.CheckScreenID(Request.Query, HttpContext);
-                ViewData["Handler"] = "Default";
-        }
-
-        
-
-        public string GeneratePreloadHtmlCode() // should be called on startup and generate preload table
-        {
-            return "<td>generated text</td>";
+            ViewData["ID"] = "Eingegebene ID per QS:" + Screen.GetSessionScreenID(HttpContext);
         }
     }
 }

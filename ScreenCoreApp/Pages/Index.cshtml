@@ -9,7 +9,7 @@
     <head>
 
         <meta name="viewport" content="width=device-width" />
-        <title>InfoScreenV6 </title>
+        <title>InfoScreenV6 @ViewData["Title"]</title>
 
         <link rel="stylesheet" href="~/CSS/Index.css">
         <script src="~/JS/Index.js"></script>
@@ -18,15 +18,9 @@
 
     <body>
 
-        <iframe id="view_frame" class="iframe_full"></iframe>
+        <iframe id ="view_frame" class="iframe_full"></iframe>
         <iframe id="preload_frame" style="display: none" class="iframe_full"></iframe>
 
-        <table id="ppt_preload_table">
-            
-            @Html.Raw(Model.GeneratePreloadHtmlCode())
-
-        </table>
-        
     </body>
 
 </html>
