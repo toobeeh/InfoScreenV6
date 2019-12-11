@@ -5,13 +5,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
+
 namespace ScreenCoreApp.Pages.ContentPages
 {
     public class PowerPointModel : PageModel
     {
-        public void OnGet()
-        {
 
+        private int Slide;
+        public void OnGet(int slide)
+        {
+            Slide = slide;
         }
+
+        public string GetPresentationSource()
+        {
+            return Slide.ToString();
+        }
+
+       
     }
 }

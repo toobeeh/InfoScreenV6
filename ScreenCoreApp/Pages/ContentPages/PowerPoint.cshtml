@@ -1,9 +1,22 @@
-﻿@page
+﻿@page "{slide:int}"
 @model ScreenCoreApp.Pages.ContentPages.PowerPointModel
 @{
     ViewData["Title"] = "PowerPoint";
 }
 
 <h2>PowerPoint</h2>
+<div id="image_container">
+
+</div>
+<script>
+
+    var slide_id = @Model.GetPresentationSource();
+
+    var slide_preload = parent.document.getElementById(slide_id);
+
+    
+    document.getElementById("image_container").innerHTML = slide_preload.innerHTML;
+
+</script>
 
 

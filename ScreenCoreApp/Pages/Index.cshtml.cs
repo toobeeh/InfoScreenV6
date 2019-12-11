@@ -16,6 +16,8 @@ namespace ScreenCoreApp.Pages
             Screen.CheckScreenID(Request.Query, HttpContext);
             ViewData["Handler"] = "Default";
 
+            Screen.SetNextPresentationSlide(1, HttpContext); // Presentation begins at slide 1
+
             PreloadPowerpoints();
         }
 
@@ -32,7 +34,9 @@ namespace ScreenCoreApp.Pages
 
             int modeID = DatenbankAbrufen.AktuellenBetriebsmodeAbrufen(departmentName);
 
-            int powerpointID = DatenbankAbrufen.AnzuzeigendeElemente(screenID.ToString()).PowerPoints;
+            Structuren.AnzeigeElemente elements = DatenbankAbrufen.AnzuzeigendeElemente(screenID.ToString());
+
+            int powerpointID = elements.PowerPoints;
             if (powerpointID == -1) return;
 
             string presentationRoot = Path.Combine(new string[] { @"D:\infoscreen_publish\Screen\Presentations\", modeID.ToString(), powerpointID.ToString() });
@@ -47,7 +51,9 @@ namespace ScreenCoreApp.Pages
 
             PptPicturePaths.ForEach((string path) =>
             {
-                preloadMarkup += "<td id='" + Path.GetFileNameWithoutExtension(path) + "> <image src=" + path + "> </td>";
+                // new tabledata with presentation slide number as ID and refers to the sub-website /presentations
+                // sample: <td id="1"> <img src="Presentations\21\10359\1.png"> </td>
+                preloadMarkup += "<td id='" + Path.GetFileNameWithoutExtension(path) + "'> <image src='\\" + path.Substring(path.IndexOf("Presentations")) + "'> </td>";
             });
 
             return preloadMarkup;

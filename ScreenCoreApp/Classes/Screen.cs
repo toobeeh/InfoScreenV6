@@ -42,13 +42,18 @@ namespace ScreenCoreApp
 
         public static bool GetPresentationRunningStatus(HttpContext current)
         {
-            if (GetIntSessionVal("page-cycle-index", current) <1) return false;
+            if (GetIntSessionVal("next_slide", current) <2) return false;
             else return true;
         }
 
-        public static void SetPresentationRunningStatus(bool val, HttpContext current)
+        public static int GetNextPresentationSlide(HttpContext current)
         {
-            SetIntSessionVal("page-cycle-index", val? "1" : "0", current);
+            return GetIntSessionVal("next_slide", current);
+        }
+
+        public static void SetNextPresentationSlide(int slide, HttpContext current)
+        {
+            SetIntSessionVal("next_slide", slide.ToString(), current);
         }
 
 

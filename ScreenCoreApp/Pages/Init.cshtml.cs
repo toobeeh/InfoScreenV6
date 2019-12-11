@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ScreenCoreApp.Classes;
 using Infoscreen_Verwaltung.classes;
+using System.IO;
 
 namespace ScreenCoreApp.Pages
 {
@@ -37,8 +38,17 @@ namespace ScreenCoreApp.Pages
             if (cycle_index == -1) SetCycleIndex(ref cycle_index, 1); // Initialize cycle variable
             else // If already initialized, get next mode
             {
-                GetNextCylceIndex(pages, ref cycle_index);
-                SetCycleIndex(ref cycle_index, cycle_index);
+                bool show_running = Screen.GetPresentationRunningStatus(HttpContext);
+                if (!show_running)
+                {
+                    GetNextCylceIndex(pages, ref cycle_index);
+                    SetCycleIndex(ref cycle_index, cycle_index);
+                }
+                else
+                {
+                    RedirectToSlide();
+                    return;
+                }          
             }
             
 
@@ -69,7 +79,7 @@ namespace ScreenCoreApp.Pages
                     ViewData["ScreenMode"] = "...";
                     break;
                 case 7: // Powerpoint
-                    //Response.Redirect("");
+                    RedirectToSlide();
                     ViewData["ScreenMode"] = "Powerpoint";
                     break;
                 default:
@@ -105,6 +115,34 @@ namespace ScreenCoreApp.Pages
             cycle_index = i;
             return;
         }
+
+        private void RedirectToSlide()
+        {
+            int slide = Screen.GetNextPresentationSlide(HttpContext);
+
+            int count = GetSlideCount();
+
+            if(slide >= count ) Screen.SetNextPresentationSlide(1, HttpContext);
+            else Screen.SetNextPresentationSlide(slide + 1, HttpContext);
+
+            Response.Redirect("ContentPages/PowerPoint/" + slide.ToString());
+        }
+
+        private int GetSlideCount()
+        {
+            int screenID = Screen.GetSessionScreenID(HttpContext);
+            string departmentName = DatenbankAbrufen.BildschirmInformationenAbrufen(screenID).Abteilung;
+            int modeID = DatenbankAbrufen.AktuellenBetriebsmodeAbrufen(departmentName);
+            Structuren.AnzeigeElemente elements = DatenbankAbrufen.AnzuzeigendeElemente(screenID.ToString());
+
+            int powerpointID = elements.PowerPoints;
+            if (powerpointID == -1) return -1;
+
+            string presentationRoot = Path.Combine(new string[] { @"D:\infoscreen_publish\Screen\Presentations\", modeID.ToString(), powerpointID.ToString() });
+
+            return Directory.GetFiles(presentationRoot, "*.png").ToList().Count;
+        }
+
 
     }
 }
