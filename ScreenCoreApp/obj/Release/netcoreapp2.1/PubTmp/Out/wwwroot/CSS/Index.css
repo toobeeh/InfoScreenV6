@@ -12,3 +12,7 @@
     -moz-box-sizing: border-box;
     border: 0;
 }
+
+#powerpoint-preload {
+    display: none;
+}

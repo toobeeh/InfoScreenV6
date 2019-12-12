@@ -11,17 +11,16 @@ namespace ScreenCoreApp.Pages.ContentPages
     public class PowerPointModel : PageModel
     {
 
-        private int Slide;
-        public void OnGet(int slide)
+        public string Slide;
+        public string Webpath;
+        public void OnGet(string slide)
         {
-            Slide = slide;
+            Slide = slide.Substring(0,slide.IndexOf('_')) ;
+            Webpath = slide.Substring(slide.IndexOf('_') + 1);
+            Webpath = Webpath.Replace("-", "\\");
         }
 
-        public string GetPresentationSource()
-        {
-            return Slide.ToString();
-        }
-
+       
        
     }
 }

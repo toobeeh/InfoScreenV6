@@ -53,7 +53,7 @@ namespace ScreenCoreApp.Pages
             {
                 // new tabledata with presentation slide number as ID and refers to the sub-website /presentations
                 // sample: <td id="1"> <img src="Presentations\21\10359\1.png"> </td>
-                preloadMarkup += "<td id='" + Path.GetFileNameWithoutExtension(path) + "'> <image src='\\" + path.Substring(path.IndexOf("Presentations")) + "'> </td>";
+                preloadMarkup += "<td id='"  +  Path.GetFileNameWithoutExtension(path) + "'> <image src='\\" + path.Substring(path.IndexOf("Presentations")) + "'> </td>";
             });
 
             return preloadMarkup;

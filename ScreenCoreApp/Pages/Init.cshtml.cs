@@ -119,27 +119,31 @@ namespace ScreenCoreApp.Pages
         private void RedirectToSlide()
         {
             int slide = Screen.GetNextPresentationSlide(HttpContext);
+            string presentation;
+            
+            int count = GetSlideCount(out presentation);
 
-            int count = GetSlideCount();
-
-            if(slide >= count ) Screen.SetNextPresentationSlide(1, HttpContext);
+            if (slide >= count ) Screen.SetNextPresentationSlide(1, HttpContext);
             else Screen.SetNextPresentationSlide(slide + 1, HttpContext);
 
-            Response.Redirect("ContentPages/PowerPoint/" + slide.ToString());
+            Response.Redirect("ContentPages/PowerPoint/" + slide.ToString() + "_" + presentation);
         }
 
-        private int GetSlideCount()
+        private int GetSlideCount(out string presentation)
         {
             int screenID = Screen.GetSessionScreenID(HttpContext);
             string departmentName = DatenbankAbrufen.BildschirmInformationenAbrufen(screenID).Abteilung;
             int modeID = DatenbankAbrufen.AktuellenBetriebsmodeAbrufen(departmentName);
+            
             Structuren.AnzeigeElemente elements = DatenbankAbrufen.AnzuzeigendeElemente(screenID.ToString());
 
+            presentation = "";
             int powerpointID = elements.PowerPoints;
             if (powerpointID == -1) return -1;
 
-            string presentationRoot = Path.Combine(new string[] { @"D:\infoscreen_publish\Screen\Presentations\", modeID.ToString(), powerpointID.ToString() });
 
+            string presentationRoot = Path.Combine(new string[] { @"D:\infoscreen_publish\Screen\Presentations\", modeID.ToString(),powerpointID.ToString() });
+            presentation = powerpointID.ToString();
             return Directory.GetFiles(presentationRoot, "*.png").ToList().Count;
         }
 

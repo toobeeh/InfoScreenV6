@@ -1,4 +1,4 @@
-﻿@page "{slide:int}"
+﻿@page "{slide}"
 @model ScreenCoreApp.Pages.ContentPages.PowerPointModel
 @{
     ViewData["Title"] = "PowerPoint";
@@ -9,10 +9,11 @@
 <script>
     //image style is optimized for 1024x768 resolution on infoscreens
 
-    var slide_id = @Model.GetPresentationSource();
+    var slide_id = @Model.Slide;
+    var presentation = @Model.Webpath;
     var slide_preload = parent.document.getElementById(slide_id);
 
-    if (slide_preload == null) parent.location.reload(); // Reload parent page if source picture couldnt be found
+    if (slide_preload == null || !slide_preload.innerHTML.includes(presentation)) parent.location.reload(); // Reload parent page if source picture couldnt be found
     
     document.getElementById("image_container").innerHTML = slide_preload.innerHTML;
 
