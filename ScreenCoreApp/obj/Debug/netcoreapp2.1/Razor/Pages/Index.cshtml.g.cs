@@ -54,7 +54,7 @@ namespace NetCoreTestApp.Pages
             WriteLiteral("<!DOCTYPE html>\r\n<html>\r\n\r\n    ");
             EndContext();
             BeginContext(104, 247, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1feb251b89a45b787c67ea2732d8977", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "20d80bb026d443cea09ad7ffcbea1145", async() => {
                 BeginContext(110, 95, true);
                 WriteLiteral("\r\n\r\n        <meta name=\"viewport\" content=\"width=device-width\" />\r\n        <title>InfoScreenV6 ");
                 EndContext();
@@ -69,7 +69,7 @@ namespace NetCoreTestApp.Pages
                 WriteLiteral("</title>\r\n\r\n        ");
                 EndContext();
                 BeginContext(243, 46, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "e908496288b74723a30a753f53669be4", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "b10a650cf2fc4a949073e50c7e26729b", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -88,7 +88,7 @@ namespace NetCoreTestApp.Pages
                 WriteLiteral("\r\n        ");
                 EndContext();
                 BeginContext(299, 37, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "717d4861e21b4ccba6e42466c1b88072", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "33bd57eb36c24c179b7aebf7cd371183", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -121,7 +121,7 @@ namespace NetCoreTestApp.Pages
             WriteLiteral("\r\n\r\n    ");
             EndContext();
             BeginContext(359, 294, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "46b799765d2648019da348e29983c3f2", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b0e72fbab9ed4369971b80fbc0f4cb97", async() => {
                 BeginContext(365, 211, true);
                 WriteLiteral("\r\n\r\n        <iframe id =\"view_frame\" class=\"iframe_full\"></iframe>\r\n        <iframe id=\"preload_frame\" style=\"display: none\" class=\"iframe_full\"></iframe>\r\n\r\n        <table id=\"powerpoint-preload\">\r\n            ");
                 EndContext();
