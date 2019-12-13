@@ -11,11 +11,12 @@
 
     var slide_id = @Model.Slide;
     var presentation = @Model.Webpath;
-    var slide_preload = parent.document.getElementById(slide_id);
+    var slide_preload = parent.document.getElementById(presentation + "/" + slide_id);
 
-    if (slide_preload == null || !slide_preload.innerHTML.includes(presentation)) parent.location.reload(); // Reload parent page if source picture couldnt be found
-    
-    document.getElementById("image_container").innerHTML = slide_preload.innerHTML;
+    if (slide_preload == null) {
+        parent.window.location.reload(true);
+    }
+    else document.getElementById("image_container").innerHTML = slide_preload.innerHTML;
 
 
 </script>
