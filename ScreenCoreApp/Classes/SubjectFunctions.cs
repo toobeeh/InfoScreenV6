@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data;
-using Infoscreen_Bibliotheken;
+using Infoscreen_Verwaltung.classes;
 
 namespace ScreenCoreApp.Classes
 {
@@ -417,7 +417,7 @@ AND [Bildschirme].[BildschirmID]='" + _ID + "')";
                 temp3.Stunde = Convert.ToInt32(daten.Rows[i]["Stunde"]);
                 temp3.ZiehtVor = Convert.ToInt32(daten.Rows[i]["ZiehtVor"]);
                 //temp3.ZiehtVorDatum = Convert.ToDateTime(daten.Rows[i]["ZiehtVorDatum"]);
-                temp3.Ursprungsleher = _RichtigerName ? LehrerNamen(daten.Rows[i]["StattLehrerKürzel"].ToString()) : daten.Rows[i]["StattLehrerKürzel"].ToString();
+                temp3.Ursprungslehrer = _RichtigerName ? LehrerNamen(daten.Rows[i]["StattLehrerKürzel"].ToString()) : daten.Rows[i]["StattLehrerKürzel"].ToString();
                 string raum = "";
                 if (daten.Rows[i]["Gebäude"].ToString() != "" && daten.Rows[i]["Raum"].ToString() != "") raum = daten.Rows[i]["Gebäude"].ToString() + "-" + daten.Rows[i]["Raum"].ToString();
                 else if (daten.Rows[i]["Gebäude"].ToString() != "") raum = daten.Rows[i]["Gebäude"].ToString();

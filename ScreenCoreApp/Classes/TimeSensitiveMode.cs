@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Infoscreen_Bibliotheken;
+using Infoscreen_Verwaltung.classes;
 using System.Data;
 
 namespace ScreenCoreApp.Classes
