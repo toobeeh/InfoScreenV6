@@ -33,26 +33,35 @@
 }
 
 .department_info {
+    z-index: -1;
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height:768px;
+    flex-direction: column;
 }
 
 .content_header {
-    display: flex;
+    z-index: 10;
+    display:flex;
     align-items: center;
     justify-content: center;
+
     text-align: center;
-    color: white;
+    color: #99CC00;
     font-weight: 600;
-    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-family: Arial, Verdana;
     font-size: 70px;
     padding: 15px;
-    background: RGB(153,204,0);
-    border-bottom: 10px solid RGB(166,161,161);
-    border-top: 10px solid RGB(166,161,161);
+    background: #131313;
+    box-shadow: 0px 0px 15px #333333;
+    /*border-bottom: 10px solid RGB(166,161,161);
+    border-top: 10px solid RGB(166,161,161);*/
 }
 
 

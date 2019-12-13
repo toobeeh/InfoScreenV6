@@ -89,6 +89,7 @@ namespace ScreenCoreApp.Classes
 			BB_Code = BB_Code.Replace("[url=", "<A HREF=");
 			BB_Code = BB_Code.Replace("[/url]", "</A>");
 			BB_Code = BB_Code.Replace("']", "'>");
+
 			while (BB_Code.IndexOf("[size=") != -1)
 			{
 				string text = BB_Code.Substring(BB_Code.IndexOf("[size="));
@@ -97,6 +98,7 @@ namespace ScreenCoreApp.Classes
 				BB_Code = BB_Code.Replace("[size=" + str + "]", "<span style=\"font-size: " + str + "px;\">");
 			}
 			BB_Code = BB_Code.Replace("[/size]", "</span>");
+
 			while (BB_Code.IndexOf("[color=") != -1)
 			{
 				string text2 = BB_Code.Substring(BB_Code.IndexOf("[color="));
@@ -105,6 +107,15 @@ namespace ScreenCoreApp.Classes
 				BB_Code = BB_Code.Replace("[color=" + str2 + "]", "<span style=\"color: " + str2 + ";\">");
 			}
 			BB_Code = BB_Code.Replace("[/color]", "</span>");
+
+			while (BB_Code.IndexOf("[font=") != -1)
+			{
+				string text2 = BB_Code.Substring(BB_Code.IndexOf("[font="));
+				text2 = text2.Substring(0, text2.IndexOf("]"));
+				string str2 = text2.Substring(text2.IndexOf('=') + 1);
+				BB_Code = BB_Code.Replace("[font=" + str2 + "]", "<span style=\"font-family: " + str2 + ";\">");
+			}
+			BB_Code = BB_Code.Replace("[/font]", "</span>");
 			return BB_Code;
 		}
 	}    
