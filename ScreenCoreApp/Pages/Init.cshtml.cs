@@ -59,7 +59,7 @@ namespace ScreenCoreApp.Pages
                     ViewData["ScreenMode"] = "Timetable";
                     break;
                 case 2: // Department information
-                    //Response.Redirect("");
+                    Response.Redirect("/ContentPages/DepartmentInfo");
                     ViewData["ScreenMode"] = "Department Information";
                     break;
                 case 3: //Consultation table

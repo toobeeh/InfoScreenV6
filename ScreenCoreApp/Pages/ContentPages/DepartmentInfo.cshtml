@@ -1,0 +1,13 @@
+﻿@page
+@model ScreenCoreApp.DepartmentInfoModel
+@{
+    ViewData["Title"] = "DepartmentInfo";
+}
+<div class="content_header">
+    Abteilungs - Information
+</div>
+<div class="department_info">
+    @Html.Raw(Model.InfoHtmlMarkup)
+</div>
+
+

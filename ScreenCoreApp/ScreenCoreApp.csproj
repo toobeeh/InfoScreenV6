@@ -6,14 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.14" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Utils" Version="3.1.0" />
   </ItemGroup>
 
-  
-
   <ItemGroup>
-    <Reference Include="Bibliotheken">
-      <HintPath>..\..\InfoScreenV6\bildschirm_code\bin\Bibliotheken.dll</HintPath>
-    </Reference>
     <Reference Include="Infoscreen Verwaltung">
       <HintPath>..\..\InfoScreenV6\verwaltung_code\bin\Infoscreen Verwaltung.dll</HintPath>
     </Reference>

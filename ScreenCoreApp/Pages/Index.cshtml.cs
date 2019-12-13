@@ -17,16 +17,19 @@ namespace ScreenCoreApp.Pages
             ViewData["Handler"] = "Default";
 
             Screen.SetNextPresentationSlide(1, HttpContext); // Presentation begins at slide 1
+            PptPicturePaths = new List<string>();
+            pptID = 0;
 
             PreloadPowerpoints();
         }
 
+
         private List<string> PptPicturePaths;
+        private int pptID;
 
         private void PreloadPowerpoints()
         {
-            PptPicturePaths = new List<string>();
-
+            
             int screenID = Screen.GetSessionScreenID(HttpContext);
             if (screenID < 1) return;
 
@@ -42,6 +45,7 @@ namespace ScreenCoreApp.Pages
             string presentationRoot = Path.Combine(new string[] { @"D:\infoscreen_publish\Screen\Presentations\", modeID.ToString(), powerpointID.ToString() });
 
             PptPicturePaths = Directory.GetFiles(presentationRoot, "*.png").ToList();
+            pptID = powerpointID;
 
         }
 
@@ -51,9 +55,9 @@ namespace ScreenCoreApp.Pages
 
             PptPicturePaths.ForEach((string path) =>
             {
-                // new tabledata with presentation slide number as ID and refers to the sub-website /presentations
+                // new tabledata with presentation and slide number as ID and refers to the sub-website /presentations
                 // sample: <td id="1"> <img src="Presentations\21\10359\1.png"> </td>
-                preloadMarkup += "<td id='"  +  Path.GetFileNameWithoutExtension(path) + "'> <image src='\\" + path.Substring(path.IndexOf("Presentations")) + "'> </td>";
+                preloadMarkup += "<td id='"  + pptID + "/" + Path.GetFileNameWithoutExtension(path)  + "'> <img src='\\" + path.Substring(path.IndexOf("Presentations")) + "'> </td>";
             });
 
             return preloadMarkup;

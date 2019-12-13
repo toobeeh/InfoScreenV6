@@ -4,7 +4,6 @@ C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\bin\Debug\netcoreapp2.1\Sc
 C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\bin\Debug\netcoreapp2.1\ScreenCoreApp.runtimeconfig.dev.json
 C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\bin\Debug\netcoreapp2.1\ScreenCoreApp.dll
 C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\bin\Debug\netcoreapp2.1\ScreenCoreApp.pdb
-C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\bin\Debug\netcoreapp2.1\Bibliotheken.dll
 C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\bin\Debug\netcoreapp2.1\Infoscreen Verwaltung.dll
 C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\bin\Debug\netcoreapp2.1\EntityFramework.dll
 C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\bin\Debug\netcoreapp2.1\Infoscreen Verwaltung.pdb
@@ -14,7 +13,6 @@ C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\obj\Debug\netcoreapp2.1\Sc
 C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\obj\Debug\netcoreapp2.1\ScreenCoreApp.csproj.CopyComplete
 C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\obj\Debug\netcoreapp2.1\ScreenCoreApp.dll
 C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\obj\Debug\netcoreapp2.1\ScreenCoreApp.pdb
-C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\obj\Debug\netcoreapp2.1\ScreenCoreApp.csprojAssemblyReference.cache
 C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\bin\Debug\netcoreapp2.1\ScreenCoreApp.Views.dll
 C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\bin\Debug\netcoreapp2.1\ScreenCoreApp.Views.pdb
 C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\obj\Debug\netcoreapp2.1\ScreenCoreApp.RazorAssemblyInfo.cache
@@ -32,3 +30,5 @@ C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\obj\Debug\netcoreapp2.1\Ra
 C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\obj\Debug\netcoreapp2.1\ScreenCoreApp.RazorTargetAssemblyInfo.cache
 C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\obj\Debug\netcoreapp2.1\ScreenCoreApp.RazorTargetAssemblyInfo.cs
 C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\obj\Debug\netcoreapp2.1\ScreenCoreApp.Views.pdb
+C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\obj\Debug\netcoreapp2.1\Razor\Pages\ContentPages\DepartmentInfo.cshtml.g.cs
+C:\Users\Tobi\source\repos\InfoScreenV6\ScreenCoreApp\obj\Debug\netcoreapp2.1\ScreenCoreApp.csprojAssemblyReference.cache
