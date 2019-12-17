@@ -39,15 +39,22 @@ namespace ScreenCoreApp.Pages
             else // If already initialized, get next mode
             {
                 bool show_running = Screen.GetPresentationRunningStatus(HttpContext);
-                if (!show_running)
-                {
-                    GetNextCylceIndex(pages, ref cycle_index);
-                    SetCycleIndex(ref cycle_index, cycle_index);
-                }
-                else
+                bool consultations_running = Screen.GetConsultationsPage(HttpContext) > 0 ? true: false;
+
+                if (show_running)
                 {
                     RedirectToSlide();
                     return;
+                }
+                else if (consultations_running)
+                {
+                    RedirectToConsultations();
+                    return;
+                }
+                else
+                {
+                    GetNextCylceIndex(pages, ref cycle_index);
+                    SetCycleIndex(ref cycle_index, cycle_index);   
                 }          
             }
             
@@ -63,7 +70,7 @@ namespace ScreenCoreApp.Pages
                     ViewData["ScreenMode"] = "Department Information";
                     break;
                 case 3: //Consultation table
-                    //Response.Redirect("");
+                    RedirectToConsultations();
                     ViewData["ScreenMode"] = "Consultation table";
                     break;
                 case 4: // Room table
@@ -145,6 +152,23 @@ namespace ScreenCoreApp.Pages
             string presentationRoot = Path.Combine(new string[] { @"D:\infoscreen_publish\Screen\Presentations\", modeID.ToString(),powerpointID.ToString() });
             presentation = powerpointID.ToString();
             return Directory.GetFiles(presentationRoot, "*.png").ToList().Count;
+        }
+
+        private void RedirectToConsultations()
+        {
+            int page = Screen.GetConsultationsPage(HttpContext);
+            int pages;
+            int screenID = Screen.GetSessionScreenID(HttpContext);
+            string departmentName = DatenbankAbrufen.BildschirmInformationenAbrufen(screenID).Abteilung;
+            int depID = DatenbankAbrufen.GetAbteilungsIdVonAbteilungsname(departmentName);
+
+            Structuren.Sprechstunden[] entries = SubjectFunctions.SprechstundenAbrufen(depID.ToString());
+            pages = entries.Length / 15 + (entries.Length % 15 > 0 ? 1 : 0);
+
+            if (page < pages) Screen.SetConsultationsPage((page++).ToString(), HttpContext);
+            else Screen.SetConsultationsPage("0", HttpContext);
+
+            Response.Redirect("ContentPages/Consultations/" + page);
         }
 
 

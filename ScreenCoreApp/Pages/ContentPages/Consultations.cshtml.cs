@@ -9,9 +9,11 @@ namespace ScreenCoreApp
 {
     public class ConsultationsModel : PageModel
     {
-        public void OnGet()
-        {
 
+        public int Pagenum;
+        public void OnGet(string pagenum)
+        {
+            //Pagenum = Convert.ToInt32(page);
         }
     }
 }

@@ -31,6 +31,16 @@ namespace ScreenCoreApp
             SetIntSessionVal("page-cycle-index", val, current);
         }
 
+        public static int GetConsultationsPage(HttpContext current)
+        {
+            return GetIntSessionVal("consultations-page", current);
+        }
+
+        public static void SetConsultationsPage(string val, HttpContext current)
+        {
+            SetIntSessionVal("consultations-page", val, current);
+        }
+
         public static void CheckScreenID(IQueryCollection querystring, HttpContext context)
         {
             string val = querystring["id"].ToString();
