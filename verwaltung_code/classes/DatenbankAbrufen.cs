@@ -458,7 +458,6 @@ LEFT JOIN [Fächer] ON [Stundenplan].[FachKürzel]=[Fächer].[FachKürzel])
 WHERE [Bildschirme].[BildschirmID]='" + _ID + @"'
 AND [Stundenplan].[Wochentag]='" + AktuellerTag() + @"'
 AND [Stundenplan].[Stunde]='" + AktuelleStunde() + "'";
-
             DataTable daten = DatenbankAbfrage(befehl);
             if (daten.Rows.Count == 0) return new Structuren.Raumaufteilung[0];
 
@@ -760,7 +759,7 @@ ORDER BY [Supplierungen].[Stunde], [Supplierungen].[Klasse]";
         static public int AktuelleStunde()
         {
             DateTime aktuelleZeit = DateTime.Now;
-            if (aktuelleZeit.TimeOfDay < new TimeSpan(7, 10, 0)) return -1;
+            if (aktuelleZeit.TimeOfDay < new TimeSpan(7, 10, 0)) return -2;
             if (aktuelleZeit.TimeOfDay < new TimeSpan(8, 0, 0)) return 0;
             if (aktuelleZeit.TimeOfDay <= new TimeSpan(8, 50, 0)) return 1;     // 1. Stunde
             if (aktuelleZeit.TimeOfDay <= new TimeSpan(9, 40, 0)) return 2;     // 2. Stunde
@@ -773,12 +772,12 @@ ORDER BY [Supplierungen].[Stunde], [Supplierungen].[Klasse]";
             if (aktuelleZeit.TimeOfDay <= new TimeSpan(14, 10, 0)) return 7;    // 7. Stunde
             if (aktuelleZeit.TimeOfDay < new TimeSpan(14, 20, 0)) return -1;    // Pause
             if (aktuelleZeit.TimeOfDay <= new TimeSpan(15, 10, 0)) return 8;    // 8. Stunde
-            if (aktuelleZeit.TimeOfDay <= new TimeSpan(16, 0, 0)) return 9;     // 9.Stunde
+            if (aktuelleZeit.TimeOfDay <= new TimeSpan(16, 0, 0)) return 9;     // 9. Stunde
             if (aktuelleZeit.TimeOfDay < new TimeSpan(16, 10, 0)) return -1;    // Pause
             if (aktuelleZeit.TimeOfDay <= new TimeSpan(17, 0, 0)) return 10;    // 10. Stunde
             if (aktuelleZeit.TimeOfDay <= new TimeSpan(17, 50, 0)) return 11;   // 11. Stunde
             if (aktuelleZeit.TimeOfDay <= new TimeSpan(18, 40, 0)) return 12;   // 12. Stunde
-            return -1;
+            return -2;
         }
 
         /// <summary>

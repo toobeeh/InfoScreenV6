@@ -40,6 +40,7 @@ namespace ScreenCoreApp.Pages
             {
                 bool show_running = Screen.GetPresentationRunningStatus(HttpContext);
                 bool consultations_running = Screen.GetConsultationsPage(HttpContext) > 1 ? true: false;
+                bool roomtable_running = Screen.GetRoomTablePage(HttpContext) > 1 ? true : false;
 
                 if (show_running)
                 {
@@ -49,6 +50,11 @@ namespace ScreenCoreApp.Pages
                 else if (consultations_running)
                 {
                     RedirectToConsultations();
+                    return;
+                }
+                else if (roomtable_running)
+                {
+                    RedirectToRoomTable();
                     return;
                 }
                 else
@@ -74,7 +80,7 @@ namespace ScreenCoreApp.Pages
                     ViewData["ScreenMode"] = "Consultation table";
                     break;
                 case 4: // Room table
-                    //Response.Redirect("");
+                    RedirectToRoomTable();
                     ViewData["ScreenMode"] = "Room table";
                     break;
                 case 5: // Teacher replacements
@@ -169,6 +175,22 @@ namespace ScreenCoreApp.Pages
             else Screen.SetConsultationsPage("1", HttpContext);
 
             Response.Redirect("ContentPages/Consultations/" + page);
+        }
+
+        private void RedirectToRoomTable()
+        {
+            int page = Screen.GetRoomTablePage(HttpContext);
+            int pages;
+            int screenID = Screen.GetSessionScreenID(HttpContext);
+            string departmentName = DatenbankAbrufen.BildschirmInformationenAbrufen(screenID).Abteilung;
+            int depID = DatenbankAbrufen.GetAbteilungsIdVonAbteilungsname(departmentName);
+            Structuren.Raumaufteilung[] rooms = DatenbankAbrufen.RaumaufteilungAbrufen(depID.ToString()); 
+            pages = rooms.Length / 10 + (rooms.Length % 10 > 0 ? 1 : 0);
+
+            if (page < pages) Screen.SetRoomTablePage((page + 1).ToString(), HttpContext);
+            else Screen.SetRoomTablePage("1", HttpContext);
+
+            Response.Redirect("ContentPages/Rooms/" + page);
         }
 
 

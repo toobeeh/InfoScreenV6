@@ -24,7 +24,7 @@ namespace ScreenCoreApp.Classes
        FROM [ZeitgesteuerteAnzeige]
       WHERE [AbteilungsID] = '" + _AbteilungsID + "'";
 
-            DataTable Daten = Infoscreen_Verwaltung.classes.DatenbankAbrufen.DatenbankAbfrage(Befehl);
+            DataTable Daten = DatenbankAbrufen.DatenbankAbfrage(Befehl);
 
             ZGA[] ret = new ZGA[Daten.Rows.Count];
 
@@ -34,6 +34,8 @@ namespace ScreenCoreApp.Classes
                 ret[i].BetriebsmodeID = Daten.Rows[i]["BetriebsmodeID"].ToInt32();
                 ret[i].Zeit = Daten.Rows[i]["Zeit"].ToDateTime();
             }
+
+            DatenbankAbrufen.DBClose();
 
             return ret;
         }
@@ -45,6 +47,8 @@ namespace ScreenCoreApp.Classes
         AND [Zeit] = '" + _ZGA.Zeit + "'";
 
             Infoscreen_Verwaltung.classes.DatenbankAbrufen.DatenbankAbfrage(Befehl);
+
+            DatenbankAbrufen.DBClose();
         }
         static public void ZGAAbfragen(int _BildschirmID) //Überprüft ob die ZGA ausgelöst wurde, ändert den Standard-Betriebsmodus und löscht den Eintrag
         {
@@ -53,7 +57,7 @@ namespace ScreenCoreApp.Classes
        FROM Bildschirme
       WHERE BildschirmID = " + _BildschirmID;
 
-            DataTable Daten = Infoscreen_Verwaltung.classes.DatenbankAbrufen.DatenbankAbfrage(Befehl);
+            DataTable Daten = DatenbankAbrufen.DatenbankAbfrage(Befehl);
 
             int AbtID = Daten.Rows[0]["AbteilungsID"].ToInt32();
             ZGA[] dummy = ZGAAbrufen(AbtID);
@@ -66,10 +70,12 @@ namespace ScreenCoreApp.Classes
             SET [StandardBetriebsmode] = '" + dummy[0].BetriebsmodeID + @"'
           WHERE [AbteilungsID] = '" + dummy[0].AbteilungsID + "'";
 
-                Infoscreen_Verwaltung.classes.DatenbankAbrufen.DatenbankAbfrage(Befehl);
+                DatenbankAbrufen.DatenbankAbfrage(Befehl);
 
                 ZGALoeschen(dummy[0]);
             }
+
+            DatenbankAbrufen.DBClose();
         }
     }
     
