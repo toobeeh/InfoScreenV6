@@ -17,6 +17,7 @@ namespace ScreenCoreApp.Pages
             ViewData["Handler"] = "Default";
 
             Screen.SetNextPresentationSlide(1, HttpContext); // Presentation begins at slide 1
+            Screen.SetConsultationsPage("1", HttpContext); // Consultations begin at page 1
             PptPicturePaths = new List<string>();
             pptID = 0;
 

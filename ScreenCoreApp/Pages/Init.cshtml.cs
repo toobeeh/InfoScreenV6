@@ -39,7 +39,7 @@ namespace ScreenCoreApp.Pages
             else // If already initialized, get next mode
             {
                 bool show_running = Screen.GetPresentationRunningStatus(HttpContext);
-                bool consultations_running = Screen.GetConsultationsPage(HttpContext) > 0 ? true: false;
+                bool consultations_running = Screen.GetConsultationsPage(HttpContext) > 1 ? true: false;
 
                 if (show_running)
                 {
@@ -165,8 +165,8 @@ namespace ScreenCoreApp.Pages
             Structuren.Sprechstunden[] entries = SubjectFunctions.SprechstundenAbrufen(depID.ToString());
             pages = entries.Length / 15 + (entries.Length % 15 > 0 ? 1 : 0);
 
-            if (page < pages) Screen.SetConsultationsPage((page++).ToString(), HttpContext);
-            else Screen.SetConsultationsPage("0", HttpContext);
+            if (page < pages) Screen.SetConsultationsPage((page + 1).ToString(), HttpContext);
+            else Screen.SetConsultationsPage("1", HttpContext);
 
             Response.Redirect("ContentPages/Consultations/" + page);
         }

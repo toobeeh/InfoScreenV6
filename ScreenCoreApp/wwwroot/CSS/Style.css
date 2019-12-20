@@ -38,6 +38,7 @@
     top:0;
     left: 0;
     right: 0;
+    bottom: 0;
     text-align: center;
     display: flex;
     align-items: center;
@@ -46,22 +47,67 @@
     flex-direction: column;
 }
 
+.consultations{
+    margin-top: 4%;
+    margin-bottom: 4%;
+    height: 80%;
+    z-index: 1;
+}
+
+    .consultations table {
+        height: 100%;
+        border-collapse: collapse;
+        border-spacing: 0px;
+        width: 100%;
+        border: 0px;
+        text-align: center;
+        font-family: Arial, Verdana;
+        font-weight: 600;
+        font-size: 25px;
+    }
+
+    .consultations th {
+        font-size: 25px;
+        color: #99CC00;
+        height: 5%;
+    }
+
+    .consultations tr:nth-child(even) {
+        background-color: #ebebe0;   
+    }
+
+    .consultations tr:nth-child(odd) {
+        background-color: none;     
+    }
+
+#consultations_pageindex {
+    position: absolute;
+    left: 4%;
+    top: 0;
+    height: 12%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, Verdana;
+    font-size: 40px;
+    color: #99CC00;
+}
+
 .content_header {
     z-index: 10;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-
     text-align: center;
     color: #99CC00;
     font-weight: 600;
     font-family: Arial, Verdana;
     font-size: 70px;
-    padding: 15px;
+
     background: #131313;
     box-shadow: 0px 0px 15px #333333;
-    /*border-bottom: 10px solid RGB(166,161,161);
-    border-top: 10px solid RGB(166,161,161);*/
+    height:12%;
 }
 
 
