@@ -41,6 +41,7 @@ namespace ScreenCoreApp.Pages
                 bool show_running = Screen.GetPresentationRunningStatus(HttpContext);
                 bool consultations_running = Screen.GetConsultationsPage(HttpContext) > 1 ? true: false;
                 bool roomtable_running = Screen.GetRoomTablePage(HttpContext) > 1 ? true : false;
+                bool replacements_running = Screen.GetReplacementsPage(HttpContext) > 1 ? true : false;
 
                 if (show_running)
                 {
@@ -55,6 +56,11 @@ namespace ScreenCoreApp.Pages
                 else if (roomtable_running)
                 {
                     RedirectToRoomTable();
+                    return;
+                }
+                else if (replacements_running)
+                {
+                    RedirectToReplacements();
                     return;
                 }
                 else
@@ -84,7 +90,7 @@ namespace ScreenCoreApp.Pages
                     ViewData["ScreenMode"] = "Room table";
                     break;
                 case 5: // Teacher replacements
-                    //Response.Redirect("");
+                    RedirectToReplacements();
                     ViewData["ScreenMode"] = "Teacher replacements";
                     break;
                 case 6:
@@ -191,6 +197,29 @@ namespace ScreenCoreApp.Pages
             else Screen.SetRoomTablePage("1", HttpContext);
 
             Response.Redirect("ContentPages/Rooms/" + page);
+        }
+
+        private void RedirectToReplacements()
+        {
+            int page = Screen.GetReplacementsPage(HttpContext);
+            int pages, total_rows = 0;
+            int screenID = Screen.GetSessionScreenID(HttpContext);
+            string departmentName = DatenbankAbrufen.BildschirmInformationenAbrufen(screenID).Abteilung;
+            int depID = DatenbankAbrufen.GetAbteilungsIdVonAbteilungsname(departmentName);
+            Structuren.LehrerSupplierungen[] replacements = SubjectFunctions.SupplierplanAbrufen(depID.ToString());
+
+            replacements.ToList<Structuren.LehrerSupplierungen>().ForEach((Structuren.LehrerSupplierungen rep) =>
+            {
+                // Each teacher has an own page on replacements - if affected lessons are more than 10, the teacher is given multiple pages
+                total_rows += (rep.Supplierungen.Length/10) + (rep.Supplierungen.Length % 10 > 0 ? 10 : 0);
+            });
+
+            pages = total_rows / 10 + (total_rows % 10 > 0 ? 1 : 0);
+
+            if (page < pages) Screen.SetReplacementsPage((page + 1).ToString(), HttpContext);
+            else Screen.SetReplacementsPage("1", HttpContext);
+
+            Response.Redirect("ContentPages/Replacements/" + page);
         }
 
 

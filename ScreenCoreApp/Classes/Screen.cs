@@ -51,6 +51,16 @@ namespace ScreenCoreApp
             SetIntSessionVal("roomtable-page", val, current);
         }
 
+        public static int GetReplacementsPage(HttpContext current)
+        {
+            return GetIntSessionVal("replacements-page", current);
+        }
+
+        public static void SetReplacementsPage(string val, HttpContext current)
+        {
+            SetIntSessionVal("replacements-page", val, current);
+        }
+
         public static void CheckScreenID(IQueryCollection querystring, HttpContext context)
         {
             string val = querystring["id"].ToString();
