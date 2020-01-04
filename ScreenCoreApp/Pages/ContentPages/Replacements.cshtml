@@ -4,62 +4,43 @@
     ViewData["Title"] = "Replacements";
 }
 <div class="content_header">
-    Raumaufteilung
+    Supplierungen
 </div>
-<div id="pageindex">Seite @Model.Pagenum</div>
+
 
 <div class="table_container">
 
-    <table>
-        <tbody>
-            <tr>
-                <th style="width:10%">Raum</th>
-                <th style="width:10%">Klasse</th>
-                <th style="width:30%">Fach</th>
-                <th style="width:30%">Lehrer</th>
-                <th style="width:20%">Ersatz</th>
-            </tr>
+    @if (Model.NoReplacements && Model.Globals.Length < 1)
+    {
+        <div class="department_info">
+            <div style="color: #99CC00; font-weight: 600; font-family: Arial, Verdana; font-size: 50px;">Keine Supplierungen eingetragen</div>
+        </div>
+    }
+    else
+    {
+        <div id="pageindex">Seite @Model.Pagenum</div>
 
-            @*@for (int i = Model.item_start; i < Model.item_end; i++)
-            {
+        <table>
+            <tbody>
+
+               
                 <tr>
-                    <td>
-                        @Model.Rooms[i].Raum
-                    </td>
-
-                    <td>
-                        @Model.Rooms[i].Klasse
-                    </td>
-
-                    <td>
-                        @Model.Rooms[i].Fach
-                    </td>
-
-                    <td>
-                        @Model.Rooms[i].Lehrer
-                    </td>
-
-                    <td>
-                        @Model.Rooms[i].suppliert
-                    </td>
+                    <th style="width:15%">Datum</th>
+                    <th style="width:10%">Klasse</th>
+                    <th style="width: 10%">Stunde</th>
+                    <th style="width:15%">Fach</th>
+                    <th style="width:15%">Lehrer</th>
+                    <th style="width:35%">Vertretung</th>
                 </tr>
-            }*@
+                
 
-            @for (int i = Model.item_end; i < Model.item_start + 10; i++)
-            {
-                <tr style="opacity:0; background-color: transparent">
-                    <td>Layout_fill</td>
-                    <td>Layout_fill</td>
-                    <td>Layout_fill</td>
-                    <td>Layout_fill</td>
-                    <td>Layout_fill</td>
-                </tr>
-            }
+                @Html.Raw(Model.GenerateReplacementRows())
+                @Html.Raw(Model.GenerateGlobalRows())
+                @Html.Raw(Model.GenerateFillerRows())
 
-        </tbody>
-    </table>
-
-
+            </tbody>
+        </table>
+    }
 
 </div>
 

@@ -206,13 +206,21 @@ namespace ScreenCoreApp.Pages
             int screenID = Screen.GetSessionScreenID(HttpContext);
             string departmentName = DatenbankAbrufen.BildschirmInformationenAbrufen(screenID).Abteilung;
             int depID = DatenbankAbrufen.GetAbteilungsIdVonAbteilungsname(departmentName);
-            Structuren.LehrerSupplierungen[] replacements = SubjectFunctions.SupplierplanAbrufen(depID.ToString());
+            Structuren.Supplierungen[] replacements;
+            Structuren.GlobalEntfall[] globals = DatenbankAbrufen.GetGlobaleEntfaelle(depID);
 
-            replacements.ToList<Structuren.LehrerSupplierungen>().ForEach((Structuren.LehrerSupplierungen rep) =>
+            try
             {
-                // Each teacher has an own page on replacements - if affected lessons are more than 10, the teacher is given multiple pages
-                total_rows += (rep.Supplierungen.Length/10) + (rep.Supplierungen.Length % 10 > 0 ? 10 : 0);
-            });
+                replacements = DatenbankAbrufen.SupplierplanAbrufen(departmentName)[0].Supplierungen;
+            }
+            catch
+            {
+                Response.Redirect("ContentPages/Replacements/0");
+                return;
+            }
+
+            // Layout: Classic replacements, 1 spacer line, globals header, globals - all globals have to fit on one page
+            total_rows = globals.Length > 0 ? ((replacements.Length % 10 > 8-globals.Length ? ((replacements.Length+9) / 10) * 10 : replacements.Length) + globals.Length + 2) : replacements.Length;
 
             pages = total_rows / 10 + (total_rows % 10 > 0 ? 1 : 0);
 
