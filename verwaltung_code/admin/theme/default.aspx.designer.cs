@@ -33,6 +33,33 @@ namespace Infoscreen_Verwaltung.admin.theme
         protected global::System.Web.UI.WebControls.Label Menu;
 
         /// <summary>
+        /// picker_container-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl picker_container;
+
+        /// <summary>
+        /// ThemeBuilder-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table ThemeBuilder;
+
+        /// <summary>
+        /// DropdownPreset-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropdownPreset;
+
+        /// <summary>
         /// Themes-Steuerelement
         /// </summary>
         /// <remarks>
@@ -40,14 +67,5 @@ namespace Infoscreen_Verwaltung.admin.theme
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table Themes;
-
-        /// <summary>
-        /// lb-Steuerelement
-        /// </summary>
-        /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb;
     }
 }

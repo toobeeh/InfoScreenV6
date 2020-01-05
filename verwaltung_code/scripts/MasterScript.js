@@ -1,4 +1,10 @@
-﻿function showNav()
+﻿
+console.log("colorpicker started");
+$(document).ready(function () {
+    jQuery.farbtastic('#col_picker').linkTo('#Content_prev');
+});
+
+function showNav()
 {
     let nav = event.currentTarget.nextElementSibling;
     let nav_ar = document.getElementsByClassName("navContainer");
@@ -110,4 +116,6 @@ function updateText() {
     label.innerText = select.value.substring(select.value.lastIndexOf("\\")+1);
 
 }
+
+
 
