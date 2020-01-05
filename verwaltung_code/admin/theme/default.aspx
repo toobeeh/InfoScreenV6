@@ -16,5 +16,6 @@
     <hr />
     <br />
     <asp:Table ID="Themes" runat="server" CssClass="table" />
+    <asp:Label ID="lb" runat="server"></asp:Label>
   
 </asp:Content>
