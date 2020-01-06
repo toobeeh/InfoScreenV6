@@ -162,7 +162,7 @@ namespace Infoscreen_Verwaltung.admin.theme
                 {
                     DeleteTheme(loc);
                 };
-                if (loc.IndexOf("theme_light") > 0 || loc.IndexOf("theme_dark") > 0)
+                if (loc.IndexOf("theme_light.css") > 0 || loc.IndexOf("theme_dark.css") > 0)
                 {
                     rem.Enabled = false;
                     rem.CssClass = "ActionButton";
@@ -289,7 +289,9 @@ namespace Infoscreen_Verwaltung.admin.theme
 
         private bool SaveTheme(string name)
         {
-            if (!Regex.IsMatch(name, @"^[a-zA-Z0-9_]+$")) return false;
+            if (!Regex.IsMatch(name, @"^[a-zA-Z0-9_]+$") || 
+                File.Exists(@"D:\infoscreen_publish\ScreenCore\wwwroot\CSS\theme_" + name + ".css") && tbName.Style["display"]!="none")
+                return false;
 
             string css = ":root{\n";
             foreach (KeyValuePair<string, string> variable in Variables)

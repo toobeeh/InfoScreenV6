@@ -114,6 +114,13 @@ body {
     height: 12%;
 }
 
+.no_content_set {
+    color: var(--header_font_col);
+    font-weight: 600;
+    font-family: Arial, Verdana;
+    font-size: 50px;
+}
+
 
 
 
