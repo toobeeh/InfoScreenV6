@@ -276,7 +276,7 @@ namespace Infoscreen_Verwaltung.admin.theme
             setPickerHeader = (s) => head.Text = s;
 
             btClose.Text = "✕";
-            btClose.Click += (x, y) => { Response.Redirect("/admin/theme"); };
+            btClose.Click += (x, y) => { picker_container.Style.Value = "display:none"; };
 
             divHead.Controls.Add(btClose);
             divHead.Style.Value = "display: inline; float:right; margin-bottom:5px;";

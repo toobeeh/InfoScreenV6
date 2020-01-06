@@ -14,7 +14,8 @@
 
     <h1>Farbschema anpassen</h1>
     Die Darstellung der dynamischen Seiten auf den InfoScreen-Bildschirmen kann via Farbthemen angepasst werden. <br />
-    Die Schema "Light" und "Dark" sind voreingestellt, zusätzlich können auch eigene Schema definiert werden.
+    Die Themes "Light" und "Dark" sind voreingestellt, zusätzlich können auch eigene Themes definiert werden.
+    Um ein einheitliches Design zu erlangen, sollten die verwendeten PowerPoints bestmöglich zu dem verwendeten Theme pasen. <br />
     <br />
     <hr />
     <br />
