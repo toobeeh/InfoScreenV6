@@ -105,13 +105,12 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #99CC00;
+    color: var(--header_font_col);
     font-weight: 600;
     font-family: Arial, Verdana;
     font-size: 70px;
     background: var(--header_back_col);
     box-shadow: 0px 0px 15px var(--header_shadow_col);
-    ;
     height: 12%;
 }
 

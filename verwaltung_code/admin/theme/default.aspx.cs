@@ -32,6 +32,7 @@ namespace Infoscreen_Verwaltung.admin.theme
             Variables.Add("Tabellen-Hintergrund", "--tr_background_col_nth");
             Variables.Add("Kopfzeilen-Hintergrund", "--header_back_col");
             Variables.Add("Kopfzeilen-Schatten", "--header_shadow_col");
+            Variables.Add("Kopfzeilen-Schriftfarbe", "--header_font_col");
             Variables.Add("Schriftfarbe", "--font_col");
             Variables.Add("Tabellenkopf-Schriftfarbe", "--th_font_color");
             Variables.Add("Seitennummer-Schriftfarbe", "--pagenum_font_col");
@@ -45,7 +46,7 @@ namespace Infoscreen_Verwaltung.admin.theme
                 DropdownPreset.Items.Add(new ListItem { Text = " - ", Value = "" });
                 LoadThemeFiles().ForEach((name) =>
                 {
-                    DropdownPreset.Items.Add(new ListItem { Text = Path.GetFileNameWithoutExtension(name), Value = name });
+                    DropdownPreset.Items.Add(new ListItem { Text = Path.GetFileNameWithoutExtension(name).Substring(6), Value = name });
                 });
                 picker_container.Style.Value = "display:none";
             }
@@ -103,8 +104,8 @@ namespace Infoscreen_Verwaltung.admin.theme
             {
                 TableRow tr = new TableRow();
                 TableCell tc = new TableCell();
-                RadioButton rb = new RadioButton { Text = Path.GetFileNameWithoutExtension(loc) };
-                if (rb.Text == GetActiveTheme()) rb.Checked = true;
+                RadioButton rb = new RadioButton { Text = Path.GetFileNameWithoutExtension(loc).Substring(6) };
+                if (Path.GetFileNameWithoutExtension(loc) == GetActiveTheme()) rb.Checked = true;
                 rb.GroupName = "themes";
                 rb.ID = loc;
  
