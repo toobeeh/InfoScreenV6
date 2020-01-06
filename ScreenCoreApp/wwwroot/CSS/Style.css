@@ -1,5 +1,5 @@
 ﻿
-@import url(/CSS/theme_light.css);
+@import url(/CSS/theme_dark.css);
 
 body {
     background-color: var(--background_col);
@@ -119,6 +119,27 @@ body {
     font-weight: 600;
     font-family: Arial, Verdana;
     font-size: 50px;
+}
+
+.split_table_left {
+    width: 43% !important;
+    margin-left: 4% !important;
+    height: 75% !important;
+    float: left;
+}
+
+.split_table_right {
+    width: 43% !important;
+    margin-right: 4% !important;
+    height: 75% !important;
+    float: right;
+}
+
+.split_table_center {
+    width: 43% !important;
+    margin-right: 26% !important;
+    margin-left: 26% !important;
+    height: 75% !important;
 }
 
 

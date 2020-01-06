@@ -295,6 +295,30 @@ namespace Infoscreen_Verwaltung.classes
             }
             return newList;
         }
+
+        public static string ToValidRoom(int num, int digits)
+        {
+            string roomnum = num.ToString();
+            while (roomnum.Length < digits) roomnum = "0" + roomnum;
+            return roomnum;
+        }
+        public static string ToValidRoom(string roomnum, int digits)
+        {
+            while (roomnum.Length < digits) roomnum = "0" + roomnum;
+            return roomnum;
+        }
+
+        public static string ToValidRoomBuilding(string room_building, int digits_room, int digits_building)
+        {
+            string room = room_building.Substring(room_building.IndexOf("-") + 1);
+            string building = room_building.Substring(0, room_building.IndexOf("-"));
+
+            while (room.Length < digits_room) room = "0" + room;
+            while (building.Length < digits_building) building = "0" + building;
+
+            return building + "-" + room;
+        }
+
     }
 
     public class dataButton : Button

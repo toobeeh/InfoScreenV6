@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using ScreenCoreApp.Classes;
 using Infoscreen_Verwaltung.classes;
 using System.IO;
+using System.Data;
 
 namespace ScreenCoreApp.Pages
 {
@@ -190,8 +191,11 @@ namespace ScreenCoreApp.Pages
             int screenID = Screen.GetSessionScreenID(HttpContext);
             string departmentName = DatenbankAbrufen.BildschirmInformationenAbrufen(screenID).Abteilung;
             int depID = DatenbankAbrufen.GetAbteilungsIdVonAbteilungsname(departmentName);
-            Structuren.Raumaufteilung[] rooms = DatenbankAbrufen.RaumaufteilungAbrufen(depID.ToString()); 
-            pages = rooms.Length / 10 + (rooms.Length % 10 > 0 ? 1 : 0);
+
+            DataTable Rooms = DatenbankAbrufen.RoomList(depID);
+            int rows = Rooms.Rows.Count;
+
+            pages = rows / 18 + (rows % 18 > 1 ? 1 : 0);
 
             if (page < pages) Screen.SetRoomTablePage((page + 1).ToString(), HttpContext);
             else Screen.SetRoomTablePage("1", HttpContext);

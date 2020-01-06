@@ -9,63 +9,27 @@
 <div id="pageindex">Seite @Model.Pagenum</div>
 
 <div class="table_container">
-    @if (Model.TeachingTime)
+    @if (Model.split)
     {
-        <table>
+        <table class="split_table_left">
             <tbody>
-                <tr>
-                    <th style="width:10%">Raum</th>
-                    <th style="width:10%">Klasse</th>
-                    <th style="width:30%">Fach</th>
-                    <th style="width:30%">Lehrer</th>
-                    <th style="width:20%">Ersatz</th>
-                </tr>
-
-                @for (int i = Model.item_start; i < Model.item_end; i++)
-                {
-                    <tr>
-                        <td>
-                            @Model.Rooms[i].Raum
-                        </td>
-
-                        <td>
-                            @Model.Rooms[i].Klasse
-                        </td>
-
-                        <td>
-                            @Model.Rooms[i].Fach
-                        </td>
-
-                        <td>
-                            @Model.Rooms[i].Lehrer
-                        </td>
-
-                        <td>
-                            @Model.Rooms[i].suppliert
-                        </td>
-                    </tr>
-                }
-
-                @for (int i = Model.item_end; i < Model.item_start + 10; i++)
-                {
-                    <tr style="opacity:0; background-color: transparent">
-                        <td>Layout_fill</td>
-                        <td>Layout_fill</td>
-                        <td>Layout_fill</td>
-                        <td>Layout_fill</td>
-                        <td>Layout_fill</td>
-                    </tr>
-                }
-
+                @Html.Raw(Model.CreateSplitTable(Model.item_start, Model.item_start + 8))
+            </tbody>
+        </table>
+        <table class="split_table_right">
+            <tbody>
+                @Html.Raw(Model.CreateSplitTable(Model.item_start + 9, Model.item_end))
             </tbody>
         </table>
     }
     else
     {
-        <div class="department_info">
-            Derzeit findet kein Unterricht statt.
-        </div>
+        <table class="split_table_center">
+            <tbody>
+                @Html.Raw(Model.CreateSplitTable(Model.item_start, Model.item_end))
+            </tbody>
+        </table>
     }
-    
+
 
 </div>

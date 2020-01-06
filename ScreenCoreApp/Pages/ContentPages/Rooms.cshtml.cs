@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Infoscreen_Verwaltung.classes;
 using ScreenCoreApp.Classes;
+using System.Data;
 
 namespace ScreenCoreApp
 {
@@ -14,24 +15,62 @@ namespace ScreenCoreApp
         public int Pagenum;
         public int item_start;
         public int item_end;
-        public Structuren.Raumaufteilung[] Rooms;
-        public bool Break = false;
-        public bool TeachingTime = true;
+        public bool split;
+        public DataTable Rooms;
 
         public void OnGet(string pagenum)
         {
-            if (DatenbankAbrufen.AktuelleStunde() == -2) { TeachingTime = false;  return; }
-
             Pagenum = Convert.ToInt32(pagenum);
 
             int screenID = Screen.GetSessionScreenID(HttpContext);
             string departmentName = DatenbankAbrufen.BildschirmInformationenAbrufen(screenID).Abteilung;
             int depID = DatenbankAbrufen.GetAbteilungsIdVonAbteilungsname(departmentName);
+            Rooms = DatenbankAbrufen.RoomList(depID);
 
-            Rooms = DatenbankAbrufen.RaumaufteilungAbrufen(depID.ToString());
+            item_start = (Pagenum-1) * 18;
+            item_end = (Rooms.Rows.Count-1 > item_start + 17 ? item_start + 17 : Rooms.Rows.Count-1);
 
-            item_start = (Pagenum - 1) * 10;
-            item_end = (item_start + 10 > Rooms.Length - 1 ? Rooms.Length - 1 : item_start + 10);
+            split = (item_end - item_start > 8 ? true : false);
         }
+
+        public string CreateSplitTable(int item_start, int item_end)
+        {
+            string html = "";
+
+            html += @"
+                <tr>
+                    <th style='width:30%'>Raum</th>
+                    <th style='width:40%'>Klasse</th>
+                    <th style='width:30%'>Klassenvorstand</th>
+                </tr>";
+
+            for(int i = item_start; i <=item_end; i++)
+            {
+                DataRow room = Rooms.Rows[i];
+                string raum = StringHelper.ToValidRoomBuilding(room.ItemArray[0].ToString() + "-" + room.ItemArray[1].ToString(), 4, 2);
+                string klasse = room.ItemArray[2].ToString();
+                string kv = room.ItemArray[3].ToString();
+                html += @"
+                <tr>
+                    <td>" + raum + @"</td>
+                    <td>" + klasse + @"</td>
+                    <td>" + kv + @"</td>
+                </tr>";
+            }
+
+            for (int i = item_end+1; i <= item_start+8; i++)
+            {
+               
+                html += @"
+                    <tr style='opacity:0; background-color: transparent'>
+                        <td>Layout_fill</td>
+                        <td>Layout_fill</td>
+                        <td>Layout_fill</td>
+                    </tr>";
+            }
+
+            return html;
+        }
+
     }
 }

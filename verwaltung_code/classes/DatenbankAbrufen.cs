@@ -2262,9 +2262,19 @@ ORDER BY [Stundenplan].[Klasse]";
             return entries;
         }
 
-
-
-
+        static public DataTable RoomList(int abteilung)
+        {
+            string sql = @"
+                        SELECT
+                            Raeume.Gebäude,
+                            Raeume.Raum,
+                            Raeume.StandardKlasse,
+                            Klassen.Klassenvorstand
+                        FROM Raeume LEFT JOIN Klassen ON Raeume.StandardKlasse = Klassen.Klasse 
+                        WHERE Raeume.AbteilungsID = " + abteilung + " AND NOT StandardKlasse = '' ORDER BY Raeume.Gebäude, Raeume.Raum";
+            DataTable data = DatenbankAbfrage(sql);
+            return data;
+        }
 
         #endregion
 

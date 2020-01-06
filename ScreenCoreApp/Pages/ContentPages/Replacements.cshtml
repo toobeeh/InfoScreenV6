@@ -23,17 +23,6 @@
         <table>
             <tbody>
 
-               
-                <tr>
-                    <th style="width:15%">Datum</th>
-                    <th style="width:10%">Klasse</th>
-                    <th style="width: 10%">Stunde</th>
-                    <th style="width:15%">Fach</th>
-                    <th style="width:15%">Lehrer</th>
-                    <th style="width:35%">Vertretung</th>
-                </tr>
-                
-
                 @Html.Raw(Model.GenerateReplacementRows())
                 @Html.Raw(Model.GenerateGlobalRows())
                 @Html.Raw(Model.GenerateFillerRows())

@@ -103,7 +103,7 @@ namespace Infoscreen_Verwaltung.admin.lehrer
 
             C = new TableCell();
             C.Text = "Raum";
-            C.Width = 42;
+            C.Width = 80;
             C.CssClass = "head";
             R.Cells.Add(C);
 

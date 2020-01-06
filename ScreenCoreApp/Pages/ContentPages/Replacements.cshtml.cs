@@ -74,6 +74,28 @@ namespace ScreenCoreApp
                     </tr>";
             }
 
+            if (html.Length > 0) html = @"
+                    <tr>
+                        <th style = 'width:15%'> Datum </th>
+                        <th style = 'width:10%'> Klasse </th>
+                        <th style = 'width: 10%'> Stunde </th>  
+                        <th style = 'width:15%'> Fach </th> 
+                        <th style = 'width:15%'> Lehrer </th>  
+                        <th style = 'width:35%'> Vertretung </th>
+                      </tr>" + html;
+            else
+            {
+                html = @"
+                    <tr>
+                        <th style = 'width:15%'></th>
+                        <th style = 'width:10%'></th>
+                        <th style = 'width: 10%'></th>  
+                        <th style = 'width:15%'></th> 
+                        <th style = 'width:15%'></th>  
+                        <th style = 'width:35%'></th>
+                      </tr>" + html;
+            }
+
             return html;
         }
 

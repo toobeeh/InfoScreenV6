@@ -95,7 +95,7 @@ namespace Infoscreen_Verwaltung.show
                 row.Cells.Add(cell);
 
                 cell = new TableCell();
-                cell.Text = zeile.Raum;
+                cell.Text = StringHelper.ToValidRoomBuilding(zeile.Raum,4,2);
                 row.Cells.Add(cell);
 
                 cell = new TableCell();
