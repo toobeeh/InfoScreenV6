@@ -22,7 +22,7 @@
     <div>
         <asp:Table ID="ThemeBuilder" runat="server" CssClass="table">
             <asp:TableRow CssClass="head">
-                <asp:TableCell CssClass="head">
+                <asp:TableCell CssClass="head" ID="TitleCell">
                     Neues Theme
                 </asp:TableCell>
                 <asp:TableCell>

@@ -20,6 +20,11 @@ namespace Infoscreen_Verwaltung.admin.theme
 
         List<RadioButton> ThemeButtons = new List<RadioButton>();
 
+        private Button btSave;
+        private Button btDiscard;
+        private TableCell name;
+        private TextBox tbName;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!classes.Login.Angemeldet) Response.Redirect("../../login.aspx");
@@ -64,7 +69,11 @@ namespace Infoscreen_Verwaltung.admin.theme
                 return;
             }
 
-            string path = li.Value;
+            LoadPreset(li.Value);
+        }
+
+        private void LoadPreset(string path)
+        {
             string css = File.ReadAllText(path);
 
             foreach (KeyValuePair<string, string> variable in Variables)
@@ -77,13 +86,29 @@ namespace Infoscreen_Verwaltung.admin.theme
 
                 BuilderButtons[variable.Key].Style.Value = "width: 100%; background: " + val;
             }
-
         }
-
-
         private List<string> LoadThemeFiles()
         {
             return Directory.GetFiles(@"D:\infoscreen_publish\ScreenCore\wwwroot\CSS\", "theme_*.css").ToList();
+        }
+
+        private void InitEditTheme(string editTheme)
+        {
+            TitleCell.Text = "Bearbeiten";
+            DropdownPreset.SelectedItem.Selected = false;
+            for (int i = 0; i < DropdownPreset.Items.Count; i++)
+            {
+                if (DropdownPreset.Items[i].Text == editTheme) DropdownPreset.Items[i].Selected = true;
+            }
+
+            btDiscard.Style["display"] = "block";
+            tbName.Style["display"] = "none";
+            tbName.Text = editTheme;
+            btSave.Text = "Übernehmen";
+            name.Text = "";
+            DropdownPreset.Enabled = false;
+
+            LoadPreset(@"D:\infoscreen_publish\ScreenCore\wwwroot\CSS\theme_" + editTheme + ".css");
         }
 
         private void DrawThemeSelector()
@@ -108,8 +133,14 @@ namespace Infoscreen_Verwaltung.admin.theme
                 if (Path.GetFileNameWithoutExtension(loc) == GetActiveTheme()) rb.Checked = true;
                 rb.GroupName = "themes";
                 rb.ID = loc;
- 
-                
+
+                Button edit = new Button { CssClass = "ActionButton" };
+                edit.Text = "✎";
+                edit.Style.Value = "float:right";
+                edit.Click += (object o, EventArgs e) =>
+                {
+                    InitEditTheme(rb.Text);
+                };
 
                 Button rem = new Button { CssClass = "DeleteButton" };
                 rem.Text = "✕";
@@ -127,6 +158,7 @@ namespace Infoscreen_Verwaltung.admin.theme
 
                 ThemeButtons.Add(rb);
                 tc.Controls.Add(rem);
+                tc.Controls.Add(edit);
                 tc.Controls.Add(rb);
                 
                 tr.Cells.Add(tc);
@@ -136,7 +168,7 @@ namespace Infoscreen_Verwaltung.admin.theme
 
             TableRow trn = new TableRow();
             TableCell tcn = new TableCell();
-            Button Save = new Button { CssClass = "SaveButton", Text = "Übernehmen" };
+            Button Save = new Button { CssClass = "SaveButton", Text = "Theme aktivieren" };
 
             Save.Click += (object o, EventArgs e) => { SetTheme(); };
 
@@ -208,15 +240,25 @@ namespace Infoscreen_Verwaltung.admin.theme
             }
 
             TableRow tfoot = new TableRow();
-            TableCell name = new TableCell { Text = "Name des Themes:" };
+            name = new TableCell { Text = "Name des Themes:" };
             TableCell textbox = new TableCell();
             TableCell button = new TableCell();
 
-            TextBox tbName = new TextBox();
-            textbox.Controls.Add(tbName);
+            tbName = new TextBox();
 
-            Button btSave = new Button { CssClass = "SaveButton" };
-            btSave.Text = "Theme speichern";
+            btDiscard = new Button { CssClass = "DeleteButton" };
+            btDiscard.Text = "Abbrechen";
+            btDiscard.Style["display"] = "none";
+            btDiscard.Click += (object o, EventArgs e) =>
+            {
+                Response.Redirect("/admin/theme");
+            };
+
+            textbox.Controls.Add(tbName);
+            textbox.Controls.Add(btDiscard);
+
+            btSave = new Button { CssClass = "SaveButton" };
+            btSave.Text = "Theme Speichern";
             btSave.Click += (object o, EventArgs e) =>
             {
                 if (SaveTheme(tbName.Text)) Response.Redirect("/admin/theme");
