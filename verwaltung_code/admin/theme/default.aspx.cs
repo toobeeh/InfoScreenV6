@@ -51,7 +51,9 @@ namespace Infoscreen_Verwaltung.admin.theme
                 DropdownPreset.Items.Add(new ListItem { Text = " - ", Value = "" });
                 LoadThemeFiles().ForEach((name) =>
                 {
-                    DropdownPreset.Items.Add(new ListItem { Text = Path.GetFileNameWithoutExtension(name).Substring(6), Value = name });
+                    ListItem li = new ListItem { Text = Path.GetFileNameWithoutExtension(name).Substring(6), Value = name };
+                    DropdownPreset.Items.Add(li);
+                    
                 });
                 picker_container.Style.Value = "display:none";
             }
@@ -111,6 +113,17 @@ namespace Infoscreen_Verwaltung.admin.theme
             LoadPreset(@"D:\infoscreen_publish\ScreenCore\wwwroot\CSS\theme_" + editTheme + ".css");
         }
 
+        private void DeleteTheme(string location)
+        {
+            if (location.IndexOf(GetActiveTheme() + ".css") >= 0)
+            {
+                File.Delete(location);
+                SetTheme(true);
+            }
+            File.Delete(location);
+            Response.Redirect("./");
+        }
+
         private void DrawThemeSelector()
         {
             Themes.Attributes.CssStyle.Add("width", "40%");
@@ -147,8 +160,7 @@ namespace Infoscreen_Verwaltung.admin.theme
                 rem.Style.Value = "float:right";
                 rem.Click += (object o, EventArgs e) =>
                 {
-                    File.Delete(loc);
-                    Response.Redirect("./");
+                    DeleteTheme(loc);
                 };
                 if (loc.IndexOf("theme_light") > 0 || loc.IndexOf("theme_dark") > 0)
                 {
@@ -180,18 +192,19 @@ namespace Infoscreen_Verwaltung.admin.theme
             Themes.Rows.Add(trn);
         }
 
-        private void SetTheme()
+        private void SetTheme(bool setStandardTheme = false)
         {
             string selected_theme = Path.GetFileNameWithoutExtension(Context.Request["ctl00$Content$themes"]);
 
-            if (selected_theme == "") return;
+            if (selected_theme == "" && !setStandardTheme) return;
 
             string stylesheet = File.ReadAllText(@"D:\infoscreen_publish\ScreenCore\wwwroot\CSS\style.css");
 
             Match match = Regex.Match(stylesheet, @"@import url\(.*\);");
             if (!match.Success) return;
 
-            stylesheet = stylesheet.Replace(match.Captures[0].Value, @"@import url(/CSS/" + selected_theme + ".css);");
+            if(setStandardTheme) stylesheet = stylesheet.Replace(match.Captures[0].Value, @"@import url(/CSS/theme_dark.css);");
+            else stylesheet = stylesheet.Replace(match.Captures[0].Value, @"@import url(/CSS/" + selected_theme + ".css);");
 
             File.WriteAllText(@"D:\infoscreen_publish\ScreenCore\wwwroot\CSS\style.css", stylesheet);
 
