@@ -198,7 +198,7 @@ namespace Infoscreen_Verwaltung.admin.theme
                 BuilderButtons.Add(variable.Key, bt);
 
                 bt.Style.Value = "background:none; width:100%";
-                bt.Click += (object o, EventArgs e) => { OpenPicker(variable.Key); };
+                bt.Click += (object o, EventArgs e) => { OpenPicker(variable.Key, bt.Style["background"]); };
                 
                 color.Controls.Add(bt);
 
@@ -250,14 +250,14 @@ namespace Infoscreen_Verwaltung.admin.theme
             return true;
         }
 
-        private void OpenPicker(string key)
+        private void OpenPicker(string key, string init_color)
         {
             picker_container.Style.Value = "display:block"; 
-            setPickerHeader(key);
+            setPickerHeader(key, init_color);
             Session["VarKey"] = key;
         }
 
-        private Action<string> setPickerHeader;
+        private Action<string, string> setPickerHeader;
         private void DrawPicker()
         {
 
@@ -272,8 +272,6 @@ namespace Infoscreen_Verwaltung.admin.theme
             var divHead = new HtmlGenericControl("div");
             Button btClose = new Button();
             btClose.CssClass = "DeleteButton";
-
-            setPickerHeader = (s) => head.Text = s;
 
             btClose.Text = "✕";
             btClose.Click += (x, y) => { picker_container.Style.Value = "display:none"; };
@@ -298,19 +296,33 @@ namespace Infoscreen_Verwaltung.admin.theme
             color_prev.ID = "prev";
             color_prev.Style.Value = "width:100%; border:none";
 
+            setPickerHeader = (key, col) => 
+            { 
+                head.Text = key;
+                if(col != "none") color_prev.Attributes["value"] = col; 
+             };
+
             Button confirm = new Button { CssClass = "SaveButton" };
             confirm.Text = "Farbe festlegen";
             confirm.Style.Value = "width:100%; margin-top: 5%";
             confirm.Click += (object o, EventArgs e) =>
             {
-                //Session[Session["VarKey"].ToString()] = Context.Request["colorcode"];
-                //Response.Redirect("/admin/theme");
                 BuilderButtons[Session["VarKey"].ToString()].Style.Value = "width:100%; background: " + Context.Request["colorcode"];
+                picker_container.Style.Value = "display:none";
+            };
+
+            Button noBack = new Button { CssClass = "DeleteButton" };
+            noBack.Text = "Keine Farbe ('none')";
+            noBack.Style.Value = "width:100%; margin-top: 5%";
+            noBack.Click += (object o, EventArgs e) =>
+            {
+                BuilderButtons[Session["VarKey"].ToString()].Style.Value = "width:100%; background: none";
                 picker_container.Style.Value = "display:none";
             };
 
             divInput.Controls.Add(color_prev);
             divInput.Controls.Add(confirm);
+            divInput.Controls.Add(noBack);
 
             divBody.Controls.Add(divPicker);
             divBody.Controls.Add(divInput);
