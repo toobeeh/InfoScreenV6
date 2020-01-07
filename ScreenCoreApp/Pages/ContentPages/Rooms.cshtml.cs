@@ -39,9 +39,9 @@ namespace ScreenCoreApp
 
             html += @"
                 <tr>
-                    <th style='width:30%'>Raum</th>
-                    <th style='width:40%'>Klasse</th>
-                    <th style='width:30%'>Klassenvorstand</th>
+                    <th style='width:40%'>Raum</th>
+                    <th style='width:30%'>Klasse</th>
+                    <th style='width:30%'>Vorstand</th>
                 </tr>";
 
             for(int i = item_start; i <=item_end; i++)

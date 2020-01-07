@@ -2238,6 +2238,11 @@ ORDER BY [Stundenplan].[Klasse]";
             return entries;
         }
 
+        /// <summary>
+        /// Returns a DataTable with the Raum, ID, Klasse and Bezeichnung of every Screen
+        /// </summary>
+        /// <param name="abteilung">Department ID</param>
+        /// <returns></returns>
         static public DataTable Raeume(int abteilung)
         {
             string sql = @"SELECT Raeume.Raum, Bildschirme.BildschirmID, Raeume.StandardKlasse, Raeume.Bezeichnung
@@ -2247,6 +2252,11 @@ ORDER BY [Stundenplan].[Klasse]";
             return data;
         }
 
+        /// <summary>
+        /// Returns a list of all classes with no room associated
+        /// </summary>
+        /// <param name="abteilung">Department ID</param>
+        /// <returns></returns>
         static public List<string> KlassenWithoutRaum(int abteilung)
         {
             string sql = @"SELECT 
@@ -2262,6 +2272,11 @@ ORDER BY [Stundenplan].[Klasse]";
             return entries;
         }
 
+        /// <summary>
+        /// Returns a DataTable with Gebäude NR, Raum NR, Standardklasse and Klassenvorstand of every Room
+        /// </summary>
+        /// <param name="abteilung"></param>
+        /// <returns></returns>
         static public DataTable RoomList(int abteilung)
         {
             string sql = @"
@@ -2275,6 +2290,37 @@ ORDER BY [Stundenplan].[Klasse]";
             DataTable data = DatenbankAbfrage(sql);
             return data;
         }
+
+        /// <summary>
+        /// Method to get all lessons which are moved to a certain date of a class
+        /// </summary>
+        /// <param name="departmentID">Department of the affected class</param>
+        /// <param name="classname">Affected class</param>
+        /// <param name="date">Date which the lesson is moved to</param>
+        /// <returns>Returns a list of a stundenplantaglehrer (?!) which contains the new subject, new teacher, the lesson and the class. </returns>
+        static public List<Structuren.StundenplanTagLehrer> GetMovedLessonsOfDay(int departmentID, string classname, DateTime date)
+        {
+            string sql = @"
+                        SELECT ErsatzFach, ErsatzLehrerKürzel, ZiehtVor    
+                        FROM Supplierungen WHERE AbteilungsID = "+departmentID.ToString() + @" AND Klasse = '" + classname + "' AND ZiehtVorDatum='" + date.ToString("yyyy-MM-dd") + "'";
+            DataTable data = DatenbankAbfrage(sql);
+
+            List<Structuren.StundenplanTagLehrer> moved_lessons = new List<Structuren.StundenplanTagLehrer>();
+
+            foreach(DataRow row in data.Rows)
+            {
+                Structuren.StundenplanTagLehrer lesson = new Structuren.StundenplanTagLehrer();
+                lesson.Fach = row.ItemArray[0].ToString();
+                lesson.Lehrer = row.ItemArray[1].ToString();
+                lesson.Stunde = row.ItemArray[2].ToInt32();
+                lesson.Klasse = classname;
+                moved_lessons.Add(lesson);
+            }
+
+            return moved_lessons;
+
+        }
+
 
         #endregion
 

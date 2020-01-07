@@ -75,7 +75,7 @@ namespace ScreenCoreApp.Pages
             switch (cycle_index)
             {
                 case 1: // Timetable
-                    //Response.Redirect("");
+                    Response.Redirect("/ContentPages/Timetable");
                     ViewData["ScreenMode"] = "Timetable";
                     break;
                 case 2: // Department information
@@ -95,7 +95,7 @@ namespace ScreenCoreApp.Pages
                     ViewData["ScreenMode"] = "Teacher replacements";
                     break;
                 case 6:
-                    //Response.Redirect("");
+                    Response.Redirect("NoContent");
                     ViewData["ScreenMode"] = "...";
                     break;
                 case 7: // Powerpoint
