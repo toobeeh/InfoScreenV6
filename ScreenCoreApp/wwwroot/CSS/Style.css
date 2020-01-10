@@ -100,7 +100,6 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: white;
     color: #99CC00;
     color: var(--header_font_col);
     font-weight: 600;
@@ -146,42 +145,127 @@ body {
 /*  Styling for timetable  */
 
 #timetable_container{
-    height:100%;
+    height:80vh;
     margin:2%;
 }
 
 #info_sidebar{
-    width:20%;
+    width:30%;
     height:100%;
     float:left;
 }
 
 #timetable {
-    width: 80%;
-    height: 100%;
+    width: 70%;
     float: right;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    text-align: center;
+    height: 100%;
 }
 
-    #timetable table, #timetable tbody, #timetable tr, #timetable td {
-        height: 100%;
+    #timetable .table {
+        display: table;
         width: 100%;
+        border-spacing: 0px;
+        height: 100%;
+        text-align: center;
+        font-family: Arial, Verdana;
+        font-size: 3vh;
+        font-weight: lighter;
+        letter-spacing: 0.05em;
+        table-layout: fixed;
     }
 
-.timetable_dayColumn {
-    height: 100%;
+
+#timetable .td {
+    display: table-cell;
     width: 20%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items:center;
+    padding: 0px;
+    vertical-align: middle;
 }
 
-.timetable_dayColumn div{
-    flex-grow:1;
+    #timetable .tr {
+        display: table-row;
+    }
+
+    #timetable .td > div{overflow:hidden;width:100%}
+
+
+    #timetable .tr:nth-child(2n+4) {
+        background-color: RGB(45,45,48);
+        background-color: var(--tr_background_col_nth);
+    }
+
+    #timetable .tr:nth-child(1), #timetable .tr:nth-child(2) {
+        background-color: RGB(45,45,48);
+        background-color: var(--tr_background_col_nth);
+    }
+
+.timetable_headDay {
+    font-size: 2vh;
+    color: #99CC00;
+    color: var(--header_font_col);
+    
+}
+
+.timetable_headDate {
+    font-size: 1.5vh;
+    color: #99CC00;
+    color: var(--header_font_col);
+}
+.timetable_lessonMovedIn {
+    color: #99CC00;
+    color: var(--header_font_col);
+}
+
+    .timetable_lessonMovedOut, .timetable_lessonCancelled{color: red}
+
+    .timetable_lessonMovedIn, .timetable_lessonMovedOut, .timetable_lessonCancelled {
+        font-size: 1.8vh;
+    }
+
+    .timetable_lessonMovedIn > .timetable_subjectInfo, .timetable_lessonMovedIn > .timetable_teacherInfo, .timetable_lessonCancelled > .timetable_teacherInfo {
+        display: inline;
+    }
+
+    .timetable_lessonMovedOut > .timetable_subjectInfo, .timetable_lessonMovedOut > .timetable_teacherInfo,
+        .timetable_lessonCancelled > .timetable_subjectInfo, .timetable_lessonCancelled > .timetable_teacherInfo {
+        display: inline;
+        text-decoration: line-through;
+    }
+
+        .timetable_lessonMovedIn > .timetable_subjectInfo::after, .timetable_lessonMovedOut > .timetable_subjectInfo::after, .timetable_lessonCancelled > .timetable_subjectInfo::after {
+            content: " / ";
+        }
+
+
+    .timetable_lessonCancelled::after {
+        content: "Entfällt";
+        display: block;
+        font-size: 2.5vh;
+        color: red;
+    }
+
+.timetable_lessonNum {
+    width: 4% !important;
+    font-size: 2.5vh;
+}
+
+.timetable_teacherInfo{
+
+}
+
+.timetable_lessonInfo{
+
+}
+
+.timetable_lessonMovedInfo {
+    font-size: 2.5vh;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+.timetable_lesson .timetable_teacherInfo{display:none;}
+.timetable_lesson .timetable_subjectInfo {
+    
 }
 
 

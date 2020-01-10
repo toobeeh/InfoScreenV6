@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Stundenplan";
 }
+
 <div class="content_header">
     @Model.ClassName
 </div>
@@ -15,11 +16,19 @@
 
     </div>
 
-    <div id="timetable">       
-        @foreach (ScreenCoreApp.Classes.HtmlTimetableColumn day in Model.Days)
-        {                   
-                @Html.Raw(day.CreateTableMarkup())                       
-        }       
+    <div id="timetable">      
+        <div class="table">
+            @for (int row = 0; row < Model.LessonCount+2; row++)
+            {
+                <div class="tr">
+                    <div class="td timetable_lessonNum">@(row > 1 ? (row-( Model.ZerothLesson ? 2 : 1)).ToString() : "")</div>
+                    @for (int col = 0; col <= 4; col++)
+                    {
+                        @Html.Raw(Model.Days[col].HtmlTableData[row])
+                    }
+                </div>                   
+            }
+        </div>   
     </div>
 
 </div>

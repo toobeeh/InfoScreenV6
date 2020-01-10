@@ -13,6 +13,8 @@ namespace ScreenCoreApp
     {
         public string ClassName="";
         public List<Classes.HtmlTimetableColumn> Days;
+        public int LessonCount;
+        public bool ZerothLesson;
 
         public void OnGet()
         {
@@ -39,12 +41,21 @@ namespace ScreenCoreApp
             { 
                 if (day.StundenDaten[0].Stunde == 0) zerothLesson = true; 
             });
+            ZerothLesson = zerothLesson;
+
+            //Get highes amount of lessons per day
+            int maxLesson = 0;
+            timetable_days.ForEach((day) =>
+            {
+                if (day.StundenDaten[day.StundenDaten.Length-1].Stunde > maxLesson) maxLesson = day.StundenDaten[day.StundenDaten.Length - 1].Stunde;
+            });
+            LessonCount = maxLesson;
 
             // Create HTML capable objects for each day
             List<Classes.HtmlTimetableColumn> columns = new List<HtmlTimetableColumn>();
             timetable_days.ForEach((day) =>
             {
-                columns.Add(new HtmlTimetableColumn(day, moved_lessons_days[timetable_days.IndexOf(day)], zerothLesson));
+                columns.Add(new HtmlTimetableColumn(day, moved_lessons_days[timetable_days.IndexOf(day)], zerothLesson, maxLesson+1));
             });
 
             Days = columns;

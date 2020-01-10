@@ -13,15 +13,27 @@ namespace ScreenCoreApp.Classes
         List<Structuren.StundenplanEntry> Moved_lessons;
         int TotalLessons;
         bool ZerothLesson;
+        const double DayHeight = 1.8;
+        const double DateHeight = 1.5;
+        double LessonHeight;
+
+        public List<string> HtmlTableData = new List<string>();
+
 
         public HtmlTimetableColumn(Structuren.StundenplanTag _day, List<Structuren.StundenplanEntry> moved_lessons, bool _zerothLesson = false, int _totalLessons = 12)
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
             Day = _day;
             Moved_lessons = moved_lessons;
             TotalLessons = _totalLessons;
             ZerothLesson = _zerothLesson;
+            // calc height depending on displayed lessons, unit vh, container has 80 vh
+            LessonHeight = (80 - DayHeight - DateHeight) / TotalLessons;
             ResizeContainer();
+            CreateTableMarkup();
         }
+
+
 
         private void ResizeContainer()
         {
@@ -47,12 +59,13 @@ namespace ScreenCoreApp.Classes
             Moved_lessons = moved_filled;
         }
 
-        public string CreateTableMarkup()
+        public void CreateTableMarkup()
         {
-            string html = "<div class='timetable_dayColumn'>\n";
+            // Generates Markup which can be later used to fill into a table data
 
-            html += "<div class='timetable_headDay'> <div>" + Day.Datum.DayOfWeek + "</div> </div> \n";
-            html += "<div class='timetable_headDate'> <div>" + Day.Datum.ToShortDateString() + "</div> </div> \n";
+            HtmlTableData.Add("<div class='td' style='height:" + DayHeight + "vh'><div class='timetable_headDay'> <div>" + 
+                Day.Datum.ToString("dddd",new System.Globalization.CultureInfo("de-DE")) + "</div> </div> </div> \n");
+            HtmlTableData.Add("<div class='td' style='height:" + DateHeight + "vh'><div class='timetable_headDate'> <div>" + Day.Datum.ToString("dd.MM.yy") + "</div> </div> </div>\n");
 
             List<Structuren.StundenplanEntry> lessons = Day.StundenDaten.ToList();
            for(int i=0; i<lessons.Count; i++)
@@ -62,44 +75,38 @@ namespace ScreenCoreApp.Classes
                 
                 // If a lesson from another day moved here
                 if (!String.IsNullOrEmpty(Moved_lessons[i].Lehrer))
-                    html += "<div class='timetable_lessonMovedIn'> \n <div class='timetable_subjectInfo'>" +
+                    HtmlTableData.Add("<div class='td' style='height:" + LessonHeight + "vh'><div class='timetable_lessonMovedIn'> \n <div class='timetable_subjectInfo'>" +
                             Moved_lessons[i].Fach + "</div> \n <div class='timetable_teacherInfo'>" +
-                            Moved_lessons[i].Lehrer + "</div> \n <div class='timetable_lessonMovedOut'>" +
-                            "➜ Von " + Moved_lessons[i].ZiehtVorDatum.ToString("dd.MM") + "</div>  \n" +
-                            "</div> \n";
+                            Moved_lessons[i].Lehrer + "</div> \n <div class='timetable_lessonMovedInfo'>" +
+                            "Von " + Moved_lessons[i].ZiehtVorDatum.ToString("dd.MM") + "</div> </div> \n" +
+                            "</div> \n");
                 // if there is no entry on this lesson
                 else if (String.IsNullOrEmpty(lesson.Fach))
-                    html += "<div> \n <div style ='opacity: 0; background - color: divansparent' class='timetable_subjectInfo'>" +
+                    HtmlTableData.Add("<div class='td' style='height:" + LessonHeight + "vh'><div class='timetable_noLesson'> \n <div style ='opacity: 0; background-color: transparent' class='timetable_subjectInfo'>" +
                             "Lesson_Fill" + "</div> \n <div style ='opacity: 0; background - color: divansparent' class='timetable_teacherInfo'>" +
                             "Teacher_Fill" + "</div> \n" +
-                            "</div> \n";
+                            "</div> </div>\n");
                 // if lesson is cancelled
                 else if (lesson.Entfällt)
-                    html += "<div class='timetable_lessonCancelled'> \n <div class='timetable_subjectInfo'>" +
+                    HtmlTableData.Add("<div class='td' style='height:" + LessonHeight + "vh'><div class='timetable_lessonCancelled'> \n <div class='timetable_subjectInfo'>" +
                             lesson.Fach + "</div> \n <div class='timetable_teacherInfo'>" +
                             lesson.Lehrer + "</div> \n" +
-                            "</div> \n";
+                            "</div> </div>\n");
                 // if lesson moved to another day
                 else if (lesson.ZiehtVor >= 0)
-                    html += "<div class='timetable_lessonMovedOut'> \n <div class='timetable_subjectInfo'>" +
+                    HtmlTableData.Add("<div class='td' style='height:" + LessonHeight + "vh'><div class='timetable_lessonMovedOut'> \n <div class='timetable_subjectInfo'>" +
                             lesson.Fach + "</div> \n <div class='timetable_teacherInfo'>" +
-                            lesson.Lehrer + "</div> \n <div class='timetable_lessonMovedOut'>" +
-                            "➜ Auf " + lesson.ZiehtVorDatum.ToString("dd.MM") + "</div>  \n" +
-                            "</div> \n";
+                            lesson.Lehrer + "</div> \n <div class='timetable_lessonMovedInfo'>" +
+                            "Auf " + lesson.ZiehtVorDatum.ToString("dd.MM") + "</div>  \n" +
+                            "</div> </div>\n");
                 // if normal lesson
                 else
-                    html += "<div class='timetable_lesson'> \n <div class='timetable_subjectInfo'>" +
+                    HtmlTableData.Add("<div class='td' style='height:" + LessonHeight + "vh'><div class='timetable_lesson'> \n <div class='timetable_subjectInfo'>" +
                             lesson.Fach + "</div> \n <div class='timetable_teacherInfo'>" +
                             lesson.Lehrer + "</div> \n" +
-                            "</div> \n";
+                            "</div> </div>\n");
                 
             }
-        
-           
-
-            html += "</div>\n";
-
-            return html;
         }
 
 
