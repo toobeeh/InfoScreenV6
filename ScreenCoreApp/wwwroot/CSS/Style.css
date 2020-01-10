@@ -2,8 +2,10 @@
 @import url(/CSS/theme_dark.css);
 
 body {
+    background-color: RGB(37,37,38);
     background-color: var(--background_col);
     margin: 0px;
+    color: white;
     color: var(--font_col);
 }
 
@@ -18,23 +20,12 @@ body {
 }
 
     .res_container img {
-        min-height: 100%;
-        min-width: 1024px;
-        /* Set up proportionate scaling */
+        height: 100%;
         width: 100%;
-        height: auto;
-        /* Set up positioning */
         position: fixed;
         top: 0;
         left: 0;
     }
-
-@media screen and (max-width: 1024px) { /* Specific to this particular image */
-    .res_container img {
-        left: 50%;
-        margin-left: -512px; /* 50% */
-    }
-}
 
 .department_info {
     z-index: -1;
@@ -72,12 +63,15 @@ body {
 
     .table_container th {
         font-size: 30px;
+        color: white;
+        color: #99CC00;
         color: var(--th_font_color);
         height: 5%;
         font-weight: 600;
     }
 
     .table_container tr:nth-child(even) {
+        background-color: RGB(45,45,48);
         background-color: var(--tr_background_col_nth);
     }
 
@@ -96,6 +90,7 @@ body {
     text-align: center;
     font-family: Arial, Verdana;
     font-size: 40px;
+    color: #99CC00;
     color: var(--pagenum_font_col)
 }
 
@@ -105,16 +100,21 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+    color: white;
+    color: #99CC00;
     color: var(--header_font_col);
     font-weight: 600;
     font-family: Arial, Verdana;
     font-size: 70px;
+    background: #131313;
     background: var(--header_back_col);
+    box-shadow: 0px 0px 15px #131313;
     box-shadow: 0px 0px 15px var(--header_shadow_col);
     height: 12%;
 }
 
 .no_content_set {
+    color: white;
     color: var(--header_font_col);
     font-weight: 600;
     font-family: Arial, Verdana;
@@ -124,14 +124,14 @@ body {
 .split_table_left {
     width: 43% !important;
     margin-left: 4% !important;
-    height: 75% !important;
+    /*height: 75% !important;*/
     float: left;
 }
 
 .split_table_right {
     width: 43% !important;
     margin-right: 4% !important;
-    height: 75% !important;
+    /*height: 75% !important;*/
     float: right;
 }
 
@@ -139,10 +139,50 @@ body {
     width: 43% !important;
     margin-right: 26% !important;
     margin-left: 26% !important;
-    height: 75% !important;
+    /*height: 75% !important;*/
 }
 
 
+/*  Styling for timetable  */
+
+#timetable_container{
+    height:100%;
+    margin:2%;
+}
+
+#info_sidebar{
+    width:20%;
+    height:100%;
+    float:left;
+}
+
+#timetable {
+    width: 80%;
+    height: 100%;
+    float: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+    #timetable table, #timetable tbody, #timetable tr, #timetable td {
+        height: 100%;
+        width: 100%;
+    }
+
+.timetable_dayColumn {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items:center;
+}
+
+.timetable_dayColumn div{
+    flex-grow:1;
+}
 
 
 

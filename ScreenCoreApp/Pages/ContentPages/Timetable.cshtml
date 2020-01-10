@@ -1,13 +1,25 @@
 ﻿@page
 @model ScreenCoreApp.TimetableModel
 @{
-    ViewData["Title"] = "DepartmentInfo";
+    ViewData["Title"] = "Stundenplan";
 }
 <div class="content_header">
-    Stundenplan
+    @Model.ClassName
 </div>
-<div class="department_info">
 
-    
+<div id="timetable_container">
+
+    <div id="info_sidebar">
+
+
+
+    </div>
+
+    <div id="timetable">       
+        @foreach (ScreenCoreApp.Classes.HtmlTimetableColumn day in Model.Days)
+        {                   
+                @Html.Raw(day.CreateTableMarkup())                       
+        }       
+    </div>
 
 </div>

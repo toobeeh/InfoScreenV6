@@ -13,12 +13,12 @@
     {
         <table class="split_table_left">
             <tbody>
-                @Html.Raw(Model.CreateSplitTable(Model.item_start, Model.item_start + 8))
+                @Html.Raw(Model.CreateSplitTable(Model.item_start, Model.item_start + 10))
             </tbody>
         </table>
         <table class="split_table_right">
             <tbody>
-                @Html.Raw(Model.CreateSplitTable(Model.item_start + 9, Model.item_end))
+                @Html.Raw(Model.CreateSplitTable(Model.item_start + 11, Model.item_end))
             </tbody>
         </table>
     }

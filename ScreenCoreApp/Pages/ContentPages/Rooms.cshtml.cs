@@ -27,10 +27,10 @@ namespace ScreenCoreApp
             int depID = DatenbankAbrufen.GetAbteilungsIdVonAbteilungsname(departmentName);
             Rooms = DatenbankAbrufen.RoomList(depID);
 
-            item_start = (Pagenum-1) * 18;
-            item_end = (Rooms.Rows.Count-1 > item_start + 17 ? item_start + 17 : Rooms.Rows.Count-1);
+            item_start = (Pagenum-1) * 22;
+            item_end = (Rooms.Rows.Count-1 > item_start + 21 ? item_start + 21 : Rooms.Rows.Count-1);
 
-            split = (item_end - item_start > 8 ? true : false);
+            split = (item_end - item_start > 10 ? true : false);
         }
 
         public string CreateSplitTable(int item_start, int item_end)
@@ -39,9 +39,9 @@ namespace ScreenCoreApp
 
             html += @"
                 <tr>
-                    <th style='width:40%'>Raum</th>
-                    <th style='width:30%'>Klasse</th>
-                    <th style='width:30%'>Vorstand</th>
+                    <th style='width:25%'>Raum</th>
+                    <th style='width:50%'>Klasse</th>
+                    <th style='width:25%'>Vorstand</th>
                 </tr>";
 
             for(int i = item_start; i <=item_end; i++)
@@ -58,7 +58,7 @@ namespace ScreenCoreApp
                 </tr>";
             }
 
-            for (int i = item_end+1; i <= item_start+8; i++)
+            for (int i = item_end+1; i <= item_start+10; i++)
             {
                
                 html += @"

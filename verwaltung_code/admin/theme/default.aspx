@@ -16,6 +16,7 @@
     Die Darstellung der dynamischen Seiten auf den InfoScreen-Bildschirmen kann via Farbthemen angepasst werden. <br />
     Die Themes "Light" und "Dark" sind voreingestellt, zusätzlich können auch eigene Themes definiert werden.
     Um ein einheitliches Design zu erlangen, sollten die verwendeten PowerPoints bestmöglich zu dem verwendeten Theme passen. <br />
+    <h3>Achtung: Auf IE11 werden CSS-Variablen, die für die Themes notwendig sind, nicht unterstützt. Es wird als Fallback-Design das Dark-Theme verwendet.</h3>
     <br />
     <hr />
     <br />

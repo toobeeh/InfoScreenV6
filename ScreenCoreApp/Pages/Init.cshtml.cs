@@ -195,7 +195,7 @@ namespace ScreenCoreApp.Pages
             DataTable Rooms = DatenbankAbrufen.RoomList(depID);
             int rows = Rooms.Rows.Count;
 
-            pages = rows / 18 + (rows % 18 > 1 ? 1 : 0);
+            pages = rows / 22 + (rows % 22 > 0 ? 1 : 0);
 
             if (page < pages) Screen.SetRoomTablePage((page + 1).ToString(), HttpContext);
             else Screen.SetRoomTablePage("1", HttpContext);

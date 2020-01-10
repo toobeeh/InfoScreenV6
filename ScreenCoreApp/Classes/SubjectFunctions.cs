@@ -94,7 +94,8 @@ ORDER BY [Stundenplan].[Wochentag], [Stundenplan].[Stunde]";
 [Fächer].[FachKürzel] AS FachKürzel,
 [Supplierungen].[ErsatzLehrerKürzel] AS LehrerKürzel,
 [Supplierungen].[Entfällt] AS Entfällt,
-[Supplierungen].[ZiehtVor] AS ZiehtVor
+[Supplierungen].[ZiehtVor] AS ZiehtVor, 
+[Supplierungen].[ZiehtVorDatum] AS ZiehtVorDatum
 FROM
 ([Supplierungen] LEFT JOIN [Fächer] ON [Supplierungen].[ErsatzFach]=[Fächer].[FachKürzel])
 WHERE [Supplierungen].[Klasse]='" + _Klasse + @"'
@@ -116,7 +117,7 @@ AND [Supplierungen].[Datum]='" + nächstesDatum.ToString("yyyy-MM-dd") + "'";
                     }
                     if (normaleStunde)
                     {
-                        //temp3[x].ZiehtVorDatum = Convert.ToDateTime(daten2.Rows[i3]["ZiehtVorDatum"]);
+                        temp3[x].ZiehtVorDatum = Convert.ToDateTime(daten2.Rows[i3]["ZiehtVorDatum"]);
                         temp3[x].ZiehtVor = Convert.ToInt32(daten2.Rows[i3]["ZiehtVor"]);
                         temp3[x].Entfällt = Convert.ToBoolean(daten2.Rows[i3]["Entfällt"]);
                         if (!(temp3[x].ZiehtVor > -1 || temp3[x].Entfällt)) //wenn NICHT ziehtVor oder Entfall
@@ -138,7 +139,7 @@ AND [Supplierungen].[Datum]='" + nächstesDatum.ToString("yyyy-MM-dd") + "'";
                         dummy1.Gebäude = "";
                         dummy1.Raum = 307;
                         dummy1.Supplierung = false;
-                        //dummy1.ZiehtVorDatum = Convert.ToDateTime(daten2.Rows[i3]["ZiehtVorDatum"]);
+                        dummy1.ZiehtVorDatum = Convert.ToDateTime(daten2.Rows[i3]["ZiehtVorDatum"]);
                         dummy1.ZiehtVor = Convert.ToInt32(daten2.Rows[i3]["ZiehtVor"]);
                         dummy1.Entfällt = Convert.ToBoolean(daten2.Rows[i3]["Entfällt"]);
                         if (!(dummy1.ZiehtVor > -1 || dummy1.Entfällt)) //wenn NICHT ziehtVor oder Entfall

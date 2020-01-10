@@ -2297,23 +2297,23 @@ ORDER BY [Stundenplan].[Klasse]";
         /// <param name="departmentID">Department of the affected class</param>
         /// <param name="classname">Affected class</param>
         /// <param name="date">Date which the lesson is moved to</param>
-        /// <returns>Returns a list of a stundenplantaglehrer (?!) which contains the new subject, new teacher, the lesson and the class. </returns>
-        static public List<Structuren.StundenplanTagLehrer> GetMovedLessonsOfDay(int departmentID, string classname, DateTime date)
+        /// <returns>Returns a list of a stundenplanentry which contains the new subject, new teacher, the lesson and the class, sorted by earlier lesson first. </returns>
+        static public List<Structuren.StundenplanEntry> GetMovedLessonsOfDay(int departmentID, string classname, DateTime date)
         {
             string sql = @"
-                        SELECT ErsatzFach, ErsatzLehrerKürzel, ZiehtVor    
-                        FROM Supplierungen WHERE AbteilungsID = "+departmentID.ToString() + @" AND Klasse = '" + classname + "' AND ZiehtVorDatum='" + date.ToString("yyyy-MM-dd") + "'";
+                        SELECT ErsatzFach, ErsatzLehrerKürzel, ZiehtVor, Datum    
+                        FROM Supplierungen WHERE AbteilungsID = "+departmentID.ToString() + @" AND Klasse = '" + classname + "' AND ZiehtVorDatum='" + date.ToString("yyyy-MM-dd") + "' ORDER BY ZiehtVor";
             DataTable data = DatenbankAbfrage(sql);
 
-            List<Structuren.StundenplanTagLehrer> moved_lessons = new List<Structuren.StundenplanTagLehrer>();
+            List<Structuren.StundenplanEntry> moved_lessons = new List<Structuren.StundenplanEntry>();
 
             foreach(DataRow row in data.Rows)
             {
-                Structuren.StundenplanTagLehrer lesson = new Structuren.StundenplanTagLehrer();
+                Structuren.StundenplanEntry lesson = new Structuren.StundenplanEntry();
                 lesson.Fach = row.ItemArray[0].ToString();
                 lesson.Lehrer = row.ItemArray[1].ToString();
                 lesson.Stunde = row.ItemArray[2].ToInt32();
-                lesson.Klasse = classname;
+                lesson.ZiehtVorDatum = row.ItemArray[3].ToDateTime();
                 moved_lessons.Add(lesson);
             }
 
