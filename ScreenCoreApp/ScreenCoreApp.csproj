@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <Reference Include="Infoscreen Verwaltung">
-      <HintPath>..\..\InfoScreenV6\verwaltung_code\bin\Infoscreen_Verwaltung.dll</HintPath>
+      <HintPath>..\..\InfoScreenV6\verwaltung_code\bin\Infoscreen Verwaltung.dll</HintPath>
     </Reference>
   </ItemGroup>
 
