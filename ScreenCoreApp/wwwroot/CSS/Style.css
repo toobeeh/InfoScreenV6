@@ -169,7 +169,7 @@ body {
 #class_details, #upcoming_exams {
     font-family: Arial, Verdana;
     border: #131313 5px solid;
-    border: var(--header_back_col) 5px solid;
+    border: var(--timetable_border_col) 5px solid;
     border-radius: 5px;
     padding-bottom: 10px;
     letter-spacing: 0.05em;
@@ -207,9 +207,9 @@ body {
 
     #upcoming_exams > .sidebar_header, #class_details > .sidebar_header {
         background-color: #131313;
-        background-color: var(--header_back_col);
+        background-color: var(--timetable_border_col);
         color: #99CC00;
-        color: var(--header_font_col);
+        color: var(--timetable_widgetHeaderText_col);
         font-size: 2.3vh;
         text-align: center;
         font-weight: bolder;
@@ -236,8 +236,8 @@ body {
         letter-spacing: 0.05em;
         table-layout: fixed;
         border: #131313 5px solid;
-        border: var(--header_back_col) 5px solid;
-        border-radius:5px;
+        border: var(--timetable_border_col) 5px solid;
+        border-radius: 5px;
     }
 
     /* DIV Css tabledata styling */
@@ -264,34 +264,42 @@ body {
     }
 
     /* Header row styling */
-    #timetable .tr:nth-child(1), #timetable .tr:nth-child(2) {
-        background: #131313;
-        background: var(--header_back_col);
-        box-shadow: 0px 0px 10px #131313;
-        box-shadow: 0px 0px 10px var(--header_back_col);
-    }
+        #timetable .tr:nth-child(1), #timetable .tr:nth-child(2) {
+            background: #131313;
+            background: var(--timetable_border_col);
+            box-shadow: 0px 0px 10px #131313;
+            box-shadow: 0px 0px 10px var(--timetable_border_col);
+        }
 
 /* Styling for specific cells like cancellation, replacements etc */
 .timetable_headDay {
     font-size: 2vh;
     color: #99CC00;
-    color: var(--header_font_col);
-    font-weight:bolder;
+    color: var(--timetable_widgetHeaderText_col);
+    font-weight: bolder;
 }
 
 .timetable_headDate {
     font-weight: bolder;
     font-size: 1.5vh;
     color: #99CC00;
-    color: var(--header_font_col);
+    color: var(--timetable_widgetHeaderText_col);
 }
 
 .timetable_lessonMovedIn {
     color: #99CC00;
-    color: var(--header_font_col);
+    color: var(--timetable_lessonMovedIn_textCol);
 }
 
-.timetable_lessonMovedOut, .timetable_lessonCancelled{color: red}
+.timetable_lessonMovedOut  {
+    color: red;
+    color: var(--timetable_lessonMovedOut_textCol);
+}
+
+.timetable_lessonCancelled {
+    color: red;
+    color: var(--timetable_lessonCancelled_textCol);
+}
 
 .timetable_lessonMovedIn, .timetable_lessonMovedOut, .timetable_lessonCancelled {
     font-size: 1.8vh;
@@ -305,7 +313,7 @@ body {
     .timetable_lessonMovedOut > .timetable_subjectInfo, .timetable_lessonMovedOut > .timetable_teacherInfo,
         .timetable_lessonCancelled > .timetable_subjectInfo, .timetable_lessonCancelled > .timetable_teacherInfo {
         display: inline;
-        text-decoration: line-through;
+        /*text-decoration: line-through;*/
     }
 
         .timetable_lessonMovedIn > .timetable_subjectInfo::after, .timetable_lessonMovedOut > .timetable_subjectInfo::after,
@@ -317,22 +325,28 @@ body {
     .timetable_lessonCancelled::after {
         content: "Entfällt";
         display: block;
-        font-size: 2.5vh;
+        font-size: 2vh;
+        font-weight: bolder;
         color: red;
+        color: var(--timetable_lessonCancelled_textCol);
     }
 
 .timetable_lessonNum {
     width: 5% !important;
     font-size: 2vh;
     background: #131313;
-    
-    background: var(--header_back_col);
+    background: var(--timetable_border_col);
 }
 
 .timetable_lessonMovedInfo {
-    font-size: 2.5vh;
+    font-size: 2vh;
     margin-right: 10%;
     margin-left: 10%;
+    font-weight: bolder;
+}
+
+.timetable_subjectInfo {
+    font-weight: bolder;
 }
 
 .timetable_lesson .timetable_teacherInfo{display:none;}
