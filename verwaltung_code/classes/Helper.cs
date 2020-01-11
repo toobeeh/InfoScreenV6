@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
+using System.DirectoryServices;
 
 namespace Infoscreen_Verwaltung.classes
 {
@@ -28,6 +29,43 @@ namespace Infoscreen_Verwaltung.classes
                 return min;
             }
             catch { return 0; }
+        }
+
+        static public string GetKlassensprecherName(string pre)
+        {
+            string KlassensprecherID;
+
+            if (pre != "")
+            {
+                DirectoryEntry entry = new DirectoryEntry("LDAP://" + Properties.Resources.standardDomain, Properties.Resources.domainUser, Properties.Resources.domainPassword, AuthenticationTypes.Secure);
+                entry.Username = Properties.Resources.domainUser;
+                entry.Password = Properties.Resources.domainPassword;
+
+
+                DirectorySearcher search = new DirectorySearcher(entry);
+                search.Filter = "(&(objectClass=user)(cn=" + pre + "))";
+                search.PropertiesToLoad.Add("displayName");
+
+                string temp1;
+
+                try
+                {
+                    SearchResult result = search.FindOne();
+                    KlassensprecherID = (string)result.Properties["displayName"][0];
+                }
+                catch (Exception ex)
+                {
+                    //throw new Exception("Error obtaining id. " + ex.Message);
+                    temp1 = "Unbekannt";
+                    KlassensprecherID = (temp1);
+                }
+            }
+            else
+            {
+                KlassensprecherID = "";
+            }
+
+            return KlassensprecherID;
         }
 
         /// <summary>

@@ -10,6 +10,7 @@
 
 <div id="pageindex" class="class_information">@Model.ClassInformation</div>
 
+
 <div id="timetable_container">
 
     <div id="info_sidebar">
@@ -19,8 +20,8 @@
             <h3>@Infoscreen_Verwaltung.classes.StringHelper.ToValidRoomBuilding(Model.Properties.gebäude + "-" + Model.Properties.raum,4,2)</h3>
             <h4>Klassenvorstand</h4>
             <h3>@(String.IsNullOrEmpty(Model.Properties.klassenvorstand) ? "Nicht festgelegt": Model.Properties.klassenvorstand) </h3>
-            <h4>Klassensprecher</h4>
-            <h3>@(String.IsNullOrEmpty(Model.Properties.klassensprecher) ? "Nicht festgelegt" : Model.Properties.klassenvorstand)</h3>
+            <h4>Klassensprecher ID</h4>
+            <h3>@(String.IsNullOrEmpty(Model.Properties.klassensprecher) ? "Nicht festgelegt" : Model.Properties.klassensprecher )</h3>
         </div>
 
         <div id="upcoming_exams">

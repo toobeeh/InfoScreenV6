@@ -173,23 +173,23 @@ body {
     border-radius: 5px;
     padding-bottom: 10px;
     letter-spacing: 0.05em;
-    margin-bottom: 10%;
+    margin-bottom: 5vh;
     margin-right: 0;
 }
 
     /* Widget div text styling */
     #class_details > h3, #upcoming_exams > h4 {
         font-size: 2.5vh;
-        margin-top: 0.2em;
-        margin-bottom: 0.2em;
+        margin-top: 0.2vh;
+        margin-bottom: 0.5vh;
         margin-left: 20%;      
         font-weight: lighter;
     }
 
     #class_details > h4, #upcoming_exams > h3 {
         font-size: 2vh;     
-        margin-top: 0.2em;
-        margin-bottom: 0.2em;
+        margin-top: 0.2vh;
+        margin-bottom: 0.2vh;
         background-color: RGB(45,45,48);
         background-color: var(--tr_background_col_nth);
         margin-right: 5%;
@@ -213,7 +213,7 @@ body {
         font-size: 2.3vh;
         text-align: center;
         font-weight: bolder;
-        margin-bottom: 5%;
+        margin-bottom: 2vh;
     }
 
 
@@ -360,5 +360,24 @@ body {
     text-align: left !important;
 }
 
+/* JS Clock on right side of header */
 
+#js_clock {
+    position: absolute;
+    right: 4%;
+    top: 0;
+    height: 12%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, Verdana;
+    font-size: 55px;
+    color: #99CC00;
+    color: var(--pagenum_font_col)
+}
+
+#js_clock > #second{
+    font-size: 40px;
+}
 

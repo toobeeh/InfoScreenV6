@@ -4,10 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="~/CSS/Style.css">
+    <script src="~/JS/clock.js"></script>
 </head>
 <body>
     <div class="res_container">
         @ViewData["ScreenMode"]
+        <div id="js_clock"></div>
         @RenderBody()
     </div>
 </body>
