@@ -142,60 +142,89 @@ body {
 }
 
 
-/*  Styling for timetable  */
+/*  Styling for timetable sidebar widgets */
 
-#timetable_container{
-    height:80vh;
-    padding:2%;
-    width:96%;
+#timetable_container {
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /*Fallback for IE users since IE doesnt support space-evenly*/
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
 }
 
-#info_sidebar{
-    width:25%;
-    height:100%;
-    float:left;
+/* DIV which contains widget divs */
+#info_sidebar {
+    width: 25%;
+    height: 100%;
+    overflow:hidden;
+    float: left;
+    display: flex;
+    flex-direction: column;
 }
 
-#class_details {
+/* Widget div general appearance */
+#class_details, #upcoming_exams {
     font-family: Arial, Verdana;
     border: #131313 5px solid;
     border: var(--header_back_col) 5px solid;
     border-radius: 5px;
-    padding: 10px;
-    padding-left: 0;
-    padding-right: 0;
+    padding-bottom: 10px;
     letter-spacing: 0.05em;
+    margin-bottom: 10%;
+    margin-right: 0;
 }
 
-    #class_details > h3 {
+    /* Widget div text styling */
+    #class_details > h3, #upcoming_exams > h4 {
         font-size: 2.5vh;
         margin-top: 0.2em;
         margin-bottom: 0.2em;
-        margin-left: 20%;
-        
+        margin-left: 20%;      
+        font-weight: lighter;
     }
 
-    #class_details > h4 {
-        font-size: 2vh;
-        color: #99CC00;
-        color: var(--header_font_col);
-        margin-top: 0em;
+    #class_details > h4, #upcoming_exams > h3 {
+        font-size: 2vh;     
+        margin-top: 0.2em;
         margin-bottom: 0.2em;
         background-color: RGB(45,45,48);
         background-color: var(--tr_background_col_nth);
+        margin-right: 5%;
+        margin-left: 5%;
     }
 
-        #class_details > h4::before {
-            content:"⨯ ";
+    #upcoming_exams > h3, #upcoming_exams > h4 {
+        font-size: 2vh;
+    }
+
+        #class_details > h4::before, #upcoming_exams > h3::before {
+            content: "⨯ ";
             margin-left: 10%;
         }
 
+    #upcoming_exams > .sidebar_header, #class_details > .sidebar_header {
+        background-color: #131313;
+        background-color: var(--header_back_col);
+        color: #99CC00;
+        color: var(--header_font_col);
+        font-size: 2.3vh;
+        text-align: center;
+        font-weight: bolder;
+        margin-bottom: 5%;
+    }
+
+
+/*DIV which contains the timetable*/
 #timetable {
     width: 70%;
     float: right;
     height: 100%;
 }
 
+    /* CSS timetable general styling */
     #timetable .table {
         display: table;
         width: 100%;
@@ -204,7 +233,6 @@ body {
         text-align: center;
         font-family: Arial, Verdana;
         font-size: 3vh;
-        /*font-weight: lighter;*/
         letter-spacing: 0.05em;
         table-layout: fixed;
         border: #131313 5px solid;
@@ -212,27 +240,30 @@ body {
         border-radius:5px;
     }
 
+    /* DIV Css tabledata styling */
+    #timetable .td {
+        display: table-cell;
+        width: 19%;
+        padding: 0px;
+        vertical-align: middle;
+    }
 
-#timetable .td {
-    display: table-cell;
-    width: 19%;
-    padding: 0px;
-    vertical-align: middle;
-}
+        #timetable .td > div {
+            overflow: hidden;
+            width: 100%
+        }
 
+    /* DIV Css tablerow styling */
     #timetable .tr {
         display: table-row;
     }
-
-    #timetable .td > div{overflow:hidden;width:100%}
-
 
     #timetable .tr:nth-child(2n+4) {
         background-color: RGB(45,45,48);
         background-color: var(--tr_background_col_nth);
     }
 
-    /*The two header rows of the table*/
+    /* Header row styling */
     #timetable .tr:nth-child(1), #timetable .tr:nth-child(2) {
         background: #131313;
         background: var(--header_back_col);
@@ -240,8 +271,7 @@ body {
         box-shadow: 0px 0px 10px var(--header_back_col);
     }
 
-
-
+/* Styling for specific cells like cancellation, replacements etc */
 .timetable_headDay {
     font-size: 2vh;
     color: #99CC00;
@@ -261,13 +291,14 @@ body {
     color: var(--header_font_col);
 }
 
-    .timetable_lessonMovedOut, .timetable_lessonCancelled{color: red}
+.timetable_lessonMovedOut, .timetable_lessonCancelled{color: red}
 
-    .timetable_lessonMovedIn, .timetable_lessonMovedOut, .timetable_lessonCancelled {
-        font-size: 1.8vh;
-    }
+.timetable_lessonMovedIn, .timetable_lessonMovedOut, .timetable_lessonCancelled {
+    font-size: 1.8vh;
+}
 
-    .timetable_lessonMovedIn > .timetable_subjectInfo, .timetable_lessonMovedIn > .timetable_teacherInfo, .timetable_lessonCancelled > .timetable_teacherInfo {
+    .timetable_lessonMovedIn > .timetable_subjectInfo, 
+        .timetable_lessonMovedIn > .timetable_teacherInfo, .timetable_lessonCancelled > .timetable_teacherInfo {
         display: inline;
     }
 
@@ -277,7 +308,8 @@ body {
         text-decoration: line-through;
     }
 
-        .timetable_lessonMovedIn > .timetable_subjectInfo::after, .timetable_lessonMovedOut > .timetable_subjectInfo::after, .timetable_lessonCancelled > .timetable_subjectInfo::after {
+        .timetable_lessonMovedIn > .timetable_subjectInfo::after, .timetable_lessonMovedOut > .timetable_subjectInfo::after,
+            .timetable_lessonCancelled > .timetable_subjectInfo::after {
             content: " / ";
         }
 
@@ -297,14 +329,6 @@ body {
     background: var(--header_back_col);
 }
 
-.timetable_teacherInfo{
-
-}
-
-.timetable_lessonInfo{
-
-}
-
 .timetable_lessonMovedInfo {
     font-size: 2.5vh;
     margin-right: 10%;
@@ -312,9 +336,8 @@ body {
 }
 
 .timetable_lesson .timetable_teacherInfo{display:none;}
-.timetable_lesson .timetable_subjectInfo {
-    
-}
+
+/* Styling for class information displayed over the header row */
 
 .class_information{
     word-break: break-word;

@@ -13,9 +13,11 @@ namespace ScreenCoreApp
     {
         public string ClassName="";
         public List<Classes.HtmlTimetableColumn> Days;
+        public List<Structuren.Tests> Exams;
         public int LessonCount;
         public bool ZerothLesson;
         public string ClassInformation;
+        public Structuren.Klasseneigenschaften Properties;
 
         public void OnGet()
         {
@@ -25,8 +27,17 @@ namespace ScreenCoreApp
             int depID = DatenbankAbrufen.GetAbteilungsIdVonAbteilungsname(departmentName);
             string defaultClass = ClassName = DatenbankAbrufen.RauminfoAbrufen(screenID.ToString()).Stammklasse;
 
+            if (String.IsNullOrEmpty(defaultClass)) Response.Redirect("/Pages/NoContent");
+
             //Get class information
             ClassInformation = DatenbankAbrufen.KlasseninfoAbrufen(defaultClass);
+
+            //Get class properties
+            Properties = DatenbankAbrufen.GetClassProperties(ClassName, depID);
+
+            //Get Tests
+            Exams = DatenbankAbrufen.TestsAbrufen(ClassName, false).ToList();
+            if(Exams.Count > 5) Exams.RemoveRange(4, Exams.Count - 5);
 
             //Get timetable
             List<Structuren.StundenplanTag> timetable_days =  SubjectFunctions.StundenplanAbrufen(defaultClass, false).ToList();

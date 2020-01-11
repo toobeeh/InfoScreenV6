@@ -836,6 +836,8 @@ WHERE [Fächer].[FachKürzel]='" + aktuell + "'";
             return String.Join(", ", FachL);
         }
 
+        
+
         #region nur Verwaltung
         /// <summary>
         /// Ruft alle Klassen einer Abteilung ab.
@@ -908,7 +910,7 @@ FROM (([Tests] INNER JOIN [Fächer] ON [Tests].[FachKürzel]=[Fächer].[FachKür
 LEFT JOIN [Testarten] ON [Tests].[TestartID]=[Testarten].[TestartID])
 WHERE [Tests].[Klasse]='" + _Klasse + @"'
 AND [Tests].[Datum]>='" + DateTime.Today.ToString(Properties.Resources.sql_datumformat) + @"'
-ORDER BY [Tests].[Stunde], [Tests].[Datum], [Tests].[RaumID]";
+ORDER BY [Tests].[Datum], [Tests].[Stunde], [Tests].[RaumID]";
             DataTable daten = DatenbankAbfrage(befehl);
 
             Structuren.Tests[] temp = new Structuren.Tests[daten.Rows.Count];
@@ -2320,7 +2322,49 @@ ORDER BY [Stundenplan].[Klasse]";
             return moved_lessons;
 
         }
+        /// <summary>
+        /// Get subject abbreviation of subject name
+        /// </summary>
+        /// <param name="subject">Long subject name, split multiple subjects by '/'</param>
+        /// <returns></returns>
+        static public string GetSubjectAbbreviation(string subject)
+        {
+            string[] subjects = subject.Split('/');
+            List<string> Abbreviations = new List<string>();
+            string befehl;
+            DataTable daten;
 
+            foreach (string sub in subjects)
+            {
+                befehl = @"SELECT
+                            FachKürzel
+                            FROM [Fächer]
+                            WHERE [Fächer].[Fach]='" + sub + "'";
+                daten = DatenbankAbfrage(befehl);
+                if (daten.Rows.Count > 0)
+                    Abbreviations.Add(daten.Rows[0]["FachKürzel"].ToString());
+                daten.Dispose();
+            }
+            return String.Join(", ", Abbreviations);
+        }
+
+        public static Structuren.Klasseneigenschaften GetClassProperties(string classname, int dep_ID)
+        {
+            Structuren.Klasseneigenschaften properties = new Structuren.Klasseneigenschaften();
+            properties.klasse = classname;
+            properties.abteilungsID = dep_ID;
+            properties.raum = DatenbankAbfrage(
+                "SELECT Raum FROM Raeume WHERE StandardKlasse='" + classname + "' AND AbteilungsID=" + dep_ID).Rows[0].ItemArray[0].ToString();
+            properties.klassensprecher = DatenbankAbfrage(
+                "SELECT Klassensprecher FROM Klassen WHERE Klasse='" + classname + "' AND AbteilungsID="+dep_ID).Rows[0].ItemArray[0].ToString();
+            properties.klassenvorstand = DatenbankAbfrage(
+                "SELECT Klassenvorstand FROM Klassen WHERE Klasse='" + classname + "' AND AbteilungsID=" + dep_ID).Rows[0].ItemArray[0].ToString();
+            properties.klasseninfo = DatenbankAbfrage(
+                "SELECT Klasseninfo FROM Klassen WHERE Klasse='" + classname + "' AND AbteilungsID=" + dep_ID).Rows[0].ItemArray[0].ToString();
+            properties.gebäude = DatenbankAbfrage(
+               "SELECT Gebäude FROM Raeume WHERE StandardKlasse='" + classname + "' AND AbteilungsID=" + dep_ID).Rows[0].ItemArray[0].ToString();
+            return properties;
+        }
 
         #endregion
 

@@ -14,15 +14,36 @@
 
     <div id="info_sidebar">
         <div id="class_details">
-            <h4>Raum-Nummer</h4>
-            <h3>30-4200</h3>
+            <div class="sidebar_header">Klassendetails</div>
+            <h4>Raumnummer</h4>
+            <h3>@Infoscreen_Verwaltung.classes.StringHelper.ToValidRoomBuilding(Model.Properties.gebäude + "-" + Model.Properties.raum,4,2)</h3>
             <h4>Klassenvorstand</h4>
-            <h3>Kutti is life</h3>
+            <h3>@(String.IsNullOrEmpty(Model.Properties.klassenvorstand) ? "Nicht festgelegt": Model.Properties.klassenvorstand) </h3>
             <h4>Klassensprecher</h4>
-            <h3>Alex is love</h3>
+            <h3>@(String.IsNullOrEmpty(Model.Properties.klassensprecher) ? "Nicht festgelegt" : Model.Properties.klassenvorstand)</h3>
         </div>
 
         <div id="upcoming_exams">
+            <div class="sidebar_header">Tests</div>
+            @if(Model.Exams.Count == 0)
+            {
+                <h3>Keine Tests</h3>
+            }
+            else
+            {             
+                @foreach(Infoscreen_Verwaltung.classes.Structuren.Tests exam in Model.Exams)
+                {
+                    <h3>
+                        @Infoscreen_Verwaltung.classes.DatenbankAbrufen.GetSubjectAbbreviation(exam.Fach) - @exam.Testart
+                    </h3>
+
+                    <h4>
+                        Datum: @exam.Datum.ToString("dd.MM")<br />Lehrer: @exam.Lehrer
+                    </h4>
+                }
+            }
+
+
 
         </div>
 
