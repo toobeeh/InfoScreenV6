@@ -15,6 +15,7 @@ namespace ScreenCoreApp
         public List<Classes.HtmlTimetableColumn> Days;
         public int LessonCount;
         public bool ZerothLesson;
+        public string ClassInformation;
 
         public void OnGet()
         {
@@ -23,6 +24,9 @@ namespace ScreenCoreApp
             string departmentName = DatenbankAbrufen.BildschirmInformationenAbrufen(screenID).Abteilung;
             int depID = DatenbankAbrufen.GetAbteilungsIdVonAbteilungsname(departmentName);
             string defaultClass = ClassName = DatenbankAbrufen.RauminfoAbrufen(screenID.ToString()).Stammklasse;
+
+            //Get class information
+            ClassInformation = DatenbankAbrufen.KlasseninfoAbrufen(defaultClass);
 
             //Get timetable
             List<Structuren.StundenplanTag> timetable_days =  SubjectFunctions.StundenplanAbrufen(defaultClass, false).ToList();
