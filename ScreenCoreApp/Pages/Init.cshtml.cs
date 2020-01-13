@@ -23,6 +23,7 @@ namespace ScreenCoreApp.Pages
             int screenID = Screen.GetSessionScreenID(HttpContext);
             if (screenID < 0)
             {
+                DatenbankAbrufen.DBClose();
                 Response.Redirect("NoContent");
                 return;
             }
@@ -70,16 +71,15 @@ namespace ScreenCoreApp.Pages
                     SetCycleIndex(ref cycle_index, cycle_index);   
                 }          
             }
-            
 
             switch (cycle_index)
             {
                 case 1: // Timetable
-                    Response.Redirect("/ContentPages/Timetable");
+                    Screen.RedirectAndCloseDB("/ContentPages/Timetable", Response);
                     ViewData["ScreenMode"] = "Timetable";
                     break;
                 case 2: // Department information
-                    Response.Redirect("/ContentPages/DepartmentInfo");
+                    Screen.RedirectAndCloseDB("/ContentPages/DepartmentInfo", Response);
                     ViewData["ScreenMode"] = "Department Information";
                     break;
                 case 3: //Consultation table
@@ -146,7 +146,7 @@ namespace ScreenCoreApp.Pages
             if (slide >= count ) Screen.SetNextPresentationSlide(1, HttpContext);
             else Screen.SetNextPresentationSlide(slide + 1, HttpContext);
 
-            Response.Redirect("ContentPages/PowerPoint/" + slide.ToString() + "_" + presentation);
+            Screen.RedirectAndCloseDB("ContentPages/PowerPoint/" + slide.ToString() + "_" + presentation, Response);
         }
 
         private int GetSlideCount(out string presentation)
@@ -181,7 +181,7 @@ namespace ScreenCoreApp.Pages
             if (page < pages) Screen.SetConsultationsPage((page + 1).ToString(), HttpContext);
             else Screen.SetConsultationsPage("1", HttpContext);
 
-            Response.Redirect("ContentPages/Consultations/" + page);
+            Screen.RedirectAndCloseDB("ContentPages/Consultations/" + page, Response);
         }
 
         private void RedirectToRoomTable()
@@ -200,7 +200,7 @@ namespace ScreenCoreApp.Pages
             if (page < pages) Screen.SetRoomTablePage((page + 1).ToString(), HttpContext);
             else Screen.SetRoomTablePage("1", HttpContext);
 
-            Response.Redirect("ContentPages/Rooms/" + page);
+            Screen.RedirectAndCloseDB("ContentPages/Rooms/" + page, Response);
         }
 
         private void RedirectToReplacements()
@@ -219,7 +219,7 @@ namespace ScreenCoreApp.Pages
             }
             catch
             {
-                Response.Redirect("ContentPages/Replacements/0");
+                Screen.RedirectAndCloseDB("ContentPages/Replacements/0", Response);
                 return;
             }
 
@@ -231,7 +231,7 @@ namespace ScreenCoreApp.Pages
             if (page < pages) Screen.SetReplacementsPage((page + 1).ToString(), HttpContext);
             else Screen.SetReplacementsPage("1", HttpContext);
 
-            Response.Redirect("ContentPages/Replacements/" + page);
+            Screen.RedirectAndCloseDB("ContentPages/Replacements/" + page, Response);
         }
 
 

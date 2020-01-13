@@ -31,6 +31,8 @@ namespace ScreenCoreApp
             item_end = (Rooms.Rows.Count-1 > item_start + 21 ? item_start + 21 : Rooms.Rows.Count-1);
 
             split = (item_end - item_start > 10 ? true : false);
+
+            DatenbankAbrufen.DBClose();
         }
 
         public string CreateSplitTable(int item_start, int item_end)

@@ -18,6 +18,8 @@ namespace ScreenCoreApp
             int screenID = Screen.GetSessionScreenID(HttpContext);
 
             InfoHtmlMarkup = GeneralFunctions.ConvertBBtoHTML(DatenbankAbrufen.AbteilungsinfoAbrufen(screenID.ToString()));
+
+            DatenbankAbrufen.DBClose();
         }
     }
 }

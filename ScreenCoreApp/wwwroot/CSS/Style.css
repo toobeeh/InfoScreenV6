@@ -351,6 +351,14 @@ body {
 
 .timetable_lesson .timetable_teacherInfo{display:none;}
 
+.timetable_exam{
+    display:none;
+    border: 3px  solid red;
+    border-radius: 3px;
+    padding: 3px;
+    color: red;
+}
+
 /* Styling for class information displayed over the header row */
 
 .class_information{

@@ -4,6 +4,8 @@
     ViewData["Title"] = "Stundenplan";
 }
 
+<script src="~/JS/exam_animation.js"></script>
+
 <div class="content_header">
     @Model.ClassName
 </div>
@@ -35,19 +37,15 @@
                 @foreach(Infoscreen_Verwaltung.classes.Structuren.Tests exam in Model.Exams)
                 {
                     <h3>
-                        @Infoscreen_Verwaltung.classes.DatenbankAbrufen.GetSubjectAbbreviation(exam.Fach) - @exam.Testart
+                        @exam.Fach - @exam.Testart
                     </h3>
 
                     <h4>
-                        Datum: @exam.Datum.ToString("dd.MM")<br />Lehrer: @exam.Lehrer
+                        Datum: @exam.Datum.ToString("dd.MM") / @exam.Stunde <br />Lehrer: @exam.Lehrer
                     </h4>
                 }
             }
-
-
-
         </div>
-
     </div>
 
     <div id="timetable">      
@@ -55,7 +53,10 @@
             @for (int row = 0; row < Model.LessonCount+2; row++)
             {
                 <div class="tr">
-                    <div class="td timetable_lessonNum">@(row > 1 ? (row-( Model.ZerothLesson ? 2 : 1)).ToString() : "")</div>
+                    <div class="td timetable_lessonNum"> 
+                        @(row > 1 ? (row-( Model.ZerothLesson ? 2 : 1)).ToString() : "")
+                    </div>
+
                     @for (int col = 0; col <= 4; col++)
                     {
                         @Html.Raw(Model.Days[col].HtmlTableData[row])

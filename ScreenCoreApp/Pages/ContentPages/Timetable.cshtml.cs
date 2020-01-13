@@ -19,6 +19,8 @@ namespace ScreenCoreApp
         public string ClassInformation;
         public Structuren.Klasseneigenschaften Properties;
 
+        Dictionary<DateTime, List<Structuren.Tests>> ExamDays = new Dictionary<DateTime, List<Structuren.Tests>>();
+
         public void OnGet()
         {
             // Get data necessairy to fetch timetable
@@ -27,7 +29,11 @@ namespace ScreenCoreApp
             int depID = DatenbankAbrufen.GetAbteilungsIdVonAbteilungsname(departmentName);
             string defaultClass = ClassName = DatenbankAbrufen.RauminfoAbrufen(screenID.ToString()).Stammklasse;
 
-            if (String.IsNullOrEmpty(defaultClass)) Response.Redirect("/Pages/NoContent");
+            if (String.IsNullOrEmpty(defaultClass))
+            {
+                Screen.RedirectAndCloseDB("/Pages/NoContent", Response);
+            }
+
 
             //Get class information
             ClassInformation = DatenbankAbrufen.KlasseninfoAbrufen(defaultClass);
@@ -36,7 +42,7 @@ namespace ScreenCoreApp
             Properties = DatenbankAbrufen.GetClassProperties(ClassName, depID);
 
             //Get Tests
-            Exams = DatenbankAbrufen.TestsAbrufen(ClassName, false).ToList();
+            Exams = DatenbankAbrufen.TestsAbrufen(ClassName, false, true).ToList();
             if(Exams.Count > 5) Exams.RemoveRange(4, Exams.Count - 5);
 
             //Get timetable
@@ -66,15 +72,28 @@ namespace ScreenCoreApp
             });
             LessonCount = maxLesson;
 
+            //Fill Test-Day Dictionary
+            Exams.ForEach((exam) =>
+            {
+                if (ExamDays.ContainsKey(exam.Datum)) ExamDays[exam.Datum].Add(exam);
+                else
+                {
+                    ExamDays[exam.Datum] = new List<Structuren.Tests>();
+                    ExamDays[exam.Datum].Add(exam);
+                }
+            });
+
             // Create HTML capable objects for each day
             List<Classes.HtmlTimetableColumn> columns = new List<HtmlTimetableColumn>();
             timetable_days.ForEach((day) =>
             {
-                columns.Add(new HtmlTimetableColumn(day, moved_lessons_days[timetable_days.IndexOf(day)], zerothLesson, maxLesson+1));
+                columns.Add(new HtmlTimetableColumn(day, (ExamDays.ContainsKey(day.Datum) ? ExamDays[day.Datum] : new List<Structuren.Tests>()), moved_lessons_days[timetable_days.IndexOf(day)], zerothLesson, maxLesson+1));
             });
 
             Days = columns;
 
+
+            DatenbankAbrufen.DBClose();
         }
     }
 }

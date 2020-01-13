@@ -1,11 +1,14 @@
 ﻿@page
 @model ScreenCoreApp.Pages.NoContentModel
 @{
-    ViewData["Title"] = "NoContent";
+    ViewData["Title"] = ViewData["Error"];
 }
 <div class="content_header">
     InfoScreen V6
 </div>
 <div class="department_info">
-    <div class="no_content_set">Dieser Inhalt kann auf diesem Bildschirm leider nicht angezeigt werden</div>
-</div>
+    <div class="no_content_set" style="font-size: 7vh"> Error @ViewData["Error"] <br /></div>
+    <div class="no_content_set" style="font-size: 4vh">
+        Ein Fehler ist bei der Darstellung des Inhalts aufgetreten.
+    </div>
+    </div>

@@ -1,13 +1,13 @@
 ﻿//Add clock to div
 var clockContainer;
 
-window.onload = function () {
+$(document).ready(function () {
     clockContainer = document.getElementById('js_clock');
     if (clockContainer != null) {
-        this.setTimeValue();
-        this.setInterval(setTimeValue, 200);
+        setTimeValue();
+        setInterval(setTimeValue, 200);
     }
-}
+})
 
 function setTimeValue() {
     let now = new Date();

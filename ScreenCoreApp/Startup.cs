@@ -23,11 +23,11 @@ namespace ScreenCoreApp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
+            //if (env.IsDevelopment())
+            //{
+            app.UseDeveloperExceptionPage();
+            //}
+            app.UseStatusCodePagesWithRedirects("/NoContent?error={0}");
             app.UseSession();
             app.UseStaticFiles();
             app.UseMvc();

@@ -18,6 +18,7 @@ namespace ScreenCoreApp.Pages
         {
             Screen.CheckScreenID(Request.Query, HttpContext);
             ViewData["ID"] = "Eingegebene ID per QS:" + Screen.GetSessionScreenID(HttpContext);
+            ViewData["Error"] = Request.Query["error"];
         }
     }
 }

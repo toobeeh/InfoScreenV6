@@ -895,7 +895,7 @@ ORDER BY [Abteilungen].[Abteilungsname]";
         /// <param name="_Klasse">Die Klasse für welche die Tests zurückgegeben werden soll.</param>
         /// <param name="_LehrerNamen">Gibt an, ob die Lehrernamen oder die Lehrerkürzel zurückgegeben werden sollen.</param>
         /// <returns>Alle Tests der Klasse</returns>
-        static public Structuren.Tests[] TestsAbrufen(string _Klasse, bool _LehrerNamen = true)
+        static public Structuren.Tests[] TestsAbrufen(string _Klasse, bool _LehrerNamen = true, bool Fachkuerzel = false)
         {
             string befehl = @"SELECT
 [Tests].[LehrerKürzel] AS LehrerKürzel,
@@ -918,7 +918,7 @@ ORDER BY [Tests].[Datum], [Tests].[Stunde], [Tests].[RaumID]";
             {
                 temp[i].Datum = daten.Rows[i]["Datum"].ToDateTime();
                 temp[i].Dauer = daten.Rows[i]["Dauer"].ToInt32();
-                temp[i].Fach = daten.Rows[i]["Fach"].ToString();
+                temp[i].Fach = Fachkuerzel ?  GetSubjectAbbreviation(daten.Rows[i]["Fach"].ToString()) :  daten.Rows[i]["Fach"].ToString();
                 temp[i].Lehrer = _LehrerNamen ? daten.Rows[i]["LehrerKürzel"].ToLehrer() : daten.Rows[i]["LehrerKürzel"].ToString();
                 temp[i].Stunde = daten.Rows[i]["Stunde"].ToInt32();
                 temp[i].Testart = daten.Rows[i]["Testart"].ToString();

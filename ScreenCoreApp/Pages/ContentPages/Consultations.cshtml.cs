@@ -29,6 +29,8 @@ namespace ScreenCoreApp
 
             item_start = (Pagenum - 1) * 15;
             item_end = (item_start + 15 > Consultations.Length - 1 ? Consultations.Length - 1 : item_start + 15);
+
+            DatenbankAbrufen.DBClose();
         }
     }
 }

@@ -20,7 +20,5 @@ namespace ScreenCoreApp.Pages.ContentPages
             Webpath = Webpath.Replace("-", "\\");
         }
 
-       
-       
     }
 }

@@ -11,6 +11,11 @@ namespace ScreenCoreApp
 {
     public class Screen
     {
+        public static void RedirectAndCloseDB(string target, HttpResponse response)
+        {
+            Infoscreen_Verwaltung.classes.DatenbankAbrufen.DBClose();
+            response.Redirect(target);
+        }
         public static int GetSessionScreenID(HttpContext current)
         {
             return GetIntSessionVal("screen-id", current);

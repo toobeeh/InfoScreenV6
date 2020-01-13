@@ -24,6 +24,8 @@ namespace ScreenCoreApp.Pages
             pptID = 0;
 
             PreloadPowerpoints();
+
+            DatenbankAbrufen.DBClose();
         }
 
 

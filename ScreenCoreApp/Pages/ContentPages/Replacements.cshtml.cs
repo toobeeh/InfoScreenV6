@@ -39,6 +39,8 @@ namespace ScreenCoreApp
             item_end = (item_start + 10 > Replacements.Length -1 ? Replacements.Length - 1 : item_start + 10);
 
             if (Globals.Length > 0 && (NoReplacements || total_rows - item_start <= 10)) DisplayGlobal = true;
+
+            DatenbankAbrufen.DBClose();
         }
 
         public string GenerateReplacementRows()
