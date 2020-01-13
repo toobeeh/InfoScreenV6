@@ -1,12 +1,12 @@
-﻿// Control which widgets of timetable should be shown and adjust size of test container
+﻿// Control which tiles of timetable should be shown and adjust size of test container
 
 $(document).ready(function () {
 
-    // Hide widgets if set so
-    if (!displayClassDetailsWidget) document.getElementById("class_details").style.display = "none";
-    if (!displayUpcomingExamsWidget) document.getElementById("upcoming_exams").style.display = "none";
+    // Hide tiles if set so
+    if (!displayClassDetailsTile) document.getElementById("class_details").style.display = "none";
+    if (!displayUpcomingExamsTile) document.getElementById("upcoming_exams").style.display = "none";
 
-    if (!displayClassDetailsWidget && displayUpcomingExamsWidget) {
+    if (!displayClassDetailsTile && displayUpcomingExamsTile) {
         document.getElementById("upcoming_exams").style.height = "100%";
     }
 

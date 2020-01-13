@@ -1,4 +1,5 @@
-﻿
+﻿// Controls the animation of the exam slide-in and out
+
 var examsDictionary = { }; // Key: Exam span, Value: Normal content div to be hidden
 var hideExamTimeMs;
 var remainingTime;

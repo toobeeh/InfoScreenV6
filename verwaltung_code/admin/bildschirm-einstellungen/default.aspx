@@ -8,7 +8,7 @@
     <asp:Label ID="Menu" runat="server" Text=""></asp:Label>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="Content" runat="server">
-    <h1>Bildschirmanzeige Einstellungen</h1>
+    <h1>Bildschirmodi konfigurieren</h1>
     Abteilung: 
     <div class="selectWrap">
         <asp:DropDownList ID="dropDownAbteilung" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownAbteilung_SelectedIndexChanged"></asp:DropDownList>

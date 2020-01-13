@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" EnableEventValidation="false"  MasterPageFile="~/style/MasterPage.master" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="Infoscreen_Verwaltung.admin.theme.Theme" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="titel" runat="server">Infoscreen - Willkommen</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="titel" runat="server">Infoscreen - Farbschema</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server"></asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="TopBar" runat="server">
     <asp:Label ID="TopMenu" runat="server" Text=""></asp:Label>

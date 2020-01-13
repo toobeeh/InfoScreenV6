@@ -517,6 +517,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="admin\tile-config\" />
     <Folder Include="App_Data\" />
     <Folder Include="Dateien\1\" />
     <Folder Include="Dateien\2\" />

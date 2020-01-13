@@ -142,7 +142,7 @@ body {
 }
 
 
-/*  Styling for timetable sidebar widgets */
+/*  Styling for timetable sidebar tiles */
 
 #timetable_container {
     height: 80vh;
@@ -155,7 +155,7 @@ body {
     margin-bottom: 4vh;
 }
 
-/* DIV which contains widget divs */
+/* DIV which contains tile divs */
 #info_sidebar {
     width: 25%;
     height: 100%;
@@ -165,7 +165,7 @@ body {
     flex-direction: column;
 }
 
-/* Widget div general appearance */
+/* Tile div general appearance */
 #class_details, #upcoming_exams {
     font-family: Arial, Verdana;
     border: #131313 5px solid;
@@ -177,7 +177,7 @@ body {
     margin-right: 0;
 }
 
-    /* Widget div text styling */
+    /* Tile div text styling */
     #class_details > h3, #upcoming_exams > div > h4 {
         font-size: 2.5vh;
         margin-top: 0.2vh;
@@ -209,7 +209,7 @@ body {
         background-color: #131313;
         background-color: var(--timetable_border_col);
         color: #99CC00;
-        color: var(--timetable_widgetHeaderText_col);
+        color: var(--timetable_tileHeaderText_col);
         font-size: 2.3vh;
         text-align: center;
         font-weight: bolder;
@@ -275,7 +275,7 @@ body {
 .timetable_headDay {
     font-size: 2vh;
     color: #99CC00;
-    color: var(--timetable_widgetHeaderText_col);
+    color: var(--timetable_tileHeaderText_col);
     font-weight: bolder;
 }
 
@@ -283,7 +283,7 @@ body {
     font-weight: bolder;
     font-size: 1.5vh;
     color: #99CC00;
-    color: var(--timetable_widgetHeaderText_col);
+    color: var(--timetable_tileHeaderText_col);
 }
 
 .timetable_lessonMovedIn {

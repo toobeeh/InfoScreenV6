@@ -3,7 +3,7 @@ var clockContainer;
 
 $(document).ready(function () {
 
-    if (!displayClockWidget) return;
+    if (!displayClockTile) return;
 
     clockContainer = document.getElementById('js_clock');
     if (clockContainer != null) {

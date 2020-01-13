@@ -41,8 +41,8 @@ namespace Infoscreen_Verwaltung.admin.theme
             Variables.Add("Schriftfarbe", "--font_col");
             Variables.Add("Tabellenkopf-Schriftfarbe", "--th_font_color");
             Variables.Add("Seitennummer-Schriftfarbe", "--pagenum_font_col"); 
-            Variables.Add("Stundenplan-Widget-Rahmenfarbe", "--timetable_border_col");
-            Variables.Add("Stundenplan-Widget Überschriftfarbe", "--timetable_widgetHeaderText_col");
+            Variables.Add("Stundenplan-Kachel-Rahmenfarbe", "--timetable_border_col");
+            Variables.Add("Stundenplan-Kachel Überschriftfarbe", "--timetable_tileHeaderText_col");
             Variables.Add("Stundenentfall Textfarbe", "--timetable_lessonCancelled_textCol");
             Variables.Add("Stunde eingeschoben Textfarbe", "--timetable_lessonMovedIn_textCol");
             Variables.Add("Stunde verschoben Textfarbe", "--timetable_lessonMovedOut_textCol");
