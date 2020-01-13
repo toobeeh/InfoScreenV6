@@ -159,7 +159,7 @@ body {
 #info_sidebar {
     width: 25%;
     height: 100%;
-    overflow:hidden;
+    overflow: visible;
     float: left;
     display: flex;
     flex-direction: column;
@@ -178,7 +178,7 @@ body {
 }
 
     /* Widget div text styling */
-    #class_details > h3, #upcoming_exams > h4 {
+    #class_details > h3, #upcoming_exams > div > h4 {
         font-size: 2.5vh;
         margin-top: 0.2vh;
         margin-bottom: 0.5vh;
@@ -186,8 +186,8 @@ body {
         font-weight: lighter;
     }
 
-    #class_details > h4, #upcoming_exams > h3 {
-        font-size: 2vh;     
+    #class_details > h4, #upcoming_exams > div > h3 {
+        font-size: 2vh;
         margin-top: 0.2vh;
         margin-bottom: 0.2vh;
         background-color: RGB(45,45,48);
@@ -196,16 +196,16 @@ body {
         margin-left: 5%;
     }
 
-    #upcoming_exams > h3, #upcoming_exams > h4 {
+    #upcoming_exams > h3, #upcoming_exams > div > h4 {
         font-size: 2vh;
     }
 
-        #class_details > h4::before, #upcoming_exams > h3::before {
-            content: "⨯ ";
-            margin-left: 10%;
-        }
+    #class_details > h4::before, #upcoming_exams > div > h3::before {
+        content: "⨯ ";
+        margin-left: 10%;
+    }
 
-    #upcoming_exams > .sidebar_header, #class_details > .sidebar_header {
+    #upcoming_exams .sidebar_header, #class_details > .sidebar_header {
         background-color: #131313;
         background-color: var(--timetable_border_col);
         color: #99CC00;

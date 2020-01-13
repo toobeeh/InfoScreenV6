@@ -5,14 +5,8 @@
 }
 
 <script src="~/JS/exam_animation.js"></script>
-<script>
-    $(document).ready(function () {
+<script src="~/JS/widget_control.js"></script>
 
-        if (!displayClassDetailsWidget) document.getElementById("class_details").style.display = "none";
-        if (!displayUpcomingExamsWidget) document.getElementById("upcoming_exams").style.display = "none";
-
-    });
-</script>
 
 <div class="content_header">
     @Model.ClassName
@@ -35,24 +29,29 @@
         </div>
 
         <div id="upcoming_exams">
+            
             <div class="sidebar_header">Tests</div>
-            @if(Model.Exams.Count == 0)
+            @if (Model.Exams.Count == 0)
             {
                 <h3>Keine Tests</h3>
             }
             else
-            {             
-                @foreach(Infoscreen_Verwaltung.classes.Structuren.Tests exam in Model.Exams)
+            {
+                @foreach (Infoscreen_Verwaltung.classes.Structuren.Tests exam in Model.Exams)
                 {
-                    <h3>
-                        @exam.Fach - @exam.Testart
-                    </h3>
+                    <div>
+                        <h3>
+                            @exam.Fach - @exam.Testart
+                        </h3>
 
-                    <h4>
-                        Datum: @exam.Datum.ToString("dd.MM") / @exam.Stunde <br />Lehrer: @exam.Lehrer
-                    </h4>
+                        <h4>
+                            Datum: @exam.Datum.ToString("dd.MM") / @exam.Stunde <br />Lehrer: @exam.Lehrer
+                        </h4>
+                    </div>
+
                 }
             }
+            
         </div>
     </div>
 
