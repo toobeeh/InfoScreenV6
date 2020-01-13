@@ -1,7 +1,5 @@
 ﻿
 var queryString = window.location.search;
-var switchTimeMs = 10000;
-
 
 
 window.onload = function () {

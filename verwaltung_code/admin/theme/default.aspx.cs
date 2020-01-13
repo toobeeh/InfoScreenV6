@@ -46,6 +46,7 @@ namespace Infoscreen_Verwaltung.admin.theme
             Variables.Add("Stundenentfall Textfarbe", "--timetable_lessonCancelled_textCol");
             Variables.Add("Stunde eingeschoben Textfarbe", "--timetable_lessonMovedIn_textCol");
             Variables.Add("Stunde verschoben Textfarbe", "--timetable_lessonMovedOut_textCol");
+            Variables.Add("Stunde Testinfo Textfarbe", "--timetable_examInfoCol");
 
             DrawThemeSelector();
             DrawThemeBuilder();

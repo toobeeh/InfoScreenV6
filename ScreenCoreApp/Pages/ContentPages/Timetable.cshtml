@@ -5,6 +5,14 @@
 }
 
 <script src="~/JS/exam_animation.js"></script>
+<script>
+    $(document).ready(function () {
+
+        if (!displayClassDetailsWidget) document.getElementById("class_details").style.display = "none";
+        if (!displayUpcomingExamsWidget) document.getElementById("upcoming_exams").style.display = "none";
+
+    });
+</script>
 
 <div class="content_header">
     @Model.ClassName

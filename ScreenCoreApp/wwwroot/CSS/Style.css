@@ -305,13 +305,9 @@ body {
     font-size: 1.8vh;
 }
 
-    .timetable_lessonMovedIn > .timetable_subjectInfo, 
-        .timetable_lessonMovedIn > .timetable_teacherInfo, .timetable_lessonCancelled > .timetable_teacherInfo {
-        display: inline;
-    }
-
     .timetable_lessonMovedOut > .timetable_subjectInfo, .timetable_lessonMovedOut > .timetable_teacherInfo,
-        .timetable_lessonCancelled > .timetable_subjectInfo, .timetable_lessonCancelled > .timetable_teacherInfo {
+        .timetable_lessonCancelled > .timetable_subjectInfo, .timetable_lessonCancelled > .timetable_teacherInfo,
+        .timetable_lessonMovedIn > .timetable_subjectInfo, .timetable_lessonMovedIn > .timetable_teacherInfo {
         display: inline;
         /*text-decoration: line-through;*/
     }
@@ -320,7 +316,6 @@ body {
             .timetable_lessonCancelled > .timetable_subjectInfo::after {
             content: " / ";
         }
-
 
     .timetable_lessonCancelled::after {
         content: "Entfällt";
@@ -351,12 +346,12 @@ body {
 
 .timetable_lesson .timetable_teacherInfo{display:none;}
 
-.timetable_exam{
-    display:none;
-    border: 3px  solid red;
+.timetable_exam {
+    display: none;
+    border: 3px solid var(--timetable_examInfoCol);
     border-radius: 3px;
     padding: 3px;
-    color: red;
+    color: var(--timetable_examInfoCol);
 }
 
 /* Styling for class information displayed over the header row */
