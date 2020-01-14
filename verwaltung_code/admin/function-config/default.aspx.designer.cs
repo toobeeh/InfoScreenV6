@@ -33,6 +33,69 @@ namespace Infoscreen_Verwaltung.admin
         protected global::System.Web.UI.WebControls.Label Menu;
 
         /// <summary>
+        /// switchTimeMs-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField switchTimeMs;
+
+        /// <summary>
+        /// animateUpcomingExamLessons-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField animateUpcomingExamLessons;
+
+        /// <summary>
+        /// showExamTimeMs-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField showExamTimeMs;
+
+        /// <summary>
+        /// examTimesShown-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField examTimesShown;
+
+        /// <summary>
+        /// displayClockTile-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField displayClockTile;
+
+        /// <summary>
+        /// displayClassDetailsTile-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField displayClassDetailsTile;
+
+        /// <summary>
+        /// displayUpcomingExamsTile-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField displayUpcomingExamsTile;
+
+        /// <summary>
         /// SettingsTable-Steuerelement
         /// </summary>
         /// <remarks>

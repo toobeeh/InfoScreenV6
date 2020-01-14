@@ -14,15 +14,15 @@
     <script src="../../scripts/jquery-ui-1.11.1/jquery-ui.js"></script>
     <script src="../../scripts/featureInput.js"></script>
 
+    <asp:HiddenField  runat="server" ID="switchTimeMs"/>
+    <asp:HiddenField  runat="server" ID="animateUpcomingExamLessons"/>
+    <asp:HiddenField  runat="server" ID="showExamTimeMs"/>
+    <asp:HiddenField  runat="server" ID="examTimesShown"/>
+    <asp:HiddenField  runat="server" ID="displayClockTile"/>
+    <asp:HiddenField  runat="server" ID="displayClassDetailsTile"/>
+    <asp:HiddenField  runat="server" ID="displayUpcomingExamsTile"/>
+
     <h1>Funktionen anpassen</h1>
-    Die Funktionsweise verschiedener Elemente kann angepasst werden: <br />
-    <ul>
-        <li>Uhrzeitanzeige in der Titelleiste</li>
-        <li>Klasseninformationen beim Stundenplan</li>
-        <li>Testanzeige beim Stundenplan</li>
-        <li>Test-Animation im Stundenplan</li>
-        <li>Übergangsdauer zwischen Anzeigeseiten</li>
-    </ul>
     <h3>Achtung: IE11 unterstützt viele Funktionen nicht. Es wird empfohlen einen aktuellen Browser zu verwenden.</h3>
     <hr />
     <br />
@@ -40,7 +40,7 @@
 
                 <asp:TableCell CssClass="head" Width="45%" HorizontalAlign="Left">    
                    <asp:Button ID="BtSave" OnClick="BtSave_Click" style="float:right; margin-right: 20px" CssClass="SaveButton"  runat="server" AutoPostBack="True" Text="Speichern"/>
-                   <asp:Button ID="BtCancel" style="float:right; margin-right: 20px" Cssclass="DeleteButton" runat="server" AutoPostBack="True" Text="Abbrechen"/>
+                   <asp:Button ID="BtCancel" OnClick="BtCancel_Click" style="float:right; margin-right: 20px" Cssclass="DeleteButton" runat="server" AutoPostBack="True" Text="Abbrechen"/>
                 </asp:TableCell>
                 
             </asp:TableRow>    
