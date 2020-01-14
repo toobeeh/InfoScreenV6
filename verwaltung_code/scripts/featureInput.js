@@ -74,8 +74,8 @@ function initSliders() {
             },
             create: function (event, ui) {
                 // update value on prog. change
-                $("#Content_examTimesShown_container").text(st/ets/1000);
-                $("#Content_examTimesShown").val(Math.round(st/ets/1000));
+                $("#Content_examTimesShown_container").text(((st - (et*ets))/ets + et) / 1000); // Span shows (time show + time hide) aka interval length
+                $("#Content_examTimesShown").val(ets); // Data field stores how many intervals per cycle are made
             }
         }
     );
@@ -168,7 +168,7 @@ function getValues(slidetime, testtime ) {
     var values = new Array();
 
     
-    for (let hidetime = 0; hidetime <= slidetime/2; hidetime ++) {
+    for (let hidetime = 0; hidetime <= slidetime; hidetime ++) {
         if ((slidetime % (testtime + hidetime))  == 0) values.push(hidetime);
     }
 
