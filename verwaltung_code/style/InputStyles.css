@@ -224,3 +224,28 @@ select:hover {
     opacity: 0.8;
 }
 
+.CheckWrapper {
+    width:100%;
+}
+
+    .CheckWrapper div {    
+        margin-left: 5%;
+    }
+    .CheckWrapper input {
+        margin-left: 5%;
+    }
+
+.input_val{
+    display:block;
+    width:100%;
+    text-align:center;
+}   
+
+.feature_checkbox{
+    float:left;
+}
+    
+
+
+
+

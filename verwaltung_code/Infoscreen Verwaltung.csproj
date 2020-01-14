@@ -40,6 +40,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=19.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>packages\AjaxControlToolkit.19.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -87,6 +90,7 @@
     <Content Include="admin\lehrer\default.aspx" />
     <Content Include="admin\raeume\default.aspx" />
     <Content Include="admin\theme\default.aspx" />
+    <Content Include="admin\function-config\default.aspx" />
     <Content Include="config.aspx" />
     <Content Include="conf\abteilungsinfo.aspx" />
     <Content Include="conf\klasseninfo.aspx" />
@@ -117,6 +121,7 @@
     <Content Include="scripts\farbtastic\mask.png" />
     <Content Include="scripts\farbtastic\README.html" />
     <Content Include="scripts\farbtastic\wheel.png" />
+    <Content Include="scripts\featureInput.js" />
     <Content Include="scripts\jquery-1.11.1.js" />
     <Content Include="scripts\jquery-1.11.1.min.js" />
     <Content Include="scripts\jquery-ui-1.11.1\external\jquery\jquery.js" />
@@ -261,6 +266,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\theme\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\function-config\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\function-config\default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="classes\Abteilungen.cs">
@@ -517,7 +529,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="admin\tile-config\" />
     <Folder Include="App_Data\" />
     <Folder Include="Dateien\1\" />
     <Folder Include="Dateien\2\" />
