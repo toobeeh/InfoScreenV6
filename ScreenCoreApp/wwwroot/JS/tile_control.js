@@ -9,6 +9,11 @@ $(document).ready(function () {
     if (!displayClassDetailsTile && displayUpcomingExamsTile) {
         document.getElementById("upcoming_exams").style.height = "100%";
     }
+    else if (!displayClassDetailsTile && !displayUpcomingExamsTile) {
+        document.getElementById("timetable").style.width = "90%";
+        document.getElementById("info_sidebar").style.display = "none";
+    }
+
 
     // if frame ist not visible yet start observing until frame is visible (-> scrollheight can only be checked if frame is visible!)
     if (window.parent.document.getElementById(window.frameElement.id).style.display == "none")
