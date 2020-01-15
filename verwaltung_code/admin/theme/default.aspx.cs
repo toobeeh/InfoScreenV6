@@ -160,9 +160,10 @@ namespace Infoscreen_Verwaltung.admin.theme
                 {
                     DeleteTheme(theme);
                 };
-                if (theme.IndexOf("theme_light.css") > 0 || theme.IndexOf("theme_dark.css") > 0)
+                if (theme.IndexOf("Dark Preset") >= 0 || theme.IndexOf("Light Preset") >= 0)
                 {
                     rem.Enabled = false;
+                    edit.Enabled = false;
                     rem.CssClass = "ActionButton";
                 }
 

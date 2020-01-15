@@ -51,7 +51,8 @@ namespace Infoscreen_Verwaltung.classes
             if (Datatype == typeof(bool))
             {
                 valCont.Attributes["class"] += " checkbox_hit";
-                valCont.Attributes["onclick"] += "checkHit("+ VarKey + ")";
+                valCont.Attributes["onclick"] += "checkHit(event, "+ VarKey + ")";
+                if(defaultValue.ToString() == "false") valCont.Attributes["class"] += " unchecked";
             }
             if (Datatype == typeof(int)) valCont.Style.Add("margin-top", "0.5em");
             valCont.Attributes.Add("data-init", defaultValue.ToString()); // default value for the client script

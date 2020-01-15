@@ -204,6 +204,8 @@ function getValues(slidetime, testtime ) {
     return values;
 }
 
-function checkHit(id) {
+function checkHit(event, id) {
+
+    event.currentTarget.classList.toggle("unchecked");
     id.click();
 }
