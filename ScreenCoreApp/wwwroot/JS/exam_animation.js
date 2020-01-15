@@ -45,16 +45,16 @@ function showAndHide() {
 
 function hideExam() {
     for (let span in examsDictionary) {
-        $(document.getElementById(span)).slideToggle(200, function () {
-            $(document.getElementById(examsDictionary[span])).slideToggle(200);
+        $(document.getElementById(span)).slideToggle(examAnimationDuration, function () {
+            $(document.getElementById(examsDictionary[span])).slideToggle(examAnimationDuration);
         });        
     }
 }
 
 function showExam() {
     for (let span in examsDictionary) {
-        $(document.getElementById(examsDictionary[span])).slideToggle(200, function () {
-            $(document.getElementById(span)).slideToggle(200);
+        $(document.getElementById(examsDictionary[span])).slideToggle(examAnimationDuration, function () {
+            $(document.getElementById(span)).slideToggle(examAnimationDuration);
         });  
     }
 }

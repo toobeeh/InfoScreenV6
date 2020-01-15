@@ -21,6 +21,7 @@ function initSliders() {
     let st = parseInt($("#Content_switchTimeMs_container").attr("data-init"));
     let et = parseInt($("#Content_showExamTimeMs_container").attr("data-init"));
     let ets = parseInt($("#Content_examTimesShown_container").attr("data-init"));
+    let ed = parseInt($("#Content_examAnimationDuration_container").attr("data-init"));
 
     // initialize sliders
 
@@ -80,6 +81,25 @@ function initSliders() {
         }
     );
 
+    $("#examAnimationDuration").slider(
+        {
+            min: 0,
+            max: et/2,
+            value: ed,
+            slide: function (event, ui) {
+                sliderChanged(event, ui)
+            },
+            change: function (event, ui) {
+                sliderChanged(event, ui)
+            },
+            create: function (event, ui) {
+                // update value on prog. change
+                $("#Content_examAnimationDuration_container").text(ed); // Span shows (time show + time hide) aka interval length
+                $("#Content_examTimesShown").val(ed); // Data field stores how many intervals per cycle are made
+            }
+        }
+    );
+
 }
 
 function initCheckBoxes() {
@@ -126,10 +146,11 @@ function sliderChanged(event, ui) {
     let switchTime = $("#switchTimeMs").slider("option", "value");
     let examTime = $("#showExamTimeMs").slider("option", "value");
     let hideTime = $("#examTimesShown").slider("option", "value");
+    let animationDuration = $("#examAnimationDuration").slider("option", "value");
 
     switchTime = Math.round(switchTime / 1000) * 1000;
     examTime = Math.round(examTime / 100) * 100;
-
+    animationDuration = Math.round(animationDuration / 10) * 10;
 
 
     // Set examtime max val
@@ -148,17 +169,25 @@ function sliderChanged(event, ui) {
         hideTime = hideMax;
     }
 
+    // Set animation duration max val
+    $("#examAnimationDuration").slider("option", "max", examTime/2);
+    if (animationDuration > examTime/2) {
+        $("#examTimesShown").slider("option", "value", examTime/2);
+        animationDuration = examTime/2;
+    }
 
 
     //Set span content
     $("#Content_switchTimeMs_container").text(switchTime/1000);
     $("#Content_examTimesShown_container").text((getValues(switchTime,examTime)[hideTime-1] + examTime)/1000);
-    $("#Content_showExamTimeMs_container").text(examTime/1000);
+    $("#Content_showExamTimeMs_container").text(examTime / 1000);
+    $("#Content_examAnimationDuration_container").text(animationDuration / 1000);
 
     // Set data field content
     $("#Content_switchTimeMs").val(switchTime);
     $("#Content_examTimesShown").val(switchTime/(getValues(switchTime, examTime)[hideTime-1] + examTime));
     $("#Content_showExamTimeMs").val(examTime);
+    $("#Content_examAnimationDuration").val(animationDuration);
 
 }
 

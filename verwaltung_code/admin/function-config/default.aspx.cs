@@ -39,7 +39,7 @@ namespace Infoscreen_Verwaltung.admin
             Settings.Add(new FeatureSetting("switchTimeMs", "Seiten-Anzeigedauer", typeof(int), switchTimeMs,
                "Anzeigedauer in Sek. der einzelnen Seiten wie Stundenplan, Powerpoint oder Raumübersicht", null, 10000));
 
-            Settings.Add(new FeatureSetting("animateUpcomingExamLessons", "Tests animieren", typeof(bool), animateUpcomingExamLessons,
+            Settings.Add(new FeatureSetting("animateUpcomingExamLessons", "Tests anzeigen", typeof(bool), animateUpcomingExamLessons,
                 "Animierte Anzeige der kommenden Tests im Stundenplan", null, true));
 
             Settings.Add(new FeatureSetting("showExamTimeMs", "Tests-Anzeigedauer", typeof(int), showExamTimeMs,
@@ -47,6 +47,9 @@ namespace Infoscreen_Verwaltung.admin
 
             Settings.Add(new FeatureSetting("examTimesShown", "Test-Anzeigeintervall", typeof(int), examTimesShown,
                "Das Intervall in Sek., nach dem Tests für die definierte Zeit eingeblendet werden", null, 2));
+
+            Settings.Add(new FeatureSetting("examAnimationDuration", "Test-Animationsdauer", typeof(int), examAnimationDuration,
+               "Die Dauer in Sek. der Ein/Ausblendeaniation der Tests (0 = Nicht animiert", null, 500));
 
             Settings.Add(new FeatureSetting("displayClockTile", "Uhr", typeof(bool), displayClockTile,
                 "Anzeige einer digitalen Uhr in der Titelleiste", null, true));

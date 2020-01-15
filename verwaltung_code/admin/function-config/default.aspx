@@ -18,6 +18,7 @@
     <asp:HiddenField  runat="server" ID="animateUpcomingExamLessons"/>
     <asp:HiddenField  runat="server" ID="showExamTimeMs"/>
     <asp:HiddenField  runat="server" ID="examTimesShown"/>
+    <asp:HiddenField  runat="server" ID="examAnimationDuration"/>
     <asp:HiddenField  runat="server" ID="displayClockTile"/>
     <asp:HiddenField  runat="server" ID="displayClassDetailsTile"/>
     <asp:HiddenField  runat="server" ID="displayUpcomingExamsTile"/>
