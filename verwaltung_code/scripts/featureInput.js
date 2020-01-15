@@ -207,5 +207,5 @@ function getValues(slidetime, testtime ) {
 function checkHit(event, id) {
 
     event.currentTarget.classList.toggle("unchecked");
-    id.click();
+    document.getElementById(id).click();
 }

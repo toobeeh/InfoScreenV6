@@ -247,24 +247,32 @@ select:hover {
 
 .checkbox_hit {
     cursor: pointer;
-    background: none;
+    background: #86b300;
+    color: #86b300;
     user-select: none;
     border: 3px #86b300 solid;
     border-radius: 1em;
     margin-left: 30%;
     margin-right: 30%;
     width: 40%;
+    transition: background 0.2s, color 0.2s, border 0.2s;
 }
     .checkbox_hit:hover {
         border-color: #99CC00;
+        background: #99CC00;
+        color: #99CC00;
     }
 
 
     .checkbox_hit.unchecked:hover {
         border-color: red;
+        background: red;
+        color: red;
     }
     .checkbox_hit.unchecked {
         border-color: #cc0c00;
+        background: #cc0c00;
+        color: #cc0c00;
     }
     
     

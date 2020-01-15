@@ -268,7 +268,7 @@ namespace Infoscreen_Verwaltung.admin.theme
         private bool SaveTheme(string name)
         {
             if (!Regex.IsMatch(name, @"^[a-zA-Z0-9_ ]+$")) return false;
-            if (DatenbankAbrufen.ColumnLike("Settings", "Theme", name).Count > 0) return false;
+            if (DropdownPreset.Enabled &&  DatenbankAbrufen.ColumnLike("Settings", "Theme", name).Count > 0) return false;
 
             foreach(KeyValuePair<string, string> variable in Variables)
             {
