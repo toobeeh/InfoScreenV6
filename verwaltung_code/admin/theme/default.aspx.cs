@@ -80,17 +80,11 @@ namespace Infoscreen_Verwaltung.admin.theme
             LoadPreset(li.Value);
         }
 
-        private void LoadPreset(string path)
+        private void LoadPreset(string theme)
         {
-            string css = File.ReadAllText(path);
-
             foreach (KeyValuePair<string, string> variable in Variables)
             {
-                int startpos = css.IndexOf(variable.Value) + variable.Value.Length + 1;
-                int endpos = startpos;
-                while (css[endpos] != ';') endpos++;
-
-                string val = css.Substring(startpos, endpos - startpos);
+                string val = DatenbankAbrufen.GetSettingValue(variable.Value, theme);
 
                 BuilderButtons[variable.Key].Style.Value = "width: 100%; background: " + val;
             }
@@ -112,12 +106,14 @@ namespace Infoscreen_Verwaltung.admin.theme
             name.Text = "";
             DropdownPreset.Enabled = false;
 
-            LoadPreset(@"D:\infoscreen_publish\ScreenCore\wwwroot\CSS\theme_" + editTheme + ".css");
+            LoadPreset(editTheme);
         }
 
-        private void DeleteTheme(string location)
+        private void DeleteTheme(string theme)
         {
-            if (location == DatenbankAbrufen.GetSettingValue("activeTheme"))
+            DatenbankSchreiben.DeleteThemeSettings(theme);
+
+            if (theme == DatenbankAbrufen.GetSettingValue("activeTheme"))
             {
                 SetTheme(true);
             }

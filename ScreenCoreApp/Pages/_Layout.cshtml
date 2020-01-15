@@ -53,6 +53,9 @@
         var displayUpcomingExamsTile =  @DatenbankAbrufen.GetSettingValue("displayUpcomingExamsTile");
         var animateUpcomingExamLessons = @DatenbankAbrufen.GetSettingValue("animateUpcomingExamLessons");
 
+        // Check if recent changes affected switchtime, if so, relaod parent of iframe so changes are applied.
+        if (window.parent.switchTimeMs != switchTimeMs) window.parent.location.reload();
+
     </script>
     <script src="~/JS/jquery.js"></script>
     <script src="~/JS/clock.js"></script>

@@ -749,6 +749,14 @@ WHERE [Dateien].[DateiID]='" + _DateiID + "'";
             catch { return false; }
         }
 
+        public static bool DeleteThemeSettings(string theme)
+        {
+            string sql = "DELETE FROM Settings WHERE Theme = '" + theme + "'";
+
+            try { DatenbankAbrufen.DatenbankAbfrage(sql); return true; }
+            catch { return false; }
+        }
+
 
         #endregion
     }
