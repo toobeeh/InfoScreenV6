@@ -49,7 +49,7 @@ namespace Infoscreen_Verwaltung.admin
                "Das Intervall in Sek., nach dem Tests für die definierte Zeit eingeblendet werden", null, 2));
 
             Settings.Add(new FeatureSetting("examAnimationDuration", "Test-Animationsdauer", typeof(int), examAnimationDuration,
-               "Die Dauer in Sek. der Ein/Ausblendeaniation der Tests (0 = Nicht animiert", null, 500));
+               "Die Dauer in Sek. der Ein/Ausblendeanimation der Tests (0 = Nicht animiert)", null, 500));
 
             Settings.Add(new FeatureSetting("displayClockTile", "Uhr", typeof(bool), displayClockTile,
                 "Anzeige einer digitalen Uhr in der Titelleiste", null, true));
@@ -63,18 +63,9 @@ namespace Infoscreen_Verwaltung.admin
 
         private void GetValues()
         {
-            string values = File.ReadAllText(@"D:\infoscreen_publish\ScreenCore\wwwroot\JS\constants.js");
-
             foreach (FeatureSetting setting in Settings)
             {
-                int startindex = values.IndexOf(setting.VarKey);
-                string cut = values.Substring(startindex);
-                startindex = cut.IndexOf("=") + 1;
-                cut = cut.Substring(startindex);
-                cut = cut.Substring(0, cut.IndexOf(";"));
-
-                if (setting.Datatype == typeof(bool)) setting.DefaultValue = cut.Contains("true");
-                else if (setting.Datatype == typeof(int)) setting.DefaultValue = Convert.ToInt32(cut);
+                setting.DefaultValue = DatenbankAbrufen.GetSettingValue(setting.VarKey);
             }
         }
 
@@ -95,6 +86,9 @@ namespace Infoscreen_Verwaltung.admin
 
             foreach(FeatureSetting setting in Settings)
             {
+                if (setting.ValidateSettingValue()) DatenbankSchreiben.SetSettingValue(setting.VarKey, setting.GetSettingValue().ToString().ToLower(), "");
+                else DatenbankSchreiben.SetSettingValue(setting.VarKey, setting.DefaultValue.ToString().ToLower(), "");
+
                 values += setting.VarKey + "=" + (setting.ValidateSettingValue() ? setting.GetSettingValue().ToString().ToLower() : setting.DefaultValue.ToString().ToLower() ) + ";\n";
             }
 

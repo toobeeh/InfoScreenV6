@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 
-namespace Infoscreen_Verwaltung.admin
+namespace Infoscreen_Verwaltung.classes
 {
     public class FeatureSetting
     {

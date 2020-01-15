@@ -55,9 +55,9 @@ namespace Infoscreen_Verwaltung.admin.theme
             if (!IsPostBack)
             {      
                 DropdownPreset.Items.Add(new ListItem { Text = " - ", Value = "" });
-                LoadThemeFiles().ForEach((name) =>
+                DatenbankAbrufen.GetSettingThemes().ForEach((name) =>
                 {
-                    ListItem li = new ListItem { Text = Path.GetFileNameWithoutExtension(name).Substring(6), Value = name };
+                    ListItem li = new ListItem { Text = name, Value = name };
                     DropdownPreset.Items.Add(li);
                     
                 });
@@ -95,10 +95,6 @@ namespace Infoscreen_Verwaltung.admin.theme
                 BuilderButtons[variable.Key].Style.Value = "width: 100%; background: " + val;
             }
         }
-        private List<string> LoadThemeFiles()
-        {
-            return Directory.GetFiles(@"D:\infoscreen_publish\ScreenCore\wwwroot\CSS\", "theme_*.css").ToList();
-        }
 
         private void InitEditTheme(string editTheme)
         {
@@ -121,12 +117,10 @@ namespace Infoscreen_Verwaltung.admin.theme
 
         private void DeleteTheme(string location)
         {
-            if (location.IndexOf(GetActiveTheme() + ".css") >= 0)
+            if (location == DatenbankAbrufen.GetSettingValue("activeTheme"))
             {
-                File.Delete(location);
                 SetTheme(true);
             }
-            File.Delete(location);
             Response.Redirect("./");
         }
 
@@ -144,14 +138,16 @@ namespace Infoscreen_Verwaltung.admin.theme
 
             Themes.Rows.Add(th);
 
-            LoadThemeFiles().ForEach((loc) =>
+            string activeTheme = DatenbankAbrufen.GetSettingValue("activeTheme");
+
+            DatenbankAbrufen.GetSettingThemes().ForEach((theme) =>
             {
                 TableRow tr = new TableRow();
                 TableCell tc = new TableCell();
-                RadioButton rb = new RadioButton { Text = Path.GetFileNameWithoutExtension(loc).Substring(6) };
-                if (Path.GetFileNameWithoutExtension(loc) == GetActiveTheme()) rb.Checked = true;
+                RadioButton rb = new RadioButton { Text = theme};
+                if (theme == activeTheme) rb.Checked = true;
                 rb.GroupName = "themes";
-                rb.ID = loc;
+                rb.ID = theme;
 
                 Button edit = new Button { CssClass = "ActionButton" };
                 edit.Text = "✎";
@@ -166,9 +162,9 @@ namespace Infoscreen_Verwaltung.admin.theme
                 rem.Style.Value = "float:right";
                 rem.Click += (object o, EventArgs e) =>
                 {
-                    DeleteTheme(loc);
+                    DeleteTheme(theme);
                 };
-                if (loc.IndexOf("theme_light.css") > 0 || loc.IndexOf("theme_dark.css") > 0)
+                if (theme.IndexOf("theme_light.css") > 0 || theme.IndexOf("theme_dark.css") > 0)
                 {
                     rem.Enabled = false;
                     rem.CssClass = "ActionButton";
@@ -200,34 +196,13 @@ namespace Infoscreen_Verwaltung.admin.theme
 
         private void SetTheme(bool setStandardTheme = false)
         {
-            string selected_theme = Path.GetFileNameWithoutExtension(Context.Request["ctl00$Content$themes"]);
+            string selected_theme = Context.Request["ctl00$Content$themes"];
 
             if (selected_theme == "" && !setStandardTheme) return;
+            if (setStandardTheme) selected_theme = "Theme Dark";
 
-            string stylesheet = File.ReadAllText(@"D:\infoscreen_publish\ScreenCore\wwwroot\CSS\style.css");
-
-            Match match = Regex.Match(stylesheet, @"@import url\(.*\);");
-            if (!match.Success) return;
-
-            if(setStandardTheme) stylesheet = stylesheet.Replace(match.Captures[0].Value, @"@import url(/CSS/theme_dark.css);");
-            else stylesheet = stylesheet.Replace(match.Captures[0].Value, @"@import url(/CSS/" + selected_theme + ".css);");
-
-            File.WriteAllText(@"D:\infoscreen_publish\ScreenCore\wwwroot\CSS\style.css", stylesheet);
-
+            DatenbankSchreiben.SetSettingValue("activeTheme", selected_theme);
             Response.Redirect("./");
-        }
-
-        private string GetActiveTheme()
-        {
-            string stylesheet = File.ReadAllText(@"D:\infoscreen_publish\ScreenCore\wwwroot\CSS\style.css");
-
-            Match match = Regex.Match(stylesheet, @"@import url\(.*\);");
-            if (!match.Success) return "";
-
-            string import_line = match.Captures[0].Value;
-            string themename = import_line.Substring(import_line.LastIndexOf("/CSS/") + 5, import_line.IndexOf(".css") - (import_line.LastIndexOf("/CSS/") + 5));
-
-            return themename;
         }
 
         private void DrawThemeBuilder()
@@ -295,20 +270,14 @@ namespace Infoscreen_Verwaltung.admin.theme
 
         private bool SaveTheme(string name)
         {
-            if (!Regex.IsMatch(name, @"^[a-zA-Z0-9_]+$") || 
-                File.Exists(@"D:\infoscreen_publish\ScreenCore\wwwroot\CSS\theme_" + name + ".css") && tbName.Style["display"]!="none")
-                return false;
+            if (!Regex.IsMatch(name, @"^[a-zA-Z0-9_ ]+$")) return false;
+            if (DatenbankAbrufen.ColumnLike("Settings", "Theme", name).Count > 0) return false;
 
-            string css = ":root{\n";
-            foreach (KeyValuePair<string, string> variable in Variables)
+            foreach(KeyValuePair<string, string> variable in Variables)
             {
-                css += variable.Value + ":";
-                css += BuilderButtons[variable.Key].Style["background"];
-                css += ";\n";
+                string color = BuilderButtons[variable.Key].Style["Background"];
+                DatenbankSchreiben.SetSettingValue(variable.Value, color == "" ? "none" : color, name);
             }
-            css += "}";
-
-            File.WriteAllText(@"D:\infoscreen_publish\ScreenCore\wwwroot\CSS\theme_" + name + ".css", css);
             
             return true;
         }

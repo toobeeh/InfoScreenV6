@@ -731,6 +731,24 @@ WHERE [Dateien].[DateiID]='" + _DateiID + "'";
         }
 
 
+        public static bool SetSettingValue(string key, string value, string theme = "")
+        {
+
+            bool newThemeKey = DatenbankAbrufen.DatenbankAbfrage(
+                "SELECT * FROM Settings WHERE Theme='" + theme + "' AND VarKey='" + key + "'").Rows.Count < 1;
+           
+            string sql;
+            
+            if (newThemeKey) // If Key-Theme pair value is not yet present
+                sql = "INSERT INTO Settings (VarKey, Value, Theme) VALUES ('" + key + "','" + value + "','" + theme + "')";           
+
+            else  // If there is already a key and value defined for the theme, value will be updated
+                sql = "UPDATE Settings SET Value = '" + value + "' WHERE VarKey ='" + key + "' AND Theme ='" + theme + "'" ;
+
+            try { DatenbankAbrufen.DatenbankAbfrage(sql); return true; }
+            catch { return false; }
+        }
+
 
         #endregion
     }

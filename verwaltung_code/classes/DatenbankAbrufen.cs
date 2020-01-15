@@ -2366,6 +2366,28 @@ ORDER BY [Stundenplan].[Klasse]";
             return properties;
         }
 
+        public static string GetSettingValue(string key, string theme = "")
+        {
+            string sql = "SELECT Value FROM Settings WHERE VarKey = '" + key + "'" + (theme == "" ? "" : "AND Theme = '" + theme + "'");
+
+            DataTable result = DatenbankAbfrage(sql);
+            return result.Rows.Count > 0 ?  result.Rows[0].ItemArray[0].ToString() : "";
+        }
+
+        public static List<string> GetSettingThemes()
+        {
+            List<string> themes = new List<string>();
+            string sql = "SELECT DISTINCT Theme FROM Settings WHERE Theme != ''";
+            DataTable result = DatenbankAbfrage(sql);
+
+            foreach(DataRow dr in result.Rows)
+            {
+                themes.Add(dr.ItemArray[0].ToString());
+            }
+            return themes;
+        }
+
+
         #endregion
 
     }

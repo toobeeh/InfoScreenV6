@@ -3,11 +3,57 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="~/CSS/Style.css">
-
     <title>@ViewData["Title"]</title>
 
-    <script src="~/JS/constants.js"></script>
+    @* 
+        Layout page for all Contentpages
+        -> Gets CSS theme values and stores them in variables for dynamic CSS
+        -> Gets JS feature setting values and stores them in global variables 
+
+        Advantage to storing in files: No caching, immediately updated after the page reloads!
+    *@
+
+    @using Infoscreen_Verwaltung.classes
+
+    @* Get theme values for CSS variables *@
+    <style>
+
+        @{ string activeTheme = DatenbankAbrufen.GetSettingValue("activeTheme");}
+
+        :root {
+            --background_col: @DatenbankAbrufen.GetSettingValue("--background_col", activeTheme);
+            --tr_background_col_nth: @DatenbankAbrufen.GetSettingValue("--tr_background_col_nth", activeTheme);
+            --header_back_col: @DatenbankAbrufen.GetSettingValue("--header_back_col", activeTheme);
+            --header_shadow_col: @DatenbankAbrufen.GetSettingValue("--header_shadow_col", activeTheme);
+            --header_font_col: @DatenbankAbrufen.GetSettingValue("--header_font_col", activeTheme);
+            --font_col: @DatenbankAbrufen.GetSettingValue("--font_col", activeTheme);
+            --th_font_color: @DatenbankAbrufen.GetSettingValue("--th_font_color", activeTheme);
+            --pagenum_font_col: @DatenbankAbrufen.GetSettingValue("--pagenum_font_col", activeTheme);
+            --timetable_border_col: @DatenbankAbrufen.GetSettingValue("--timetable_border_col", activeTheme);
+            --timetable_tileHeaderText_col: @DatenbankAbrufen.GetSettingValue("--timetable_tileHeaderText_col", activeTheme);
+            --timetable_lessonCancelled_textCol: @DatenbankAbrufen.GetSettingValue("--timetable_lessonCancelled_textCol", activeTheme);
+            --timetable_lessonMovedIn_textCol: @DatenbankAbrufen.GetSettingValue("--timetable_lessonMovedIn_textCol", activeTheme);
+            --timetable_lessonMovedOut_textCol: @DatenbankAbrufen.GetSettingValue("--timetable_lessonMovedOut_textCol", activeTheme);
+            --timetable_examInfoCol: @DatenbankAbrufen.GetSettingValue("--timetable_examInfoCol", activeTheme);
+        }
+
+    </style>
+    <link rel="stylesheet" href="~/CSS/Style.css">
+
+
+    @*Get  JS variable setting values*@
+    <script>
+
+        var switchTimeMs = @DatenbankAbrufen.GetSettingValue("switchTimeMs");
+        var showExamTimeMs =  @DatenbankAbrufen.GetSettingValue("showExamTimeMs");
+        var examAnimationDuration =  @DatenbankAbrufen.GetSettingValue("examAnimationDuration");
+        var examTimesShown =  @DatenbankAbrufen.GetSettingValue("examTimesShown");
+        var displayClockTile =  @DatenbankAbrufen.GetSettingValue("displayClockTile");
+        var displayClassDetailsTile =  @DatenbankAbrufen.GetSettingValue("displayClassDetailsTile");
+        var displayUpcomingExamsTile =  @DatenbankAbrufen.GetSettingValue("displayUpcomingExamsTile");
+        var animateUpcomingExamLessons = @DatenbankAbrufen.GetSettingValue("animateUpcomingExamLessons");
+
+    </script>
     <script src="~/JS/jquery.js"></script>
     <script src="~/JS/clock.js"></script>
 

@@ -1,6 +1,4 @@
 ﻿
-@import url(/CSS/theme_dark.css);
-
 body {
     background-color: RGB(37,37,38);
     background-color: var(--background_col);

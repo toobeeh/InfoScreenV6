@@ -95,7 +95,7 @@ function initSliders() {
             create: function (event, ui) {
                 // update value on prog. change
                 $("#Content_examAnimationDuration_container").text(ed); // Span shows (time show + time hide) aka interval length
-                $("#Content_examTimesShown").val(ed); // Data field stores how many intervals per cycle are made
+                $("#Content_examAnimationDuration").val(ed); // Data field stores how many intervals per cycle are made
             }
         }
     );
@@ -128,16 +128,16 @@ function initCheckBoxes() {
     // Get and set initial values
 
     $("#animateUpcomingExamLessons").prop('checked',
-        $("#Content_animateUpcomingExamLessons_container").attr("data-init").includes("True") ? true : false);
+        $("#Content_animateUpcomingExamLessons_container").attr("data-init").includes("true"));
 
     $("#displayClockTile").prop('checked',
-        $("#Content_displayClockTile_container").attr("data-init").includes("True") ? true : false);
+        $("#Content_displayClockTile_container").attr("data-init").includes("true"));
 
     $("#displayClassDetailsTile").prop('checked',
-        $("#Content_displayClassDetailsTile_container").attr("data-init").includes("True") ? true : false);
+        $("#Content_displayClassDetailsTile_container").attr("data-init").includes("true"));
 
     $("#displayUpcomingExamsTile").prop('checked',
-        $("#Content_displayUpcomingExamsTile_container").attr("data-init").includes("True") ? true : false);
+        $("#Content_displayUpcomingExamsTile_container").attr("data-init").includes("true"));
 }
 
 

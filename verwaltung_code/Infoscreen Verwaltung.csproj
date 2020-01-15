@@ -233,7 +233,7 @@
     <Compile Include="admin\converter\default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\function-config\FeatureSetting.cs" />
+    <Compile Include="classes\FeatureSetting.cs" />
     <Compile Include="admin\klassen\add.aspx.cs">
       <DependentUpon>add.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
