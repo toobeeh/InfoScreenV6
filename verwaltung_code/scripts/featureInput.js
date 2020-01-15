@@ -27,7 +27,7 @@ function initSliders() {
 
     $("#switchTimeMs").slider( // Slider for content view duration
         {
-            min: 5000,
+            min: 2000,
             max: 60000,
             value: st,
             slide: function (event, ui) {
@@ -202,4 +202,8 @@ function getValues(slidetime, testtime ) {
     }
 
     return values;
+}
+
+function checkHit(id) {
+    id.click();
 }

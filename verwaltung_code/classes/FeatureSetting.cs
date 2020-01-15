@@ -47,8 +47,13 @@ namespace Infoscreen_Verwaltung.classes
 
             // Label where the client script displays the value
             Label valCont = new Label { ID = VarKey + "_container" };
-            valCont.Attributes["class"] = "input_val";
-            if(Datatype == typeof(int)) valCont.Style.Add("margin-top", "0.5em");
+            valCont.Attributes["class"] = "input_val ";
+            if (Datatype == typeof(bool))
+            {
+                valCont.Attributes["class"] += " checkbox_hit";
+                valCont.Attributes["onclick"] += "checkHit("+ VarKey + ")";
+            }
+            if (Datatype == typeof(int)) valCont.Style.Add("margin-top", "0.5em");
             valCont.Attributes.Add("data-init", defaultValue.ToString()); // default value for the client script
 
             // Generate input element HTML code

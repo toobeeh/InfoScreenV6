@@ -1,4 +1,4 @@
-﻿
+﻿@import "sliderStyle.css";
 
 table[title="Calendar"] {
     border: 2px solid #86b300 !important;
@@ -242,8 +242,22 @@ select:hover {
 }   
 
 .feature_checkbox{
-    float:left;
+    display:none;
 }
+
+.checkbox_hit {
+    cursor: pointer;
+    background: #99CC00;
+    user-select: none;
+    border: 3px #86b300 solid;
+    border-radius: 1em;
+    margin-left: 30%;
+    margin-right: 30%;
+    width: 40%;
+}
+    .checkbox_hit:hover {
+        border-color: #99CC00;
+    }
     
 
 

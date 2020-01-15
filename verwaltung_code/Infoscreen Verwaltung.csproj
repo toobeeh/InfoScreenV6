@@ -192,6 +192,7 @@
     <Content Include="Global.asax" />
     <Content Include="style\MasterPage.css" />
     <Content Include="scripts\MasterScript.js" />
+    <Content Include="style\sliderStyle.css" />
     <Content Include="test.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
