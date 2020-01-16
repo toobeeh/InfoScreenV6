@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿// Javascript / jQuery to initialise controls of advanced features like sliders and checkboxes
+
+$(document).ready(function () {
 
     initSliders();
     
