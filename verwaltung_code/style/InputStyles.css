@@ -247,6 +247,7 @@ select:hover {
 
 .checkbox_hit {
     cursor: pointer;
+    display:block;
     background: #86b300;
     color: #86b300;
     user-select: none;

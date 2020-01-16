@@ -14,7 +14,7 @@ namespace Infoscreen_Verwaltung.conf.supplierungen
     {
         static bool tabellezeichnen = false;
         static List<TextBox> supplehrer = new List<TextBox>();
-        static List<CheckBox> entfall = new List<CheckBox>();
+        static List<ToggleButton> entfall = new List<ToggleButton>();
 
         string ebene = "../../";
 
@@ -225,12 +225,12 @@ namespace Infoscreen_Verwaltung.conf.supplierungen
             lbHinweis.Visible = false;
 
             supplehrer = new List<TextBox>();
-            entfall = new List<CheckBox>();
+            entfall = new List<ToggleButton>();
 
             TableRow tr;
             TableCell tc;
             TextBox tb;
-            CheckBox cb;
+            ToggleButton cb;
             Label lb;
 
             classes.Structuren.StundenplanTagLehrer[] stundenplan = classes.DatenbankAbrufen.GetLehrerStundenplanfürDatum(Session["25_Lehrer"].ToString(), Session["25_Datum"].ToDateTime());
@@ -319,12 +319,13 @@ namespace Infoscreen_Verwaltung.conf.supplierungen
                             tr.Cells.Add(tc);
                         }
                         tc = new TableCell(); //Entfall
-                        cb = new CheckBox();
+                        cb = new ToggleButton();
                         cb.Checked = false;
-                        cb.AutoPostBack = true;
-                        cb.CheckedChanged += new EventHandler(cb_click);
+                        cb.CheckElement.AutoPostBack = true;
+                        cb.CheckElement.CheckedChanged += new EventHandler(cb_click);
                         cb.Text = i2.ToString();
                         cb.ForeColor = System.Drawing.Color.White;
+                        cb.ID = i2.ToString();
                         entfall.Add(cb);
                         tc.Controls.Add(cb);
                         tr.Cells.Add(tc);
@@ -336,6 +337,7 @@ namespace Infoscreen_Verwaltung.conf.supplierungen
         private void cb_click(object sender, EventArgs e)
         {
             CheckBox cb = (CheckBox)sender;
+            entfall[cb.Text.ToInt32()].Checked = cb.Checked;
             
             if(cb.Checked == true)
             {

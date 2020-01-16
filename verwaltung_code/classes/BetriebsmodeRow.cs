@@ -13,7 +13,7 @@ namespace Infoscreen_Verwaltung.classes
     public class BetriebsmodeRow : TableRow
     {
         private Label bildschirmID, standardKlasse, abteilung, gebäude, raum, anzeigeArt;
-        private CheckBox stundenplan, abteilungsinfo, sprechstunden, raumaufteilung, supplierplan, aktuelleSupplierungen;
+        private ToggleButton stundenplan, abteilungsinfo, sprechstunden, raumaufteilung, supplierplan, aktuelleSupplierungen;
         DropDownList powerPoints;
 
         /// <summary>
@@ -67,12 +67,21 @@ namespace Infoscreen_Verwaltung.classes
             raum = new Label();
             standardKlasse = new Label();
             anzeigeArt = new Label();
-            stundenplan = new CheckBox();
-            abteilungsinfo = new CheckBox();
-            sprechstunden = new CheckBox();
-            raumaufteilung = new CheckBox();
-            supplierplan = new CheckBox();
-            aktuelleSupplierungen = new CheckBox();
+
+            //stundenplan = new CheckBox();
+            //abteilungsinfo = new CheckBox();
+            //sprechstunden = new CheckBox();
+            //raumaufteilung = new CheckBox();
+            //supplierplan = new CheckBox();
+            //aktuelleSupplierungen = new CheckBox();
+
+            stundenplan = new ToggleButton();
+            abteilungsinfo = new ToggleButton();
+            sprechstunden = new ToggleButton();
+            raumaufteilung = new ToggleButton();
+            supplierplan = new ToggleButton();
+            aktuelleSupplierungen = new ToggleButton();
+
             powerPoints = new DropDownList();
 
 
@@ -121,10 +130,6 @@ namespace Infoscreen_Verwaltung.classes
 
             cell = new TableCell();
             cell.Controls.Add(supplierplan);
-            this.Cells.Add(cell);
-
-            cell = new TableCell();
-            cell.Controls.Add(aktuelleSupplierungen);
             this.Cells.Add(cell);
 
             cell = new TableCell();

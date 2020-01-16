@@ -346,6 +346,7 @@
     <Compile Include="classes\Tests.cs">
       <DependentUpon>Datenbankverbindung.tt</DependentUpon>
     </Compile>
+    <Compile Include="classes\ToggleButton.cs" />
     <Compile Include="classes\Wochentage.cs">
       <DependentUpon>Datenbankverbindung.tt</DependentUpon>
     </Compile>
