@@ -2387,6 +2387,32 @@ ORDER BY [Stundenplan].[Klasse]";
             return themes;
         }
 
+        public static Structuren.Tests ExamInRoom(string building_room_Number)
+        {
+            building_room_Number = StringHelper.ToValidRoomBuilding(building_room_Number, 4,2);
+            string date = DateTime.Now.ToString("yyyy-MM-dd");
+            string lesson = AktuelleStunde().ToString();
+            Structuren.Tests exam = new Structuren.Tests();
+
+            string sql = "SELECT Klasse, FachKürzel, Datum, Stunde, Dauer, LehrerKürzel, TestartID, RaumID FROM Tests WHERE Datum = '"
+                + date + "' AND RaumID LIKE '%" + building_room_Number + "%' AND " + lesson + " >= Stunde AND " + lesson + " < Stunde + Dauer";
+
+            DataTable result = DatenbankAbfrage(sql);
+
+            if (result.Rows.Count < 1) return exam;
+
+            exam.Klasse = result.Rows[0]["Klasse"].ToString();
+            exam.Fach = result.Rows[0]["FachKürzel"].ToString();
+            exam.Datum = result.Rows[0]["Datum"].ToDateTime();
+            exam.Stunde = result.Rows[0]["Stunde"].ToInt32();
+            exam.Dauer = result.Rows[0]["Dauer"].ToInt32();
+            exam.Lehrer = result.Rows[0]["LehrerKürzel"].ToString();
+            exam.Testart = result.Rows[0]["TestartID"].ToString();
+            exam.Raum = result.Rows[0]["RaumID"].ToString();
+
+            return exam;
+        }
+
 
         #endregion
 

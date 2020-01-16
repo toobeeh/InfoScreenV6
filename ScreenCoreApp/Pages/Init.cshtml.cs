@@ -28,6 +28,16 @@ namespace ScreenCoreApp.Pages
                 return;
             }
 
+            // Check if exam in room is active (highest priority)
+            Structuren.Rauminfo room = DatenbankAbrufen.RauminfoAbrufen(screenID.ToString());
+            Structuren.Tests exam = DatenbankAbrufen.ExamInRoom(room.Gebäude + "-" + room.Raumnummer);
+
+            // If subject isnt empt, redirect to exam screen
+            if (!String.IsNullOrEmpty(exam.Fach) )
+            {
+                Response.Redirect("/ContentPages/ExamWarning");
+                return;
+            }
 
             // Refresh mode depending on ZGA (if active)
             TimeSensitiveMode.ZGAAbfragen(screenID);

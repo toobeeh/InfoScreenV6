@@ -382,3 +382,14 @@ body {
     font-size: 40px;
 }
 
+/*Exam warning screen*/
+
+.exam_warning_sign {
+    font-size: 85vh;
+    color: red;
+    font-family: Arial, Verdana;
+    line-height:1em;
+    text-align:center;
+}
+
+
