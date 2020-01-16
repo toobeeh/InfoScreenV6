@@ -14,10 +14,4 @@
     <ProjectReference Include="..\verwaltung_code\Infoscreen Verwaltung.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Infoscreen Verwaltung">
-      <HintPath>..\..\InfoScreenV6\verwaltung_code\bin\Infoscreen Verwaltung.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
