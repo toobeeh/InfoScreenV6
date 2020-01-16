@@ -26,16 +26,14 @@ namespace Infoscreen_Verwaltung.admin
             Menu.Text = classes.Anzeige.Menue(ebene, "admin");
 
             AddFeatureSettings();
-
             GetValues();
-
             DrawFeatureList();
-             
-          
         }
 
         private void AddFeatureSettings()
         {
+            // Create setting objects for each setting
+
             Settings.Add(new FeatureSetting("switchTimeMs", "Seiten-Anzeigedauer", typeof(int), switchTimeMs,
                "Anzeigedauer in Sek. der einzelnen Seiten wie Stundenplan, Powerpoint oder Raumübersicht", null, 10000));
 
@@ -63,16 +61,18 @@ namespace Infoscreen_Verwaltung.admin
 
         private void GetValues()
         {
+            // get the values of each setting object and write it to the database
+
             foreach (FeatureSetting setting in Settings)
             {
                 setting.DefaultValue = DatenbankAbrufen.GetSettingValue(setting.VarKey);
             }
         }
 
-
-
         private void DrawFeatureList()
-        {       
+        {      
+           // create table row of each setting object and add it to the table
+
            foreach(FeatureSetting feature in Settings)
             {
                 SettingsTable.Rows.Add(feature.GenerateSettingRow());
@@ -82,17 +82,13 @@ namespace Infoscreen_Verwaltung.admin
 
         protected void BtSave_Click(object sender, EventArgs e)
         {
-            string values = "";
+            // Try to validate values (if failed, default value is set) and write them to the database
 
             foreach(FeatureSetting setting in Settings)
             {
                 if (setting.ValidateSettingValue()) DatenbankSchreiben.SetSettingValue(setting.VarKey, setting.GetSettingValue().ToString().ToLower(), "");
                 else DatenbankSchreiben.SetSettingValue(setting.VarKey, setting.DefaultValue.ToString().ToLower(), "");
-
-                values += setting.VarKey + "=" + (setting.ValidateSettingValue() ? setting.GetSettingValue().ToString().ToLower() : setting.DefaultValue.ToString().ToLower() ) + ";\n";
             }
-
-            File.WriteAllText(@"D:\infoscreen_publish\ScreenCore\wwwroot\JS\constants.js", values);
 
             Response.Redirect("/admin/function-config/");
         }

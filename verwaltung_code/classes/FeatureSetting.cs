@@ -20,12 +20,13 @@ namespace Infoscreen_Verwaltung.classes
             set { defaultValue = value; }
         }
 
-
         private Func<object,bool> validateValue;
         private object defaultValue;
         
         public FeatureSetting(string key, string name, Type dataType, HiddenField clientField, string description, Func<object,bool> validate = null, object defaultVal = null)
         {
+            // init values
+
             VarKey = key;
             VarName = name;
             VarDescription = description;
@@ -37,6 +38,8 @@ namespace Infoscreen_Verwaltung.classes
 
         public TableRow GenerateSettingRow()
         {
+            // generate table row with name, inout and description
+
             TableRow settingRow = new TableRow();
 
             TableCell tName = new TableCell { Text = VarName, HorizontalAlign = HorizontalAlign.Left };
@@ -80,9 +83,10 @@ namespace Infoscreen_Verwaltung.classes
             return settingRow;
         }
 
-
         public object GetSettingValue()
         {
+            // get value of dataafield
+
             object value = null;
             if (Datatype == typeof(bool)) value = DataField.Value.Contains("true");
             else if (Datatype == typeof(int)) value = Convert.ToInt32(double.Parse(DataField.Value, System.Globalization.CultureInfo.InvariantCulture));
@@ -92,6 +96,8 @@ namespace Infoscreen_Verwaltung.classes
 
         public bool ValidateSettingValue()
         {
+            // if a validation action is set, validate the value in the data field
+
             return validateValue == null ? true : validateValue(GetSettingValue());
         }
 

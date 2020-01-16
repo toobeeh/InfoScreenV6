@@ -15,6 +15,7 @@ namespace Infoscreen_Verwaltung.admin.theme
     {
         string ebene = "../../";
 
+        // Dictoinarys to assign Theme Builder Color Buttons to variable names
         private IDictionary<string, string> Variables = new Dictionary<string, string>();
         private IDictionary<string, Button> BuilderButtons = new Dictionary<string, Button>();
 
@@ -33,6 +34,7 @@ namespace Infoscreen_Verwaltung.admin.theme
             TopMenu.Text = classes.Anzeige.TopBar(ebene);
             Menu.Text = classes.Anzeige.Menue(ebene, "admin");
 
+            // Add varaibles to dictionarys
             Variables.Add("Hintergrundfarbe", "--background_col");
             Variables.Add("Tabellen-Hintergrund", "--tr_background_col_nth");
             Variables.Add("Kopfzeilen-Hintergrund", "--header_back_col");
@@ -54,6 +56,7 @@ namespace Infoscreen_Verwaltung.admin.theme
 
             if (!IsPostBack)
             {      
+                // Create dropdown list items
                 DropdownPreset.Items.Add(new ListItem { Text = " - ", Value = "" });
                 DatenbankAbrufen.GetSettingThemes().ForEach((name) =>
                 {
@@ -61,12 +64,15 @@ namespace Infoscreen_Verwaltung.admin.theme
                     DropdownPreset.Items.Add(li);
                     
                 });
+                // Hide picker popup by default
                 picker_container.Style.Value = "display:none";
             }
         }
 
         protected void PresetChanged(object sender, EventArgs e)
         {
+            // Load selected theme if dropdown was changed
+
             ListItem li = DropdownPreset.SelectedItem;
             if (li.Value == "")
             {
@@ -82,6 +88,8 @@ namespace Infoscreen_Verwaltung.admin.theme
 
         private void LoadPreset(string theme)
         {
+            // Load values of theme and set them as background of the assigned builder button
+
             foreach (KeyValuePair<string, string> variable in Variables)
             {
                 string val = DatenbankAbrufen.GetSettingValue(variable.Value, theme);
@@ -92,6 +100,8 @@ namespace Infoscreen_Verwaltung.admin.theme
 
         private void InitEditTheme(string editTheme)
         {
+            // Set buttons and dropdown according to which theme should be edited
+
             TitleCell.Text = "Bearbeiten";
             DropdownPreset.SelectedItem.Selected = false;
             for (int i = 0; i < DropdownPreset.Items.Count; i++)
@@ -111,6 +121,8 @@ namespace Infoscreen_Verwaltung.admin.theme
 
         private void DeleteTheme(string theme)
         {
+            // Remove theme from database and set default theme if deleted theme was active 
+
             DatenbankSchreiben.DeleteThemeSettings(theme);
 
             if (theme == DatenbankAbrufen.GetSettingValue("activeTheme"))
@@ -122,6 +134,8 @@ namespace Infoscreen_Verwaltung.admin.theme
 
         private void DrawThemeSelector()
         {
+            // Create the table with existing themes
+
             Themes.Attributes.CssStyle.Add("width", "40%");
             Themes.Attributes.CssStyle.Add("margin", "5%");
             Themes.Attributes.CssStyle.Add("margin-top", "2%");
@@ -136,6 +150,8 @@ namespace Infoscreen_Verwaltung.admin.theme
 
             string activeTheme = DatenbankAbrufen.GetSettingValue("activeTheme");
 
+            // For each theme in the database
+
             DatenbankAbrufen.GetSettingThemes().ForEach((theme) =>
             {
                 TableRow tr = new TableRow();
@@ -145,6 +161,8 @@ namespace Infoscreen_Verwaltung.admin.theme
                 rb.GroupName = "themes";
                 rb.ID = theme;
 
+                // Edit button (Not of preset themes)
+
                 Button edit = new Button { CssClass = "ActionButton" };
                 edit.Text = "✎";
                 edit.Style.Value = "float:right";
@@ -153,6 +171,8 @@ namespace Infoscreen_Verwaltung.admin.theme
                     InitEditTheme(rb.Text);
                 };
 
+                // Remove button (not on preset themes)
+                
                 Button rem = new Button { CssClass = "DeleteButton" };
                 rem.Text = "✕";
                 rem.Style.Value = "float:right";
@@ -193,8 +213,11 @@ namespace Infoscreen_Verwaltung.admin.theme
 
         private void SetTheme(bool setStandardTheme = false)
         {
+            // Get the selected theme of radio button group and set it as active theme in database
+
             string selected_theme = Context.Request["ctl00$Content$themes"];
 
+            // If not theme is selected return
             if (selected_theme == "" && !setStandardTheme) return;
             if (setStandardTheme) selected_theme = "Theme Dark";
 
@@ -204,6 +227,8 @@ namespace Infoscreen_Verwaltung.admin.theme
 
         private void DrawThemeBuilder()
         {
+            // Create the table with builder buttons for each css theme variable in the dictionaries
+
             ThemeBuilder.Attributes.CssStyle.Add("width", "40%");
             ThemeBuilder.Attributes.CssStyle.Add("margin", "5%");
             ThemeBuilder.Attributes.CssStyle.Add("margin-top", "2%");
@@ -221,6 +246,8 @@ namespace Infoscreen_Verwaltung.admin.theme
                 BuilderButtons.Add(variable.Key, bt);
 
                 bt.Style.Value = "background:none; width:100%";
+
+                // Open color picker on button click
                 bt.Click += (object o, EventArgs e) => { OpenPicker(variable.Key, bt.Style["background"]); };
                 
                 color.Controls.Add(bt);
@@ -267,6 +294,8 @@ namespace Infoscreen_Verwaltung.admin.theme
 
         private bool SaveTheme(string name)
         {
+            // Check if the desired name is valid, get all background values of the builder buttons and save theme in database
+
             if (!Regex.IsMatch(name, @"^[a-zA-Z0-9_ ]+$")) return false;
             if (DropdownPreset.Enabled &&  DatenbankAbrufen.ColumnLike("Settings", "Theme", name).Count > 0) return false;
 
@@ -281,6 +310,8 @@ namespace Infoscreen_Verwaltung.admin.theme
 
         private void OpenPicker(string key, string init_color)
         {
+            // Open color picker popup for specific css theme variable
+
             picker_container.Style.Value = "display:block"; 
             setPickerHeader(key, init_color);
             Session["VarKey"] = key;
@@ -289,6 +320,7 @@ namespace Infoscreen_Verwaltung.admin.theme
         private Action<string, string> setPickerHeader;
         private void DrawPicker()
         {
+            // Init color picker popup
 
             Panel picker = new Panel();
             Panel cover = new Panel();
@@ -296,28 +328,25 @@ namespace Infoscreen_Verwaltung.admin.theme
             picker.CssClass = "picker";
             cover.CssClass = "cover";
 
-            Label head = new Label ();
-            head.Font.Size = FontUnit.XLarge;
-            var divHead = new HtmlGenericControl("div");
+            // Close button
             Button btClose = new Button();
             btClose.CssClass = "DeleteButton";
-
             btClose.Text = "✕";
             btClose.Click += (x, y) => { picker_container.Style.Value = "display:none"; };
 
+            // Header, add close button to header
+            Label head = new Label();
+            head.Font.Size = FontUnit.XLarge;
+            var divHead = new HtmlGenericControl("div");
             divHead.Controls.Add(btClose);
             divHead.Style.Value = "display: inline; float:right; margin-bottom:5px;";
 
-            var divBody = new HtmlGenericControl("div");
-
+            // Container where the color picker will be created with jQuery
             var divPicker = new HtmlGenericControl("div");
             divPicker.InnerHtml = "<div id='col_picker'></div>";
             divPicker.Style.Value = "float:left; margin: 5%; width:40%";
 
-            var divInput = new HtmlGenericControl("div");
-            divInput.Style.Value = "float:right; margin: 5%; width:40%";
-
-
+            // Preview input where th color is previewn, synced with the colorpicker, also accepts any CSS input like "red, none" etc
             var color_prev = new HtmlGenericControl("input");
             color_prev.Attributes.Add("type", "text");
             color_prev.Attributes.Add("name", "colorcode");
@@ -325,12 +354,15 @@ namespace Infoscreen_Verwaltung.admin.theme
             color_prev.ID = "prev";
             color_prev.Style.Value = "width:100%; border:none";
 
+            // Set action to change header dynamically on every openig
             setPickerHeader = (key, col) => 
             { 
                 head.Text = key;
                 if(col != "none") color_prev.Attributes["value"] = col; 
              };
 
+
+            // Confirm button
             Button confirm = new Button { CssClass = "SaveButton" };
             confirm.Text = "Farbe festlegen";
             confirm.Style.Value = "width:100%; margin-top: 5%";
@@ -340,6 +372,8 @@ namespace Infoscreen_Verwaltung.admin.theme
                 picker_container.Style.Value = "display:none";
             };
 
+
+            // Button to set color none
             Button noBack = new Button { CssClass = "DeleteButton" };
             noBack.Text = "Keine Farbe ('none')";
             noBack.Style.Value = "width:100%; margin-top: 5%";
@@ -349,10 +383,15 @@ namespace Infoscreen_Verwaltung.admin.theme
                 picker_container.Style.Value = "display:none";
             };
 
+            // div which contains the buttons
+            var divInput = new HtmlGenericControl("div");
+            divInput.Style.Value = "float:right; margin: 5%; width:40%";
             divInput.Controls.Add(color_prev);
             divInput.Controls.Add(confirm);
             divInput.Controls.Add(noBack);
 
+            // div which contains picker and input
+            var divBody = new HtmlGenericControl("div");
             divBody.Controls.Add(divPicker);
             divBody.Controls.Add(divInput);
 
