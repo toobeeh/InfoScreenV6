@@ -10,9 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Infoscreen Verwaltung">
-      <HintPath>..\..\InfoScreenV6\verwaltung_code\bin\Infoscreen Verwaltung.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\verwaltung_code\Infoscreen Verwaltung.csproj" />
   </ItemGroup>
 
 </Project>
