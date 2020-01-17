@@ -3,8 +3,6 @@ var clockContainer;
 
 $(document).ready(function () {
 
-    if (!displayClockTile) return;
-
     clockContainer = document.getElementById('js_clock');
     if (clockContainer != null) {
         setTimeValue();

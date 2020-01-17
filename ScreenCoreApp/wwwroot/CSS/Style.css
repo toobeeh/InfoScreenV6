@@ -160,7 +160,19 @@ body {
     overflow: visible;
     float: left;
     display: flex;
+    display: var(--displaySidebarContainer);
     flex-direction: column;
+}
+
+#class_details{
+    display: block;
+    display: var(--displayClassDetailsTile);
+}
+
+#upcoming_exams {
+    display: block;
+    display: var(--displayUpcomingExamsTile);
+    height: var(--upcomingExamsHeight);
 }
 
 /* Tile div general appearance */
@@ -218,6 +230,7 @@ body {
 /*DIV which contains the timetable*/
 #timetable {
     width: 70%;
+    width: var(--timetableWidth);
     float: right;
     height: 100%;
 }
@@ -368,7 +381,7 @@ body {
     right: 4%;
     top: 0;
     height: 12%;
-    display: flex;
+    display: var(--displayClockTile);
     justify-content: center;
     align-items: center;
     text-align: center;

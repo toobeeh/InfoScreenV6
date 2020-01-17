@@ -35,6 +35,18 @@
             --timetable_lessonMovedIn_textCol: @DatenbankAbrufen.GetSettingValue("--timetable_lessonMovedIn_textCol", activeTheme);
             --timetable_lessonMovedOut_textCol: @DatenbankAbrufen.GetSettingValue("--timetable_lessonMovedOut_textCol", activeTheme);
             --timetable_examInfoCol: @DatenbankAbrufen.GetSettingValue("--timetable_examInfoCol", activeTheme);
+
+             /* Theme-independent settings*/
+            --displayClockTile: @(bool.Parse(DatenbankAbrufen.GetSettingValue("--displayClockTile")) ? "flex" : "none");
+            --displayClassDetailsTile: @(bool.Parse(DatenbankAbrufen.GetSettingValue("--displayClassDetailsTile")) ? "block" : "none");
+            --displayUpcomingExamsTile: @(bool.Parse(DatenbankAbrufen.GetSettingValue("--displayUpcomingExamsTile")) ? "block" : "none");
+            
+            /* If details are hidden, expand exams ... if both are hidden, expand timetable */
+            --upcomingExamsHeight: @(bool.Parse(DatenbankAbrufen.GetSettingValue("--displayClassDetailsTile")) ? "" : "90%");
+            --timetableWidth: @(bool.Parse(DatenbankAbrufen.GetSettingValue("--displayClassDetailsTile")) || 
+                bool.Parse(DatenbankAbrufen.GetSettingValue("--displayUpcomingExamsTile"))? "70%" : "90%");
+            --displaySidebarContainer: @(bool.Parse(DatenbankAbrufen.GetSettingValue("--displayClassDetailsTile")) ||
+                bool.Parse(DatenbankAbrufen.GetSettingValue("--displayUpcomingExamsTile"))? "block" : "none");
         }
 
     </style>
@@ -48,9 +60,6 @@
         var showExamTimeMs =  @DatenbankAbrufen.GetSettingValue("showExamTimeMs");
         var examAnimationDuration =  @DatenbankAbrufen.GetSettingValue("examAnimationDuration");
         var examTimesShown =  @DatenbankAbrufen.GetSettingValue("examTimesShown");
-        var displayClockTile =  @DatenbankAbrufen.GetSettingValue("displayClockTile");
-        var displayClassDetailsTile =  @DatenbankAbrufen.GetSettingValue("displayClassDetailsTile");
-        var displayUpcomingExamsTile =  @DatenbankAbrufen.GetSettingValue("displayUpcomingExamsTile");
         var animateUpcomingExamLessons = @DatenbankAbrufen.GetSettingValue("animateUpcomingExamLessons");
 
         // Check if recent changes affected switchtime, if so, relaod parent of iframe so changes are applied.

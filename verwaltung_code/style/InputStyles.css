@@ -258,6 +258,8 @@ select:hover {
     width: 40%;
     transition: background 0.2s, color 0.2s, border 0.2s;
     background-clip: padding-box;
+
+    height:1em;
 }
     .checkbox_hit:hover {
         border-color: #99CC00;

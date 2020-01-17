@@ -1,19 +1,6 @@
-﻿// Control which tiles of timetable should be shown and adjust size of test container
+﻿// Control how many exams are displayed in exam container depending on size
 
 $(document).ready(function () {
-
-    // Hide tiles if set so
-    if (!displayClassDetailsTile) document.getElementById("class_details").style.display = "none";
-    if (!displayUpcomingExamsTile) document.getElementById("upcoming_exams").style.display = "none";
-
-    if (!displayClassDetailsTile && displayUpcomingExamsTile) {
-        document.getElementById("upcoming_exams").style.height = "100%";
-    }
-    else if (!displayClassDetailsTile && !displayUpcomingExamsTile) {
-        document.getElementById("timetable").style.width = "90%";
-        document.getElementById("info_sidebar").style.display = "none";
-    }
-
 
     // if frame ist not visible yet start observing until frame is visible (-> scrollheight can only be checked if frame is visible!)
     if (window.parent.document.getElementById(window.frameElement.id).style.display == "none")

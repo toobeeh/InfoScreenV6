@@ -34,29 +34,30 @@ namespace Infoscreen_Verwaltung.admin
         {
             // Create setting objects for each setting
 
-            Settings.Add(new FeatureSetting("switchTimeMs", "Seiten-Anzeigedauer", typeof(int), switchTimeMs,
+
+            Settings.Add(new IntegerFeatureSetting("switchTimeMs", "Seiten-Anzeigedauer", switchTimeMs,
                "Anzeigedauer in Sek. der einzelnen Seiten wie Stundenplan, Powerpoint oder Raumübersicht", null, 10000));
 
-            Settings.Add(new FeatureSetting("animateUpcomingExamLessons", "Tests anzeigen", typeof(bool), animateUpcomingExamLessons,
-                "Animierte Anzeige der kommenden Tests im Stundenplan", null, true));
+            Settings.Add(new BoolFeatureSetting("animateUpcomingExamLessons", "Tests anzeigen", animateUpcomingExamLessons,
+                "Animierte Anzeige der kommenden Tests im Stundenplan", true));
 
-            Settings.Add(new FeatureSetting("showExamTimeMs", "Tests-Anzeigedauer", typeof(int), showExamTimeMs,
+            Settings.Add(new IntegerFeatureSetting("showExamTimeMs", "Tests-Anzeigedauer", showExamTimeMs,
                 "Anzeigedauer in Sek. der Test-Markierung im Stundenplan", null, 2500));
 
-            Settings.Add(new FeatureSetting("examTimesShown", "Test-Anzeigeintervall", typeof(int), examTimesShown,
+            Settings.Add(new IntegerFeatureSetting("examTimesShown", "Test-Anzeigeintervall", examTimesShown,
                "Das Intervall in Sek., nach dem Tests für die definierte Zeit eingeblendet werden", null, 2));
 
-            Settings.Add(new FeatureSetting("examAnimationDuration", "Test-Animationsdauer", typeof(int), examAnimationDuration,
+            Settings.Add(new IntegerFeatureSetting("examAnimationDuration", "Test-Animationsdauer", examAnimationDuration,
                "Die Dauer in Sek. der Ein/Ausblendeanimation der Tests (0 = Nicht animiert)", null, 500));
 
-            Settings.Add(new FeatureSetting("displayClockTile", "Uhr", typeof(bool), displayClockTile,
-                "Anzeige einer digitalen Uhr in der Titelleiste", null, true));
+            Settings.Add(new BoolFeatureSetting("--displayClockTile", "Uhr", displayClockTile,
+                "Anzeige einer digitalen Uhr in der Titelleiste", true));
 
-            Settings.Add(new FeatureSetting("displayClassDetailsTile", "Klassendetails", typeof(bool), displayClassDetailsTile,
-                "Anzeige der Klassendetails neben dem Stundenplan", null, true));
+            Settings.Add(new BoolFeatureSetting("--displayClassDetailsTile", "Klassendetails", displayClassDetailsTile,
+                "Anzeige der Klassendetails neben dem Stundenplan", true));
 
-            Settings.Add(new FeatureSetting("displayUpcomingExamsTile", "Testkalender", typeof(bool), displayUpcomingExamsTile,
-                "Anzeige der kommenden Tests neben dem Stundenplan", null, true));
+            Settings.Add(new BoolFeatureSetting("--displayUpcomingExamsTile", "Testkalender", displayUpcomingExamsTile,
+                "Anzeige der kommenden Tests neben dem Stundenplan", true));
         }
 
         private void GetValues()
@@ -65,7 +66,7 @@ namespace Infoscreen_Verwaltung.admin
 
             foreach (FeatureSetting setting in Settings)
             {
-                setting.DefaultValue = DatenbankAbrufen.GetSettingValue(setting.VarKey);
+                setting.DefaultValue = setting.ParseString(DatenbankAbrufen.GetSettingValue(setting.VarKey));
             }
         }
 
@@ -75,7 +76,7 @@ namespace Infoscreen_Verwaltung.admin
 
            foreach(FeatureSetting feature in Settings)
             {
-                SettingsTable.Rows.Add(feature.GenerateSettingRow());
+                SettingsTable.Rows.Add(feature.SettingRow);
             }
                     
         }
@@ -86,8 +87,7 @@ namespace Infoscreen_Verwaltung.admin
 
             foreach(FeatureSetting setting in Settings)
             {
-                if (setting.ValidateSettingValue()) DatenbankSchreiben.SetSettingValue(setting.VarKey, setting.GetSettingValue().ToString().ToLower(), "");
-                else DatenbankSchreiben.SetSettingValue(setting.VarKey, setting.DefaultValue.ToString().ToLower(), "");
+                DatenbankSchreiben.SetSettingValue(setting.VarKey, setting.GetSettingValue().ToString().ToLower(), "");
             }
 
             Response.Redirect("/admin/function-config/");

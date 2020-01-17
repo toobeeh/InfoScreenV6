@@ -1,18 +1,28 @@
 ﻿// Javascript / jQuery to initialise controls of advanced features like sliders and checkboxes
 
+var CbExamsAnimation;
+var CbClockTile;
+var CbClassDetailsTile;
+var CbUpcomingExamsTile;
+
+
 $(document).ready(function () {
+
+    CbExamsAnimation = document.getElementById("animateUpcomingExamLessons");
+    CbClockTile = document.getElementById("--displayClockTile");
+    CbClassDetailsTile = document.getElementById("--displayClassDetailsTile");
+    CbUpcomingExamsTile = document.getElementById("--displayUpcomingExamsTile");
 
     initSliders();
     
     initCheckBoxes()
 
-
     // Write initial values of checkboxes to span and datafield
 
-    $("#animateUpcomingExamLessons").trigger('change');
-    $("#displayClockTile").trigger('change');
-    $("#displayClassDetailsTile").trigger('change');
-    $("#displayUpcomingExamsTile").trigger('change');
+    $(CbExamsAnimation).trigger('change');
+    $(CbClockTile).trigger('change');
+    $(CbClassDetailsTile).trigger('change');
+    $(CbUpcomingExamsTile).trigger('change');
 
 
 });
@@ -107,41 +117,36 @@ function initSliders() {
 function initCheckBoxes() {
     // initialize checkbox events
 
-    $("#animateUpcomingExamLessons").change(function () {
-        $("#Content_animateUpcomingExamLessons_container").text(this.checked ? "Aktiviert" : "Deaktiviert");
-        $("#Content_animateUpcomingExamLessons").val(this.checked ? "true" : "false");
+    $(CbExamsAnimation).change(function () {
+        $("#Content_animateUpcomingExamLessons").val(CbExamsAnimation.checked ? "true" : "false");
     });
 
-    $("#displayClockTile").change(function () {
-        $("#Content_displayClockTile_container").text(this.checked ? "Aktiviert" : "Deaktiviert");
-        $("#Content_displayClockTile").val(this.checked ? "true" : "false");
+    $(CbClockTile).change(function () {
+        $("#Content_displayClockTile").val(CbClockTile.checked ? "true" : "false");
     });
 
-    $("#displayClassDetailsTile").change(function () {
-        $("#Content_displayClassDetailsTile_container").text(this.checked ? "Aktiviert" : "Deaktiviert");
-        $("#Content_displayClassDetailsTile").val(this.checked ? "true" : "false");
+    $(CbClassDetailsTile).change(function () {
+        $("#Content_displayClassDetailsTile").val(CbClassDetailsTile.checked ? "true" : "false");
     });
 
-    $("#displayUpcomingExamsTile").change(function () {
-        $("#Content_displayUpcomingExamsTile_container").text(this.checked ? "Aktiviert" : "Deaktiviert");
-        $("#Content_displayUpcomingExamsTile").val(this.checked ? "true" : "false");
+    $(CbUpcomingExamsTile).change(function () {
+        $("#Content_displayUpcomingExamsTile").val(CbUpcomingExamsTile.checked ? "true" : "false");
     });
 
     // Get and set initial values
 
-    $("#animateUpcomingExamLessons").prop('checked',
-        $("#Content_animateUpcomingExamLessons_container").attr("data-init").includes("true"));
+    $(CbExamsAnimation).prop('checked',
+        $("#Content_animateUpcomingExamLessons_container").attr("data-init").toLowerCase().includes("true"));
 
-    $("#displayClockTile").prop('checked',
-        $("#Content_displayClockTile_container").attr("data-init").includes("true"));
+    $(CbClockTile).prop('checked',
+        $("#Content_--displayClockTile_container").attr("data-init").toLowerCase().includes("true"));
 
-    $("#displayClassDetailsTile").prop('checked',
-        $("#Content_displayClassDetailsTile_container").attr("data-init").includes("true"));
+    $(CbClassDetailsTile).prop('checked',
+        $("#Content_--displayClassDetailsTile_container").attr("data-init").toLowerCase().includes("true"));
 
-    $("#displayUpcomingExamsTile").prop('checked',
-        $("#Content_displayUpcomingExamsTile_container").attr("data-init").includes("true"));
+    $(CbUpcomingExamsTile).prop('checked',
+        $("#Content_--displayUpcomingExamsTile_container").attr("data-init").toLowerCase().includes("true"));
 }
-
 
 function sliderChanged(event, ui) {
 
@@ -192,7 +197,6 @@ function sliderChanged(event, ui) {
     $("#Content_examAnimationDuration").val(animationDuration);
 
 }
-
 
 function getValues(slidetime, testtime ) {
 
