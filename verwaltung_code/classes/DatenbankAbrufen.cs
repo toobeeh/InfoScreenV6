@@ -897,6 +897,8 @@ ORDER BY [Abteilungen].[Abteilungsname]";
         /// <returns>Alle Tests der Klasse</returns>
         static public Structuren.Tests[] TestsAbrufen(string _Klasse, bool _LehrerNamen = true, bool Fachkuerzel = false)
         {
+            DatenbankSchreiben.RemovePastExams();
+
             string befehl = @"SELECT
 [Tests].[LehrerKürzel] AS LehrerKürzel,
 [Fächer].[Fach] AS Fach,
@@ -2394,7 +2396,8 @@ ORDER BY [Stundenplan].[Klasse]";
             string lesson = AktuelleStunde().ToString();
             Structuren.Tests exam = new Structuren.Tests();
 
-            string sql = "SELECT Klasse, FachKürzel, Datum, Stunde, Dauer, LehrerKürzel, TestartID, RaumID FROM Tests WHERE Datum = '"
+            string sql = "SELECT Klasse, FachKürzel, Datum, Stunde, Dauer, LehrerKürzel, Testarten.Testart, RaumID FROM Tests " +
+                "LEFT JOIN Testarten ON Tests.TestartID = Testarten.TestartID WHERE Datum = '"
                 + date + "' AND RaumID LIKE '%" + building_room_Number + "%' AND " + lesson + " >= Stunde AND " + lesson + " < Stunde + Dauer";
 
             DataTable result = DatenbankAbfrage(sql);
@@ -2407,7 +2410,7 @@ ORDER BY [Stundenplan].[Klasse]";
             exam.Stunde = result.Rows[0]["Stunde"].ToInt32();
             exam.Dauer = result.Rows[0]["Dauer"].ToInt32();
             exam.Lehrer = result.Rows[0]["LehrerKürzel"].ToString();
-            exam.Testart = result.Rows[0]["TestartID"].ToString();
+            exam.Testart = result.Rows[0]["Testart"].ToString();
             exam.Raum = result.Rows[0]["RaumID"].ToString();
 
             return exam;

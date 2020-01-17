@@ -11,6 +11,7 @@ namespace ScreenCoreApp
     public class ExamWarningModel : PageModel
     {
         public Structuren.Tests Exam;
+        public string length;
 
         public void OnGet()
         {
@@ -18,6 +19,8 @@ namespace ScreenCoreApp
 
             Structuren.Rauminfo room = DatenbankAbrufen.RauminfoAbrufen(screenID.ToString());
             Exam = DatenbankAbrufen.ExamInRoom(room.Gebäude + "-" + room.Raumnummer);
+
+            length = Exam.Stunde + "."+ (Exam.Dauer > 1 ? "-" + (Exam.Stunde + Exam.Dauer - 1).ToString() + "." : "") + " Stunde";
 
         }
     }

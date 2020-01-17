@@ -43,7 +43,6 @@ namespace ScreenCoreApp
 
             //Get Tests
             Exams = DatenbankAbrufen.TestsAbrufen(ClassName, false, true).ToList();
-            //if(Exams.Count > 5) Exams.RemoveRange(4, Exams.Count - 5);
 
             //Get timetable
             List<Structuren.StundenplanTag> timetable_days =  SubjectFunctions.StundenplanAbrufen(defaultClass, false).ToList();

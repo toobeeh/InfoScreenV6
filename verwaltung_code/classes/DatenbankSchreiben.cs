@@ -95,12 +95,11 @@ VALUES ('" + _FachKürzel + @"',
  WHERE
        [AbteilungsID] = '" + DatenbankAbrufen.GetAbteilungsIDVonKlasse(_Klasse) + @"' AND
        [Klasse] = '" + _Klasse + @"' AND
-       [FachKürzel] = '" + _Alt.Fach + @"' AND
+       [FachKürzel] = '" + DatenbankAbrufen.GetFachKürzelVonFach(_Alt.Fach) + @"' AND
        [Datum] = '" + _Alt.Datum.ToString(Properties.Resources.sql_datumformat) + @"' AND
        [Stunde] = '" + _Alt.Stunde + @"' AND
        [Dauer] = '" + _Alt.Dauer.ToInt32() + @"' AND
        [LehrerKürzel] = '" + _Alt.Lehrer + @"'   AND
-       [TestartID] = '" + _Alt.Testart + @"' AND
        [RaumID] = '" + _Alt.Raum + "'";
 
             DatenbankAbrufen.DatenbankAbfrage(befehl);
@@ -756,6 +755,17 @@ WHERE [Dateien].[DateiID]='" + _DateiID + "'";
             try { DatenbankAbrufen.DatenbankAbfrage(sql); return true; }
             catch { return false; }
         }
+
+        public static bool RemovePastExams()
+        {
+            string sql = "DELETE FROM Tests WHERE Datum < '" + DateTime.Now.ToString("yyyy-MM-dd") + 
+                "' OR Datum = '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AND Stunde + Dauer < " + DatenbankAbrufen.AktuelleStunde();
+
+            try { DatenbankAbrufen.DatenbankAbfrage(sql); return true; }
+            catch { return false; }
+        }
+
+
 
 
         #endregion

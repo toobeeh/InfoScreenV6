@@ -384,12 +384,19 @@ body {
 
 /*Exam warning screen*/
 
-.exam_warning_sign {
+#exam_warning_sign {
     font-size: 85vh;
-    color: red;
+    color: var(--timetable_examInfoCol);
     font-family: Arial, Verdana;
-    line-height:1em;
-    text-align:center;
+    line-height: 1em;
+    text-align: center;
+}
+
+#exam_warning_text {
+    font-size: 13vh;
+    color: var(--timetable_examInfoCol);
+    font-family: Arial, Verdana;
+    text-align: center;
 }
 
 

@@ -4,12 +4,23 @@
     ViewData["Title"] = "ExamWarning";
 }
 
+<script src="~/JS/"></script>
+
 <div class="content_header"> Achtung! </div>
-<div class="exam_warning_sign">
-    ⚠
+<div class="department_info">
+    <div id="exam_warning_sign" style="display:none">
+        ⚠
+    </div>
+
+    <div id="exam_warning_text">
+        @Model.Exam.Fach -  @Model.Exam.Testart
+        <br />
+        <br />
+        @Model.length
+        <br />
+        @Model.Exam.Klasse
+
+    </div>
 </div>
 
-<div class="exam_warning_text" style="display:none">
-    <h1>Achtung blabla Test</h1>
-</div>
 
