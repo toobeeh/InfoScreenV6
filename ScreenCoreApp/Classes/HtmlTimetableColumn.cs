@@ -97,10 +97,10 @@ namespace ScreenCoreApp.Classes
                 string id = "id='" + Day.Datum.DayOfWeek.ToInt32() + "_" + i + "'";
 
                 // class if lesson is active
-                //string active = (DateTime.Now.DayOfWeek.ToInt32() == Day.Datum.DayOfWeek.ToInt32() && DatenbankAbrufen.AktuelleStunde() == i ?
-                //    " timetable_activeLesson" : "");
-                string active = (2 == Day.Datum.DayOfWeek.ToInt32() && 4 == i ?
+                string active = (DateTime.Now.DayOfWeek.ToInt32() == Day.Datum.DayOfWeek.ToInt32() && DatenbankAbrufen.AktuelleStunde() == i ?
                     " timetable_activeLesson" : "");
+                //string active = (2 == Day.Datum.DayOfWeek.ToInt32() && 4 == i ?
+                //    " timetable_activeLesson" : "");
 
 
                 // opening tag of td container with id and height
