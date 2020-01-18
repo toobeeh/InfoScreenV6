@@ -49,7 +49,7 @@ namespace ScreenCoreApp
             
             List<List<Structuren.StundenplanEntry>> moved_lessons_days = new List<List<Structuren.StundenplanEntry>>();
 
-            //Get all moved lessons per day for each days in timetable
+            //Get all moved lessons per day for each day in timetable
             timetable_days.ForEach((day) =>
             {
                 moved_lessons_days.Add(DatenbankAbrufen.GetMovedLessonsOfDay(depID, defaultClass, day.Datum));
@@ -63,7 +63,7 @@ namespace ScreenCoreApp
             });
             ZerothLesson = zerothLesson;
 
-            //Get highes amount of lessons per day
+            //Get highest amount of lessons per day
             int maxLesson = 0;
             timetable_days.ForEach((day) =>
             {

@@ -6,6 +6,11 @@
 
 <script src="~/JS/exam_animation.js"></script>
 <script src="~/JS/tile_control.js"></script>
+<script>
+    var dayOfWeek = 2 @*@((int)DateTime.Now.DayOfWeek)*@;
+    var lesson = 4 @*@Infoscreen_Verwaltung.classes.DatenbankAbrufen.AktuelleStunde()*@;
+</script>
+<script src="~/JS/currentLessonMarker.js"></script>
 
 
 <div class="content_header">
@@ -33,7 +38,7 @@
             <div class="sidebar_header">Tests</div>
             @if (Model.Exams.Count == 0)
             {
-                <h3>Keine Tests</h3>
+                <h3 style="display:block; text-align:center">Keine Tests</h3>
             }
             else
             {
