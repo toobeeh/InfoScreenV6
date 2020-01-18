@@ -1,9 +1,4 @@
 ﻿
-console.log("colorpicker started");
-$(document).ready(function () {
-    jQuery.farbtastic('#col_picker').linkTo('#Content_prev');
-});
-
 function showNav()
 {
     let nav = event.currentTarget.nextElementSibling;
