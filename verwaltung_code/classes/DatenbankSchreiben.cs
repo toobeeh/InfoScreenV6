@@ -688,15 +688,24 @@ WHERE [Dateien].[DateiID]='" + _DateiID + "'";
         /// </summary>
         /// <param name="abteilungsID">Abteilung der Klasse</param>
         /// <param name="klasse">Klasse die hinzugefügt werden soll</param>
-        /// <param name="klassensprecher">Klassensprecher der Klasse</param>
+        /// <param name="klassensprecher">Klassensprecher-ID der Klasse</param>
+        /// <param name="klassensprecherName">Klassensprecher-Name der Klasse</param>
         /// <param name="klasseninfo">Klasseninfo der Klasse</param>
         /// <param name="klassenvorstand">KV der Klasse</param>
         /// <returns></returns>
-        static public bool AddKlasseToKlassen(int abteilungsID, string klasse, string klassensprecher = "", string klasseninfo = "", string klassenvorstand = "")
+        static public bool AddKlasseToKlassen(int abteilungsID, string klasse, string klassensprecher = "", string klassensprecherName = "", string klasseninfo = "", string klassenvorstand = "")
         {
-            string Befehl = @"  INSERT INTO Klassen (AbteilungsID, Klasse, Klassensprecher, Klasseninfo, Klassenvorstand) 
-                                VALUES (" + abteilungsID + ",'" + klasse + "','" + klassensprecher + "','" + klasseninfo + "','" + klassenvorstand + "')"; ;
-            try { DatenbankAbrufen.DatenbankAbfrage(Befehl); }
+            string sql;
+            if (DatenbankAbrufen.ColumnLike("Klassen", "Klasse", klasse).Count > 0)
+            {
+                sql = "UPDATE Klassen SET AbteilungsID = " + abteilungsID + ", Klassensprecher='"+klassensprecher+"', KlassensprecherName = '"+
+                    klassensprecherName + "', Klasseninfo='" + klasseninfo + "', Klassenvorstand = '" + klassenvorstand + 
+                    "' WHERE Klasse = '" + klasse + "'";
+            }
+            else sql = @"  INSERT INTO Klassen (AbteilungsID, Klasse, Klassensprecher, KlassensprecherName, Klasseninfo, Klassenvorstand) 
+                                VALUES (" + abteilungsID + ",'" + klasse + "','" + klassensprecher + "','" + klassensprecherName + "','" + klasseninfo + "','" + klassenvorstand + "')"; ;
+            
+            try { DatenbankAbrufen.DatenbankAbfrage(sql); }
             catch { return false; }           
             return true;
         }

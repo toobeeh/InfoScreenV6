@@ -8,6 +8,7 @@ namespace ScreenCoreApp.Classes
     
     public static class StringFunctions // snipped from ISv5
     {
+
         /// <summary>
         /// Konvertiert den übergebenen String in Int32.
         /// Liefert -1, wenn der String keine Zahl ist.

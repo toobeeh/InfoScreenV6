@@ -16,6 +16,7 @@ namespace Infoscreen_Verwaltung.classes
         public string VarName { get; internal set; }
         public string VarDescription { get; internal set; }
         public HiddenField DataField { get; internal set; }
+        public TableRow SettingRow { get; internal set; }
 
         /// <summary>
         /// The value which will be the default of the user input. Thus, every time the default is changed, the row is newly generated
@@ -25,10 +26,8 @@ namespace Infoscreen_Verwaltung.classes
             get { return defaultValue; } 
             set { defaultValue = value; GenerateSettingRow(); } 
         }
+        
         internal object defaultValue;
-
-        public TableRow SettingRow { get; internal set; }
-
         internal TableCell NameCell, InputCell, DescriptionCell;
         internal Label ValueLabel, InputLabel;
 

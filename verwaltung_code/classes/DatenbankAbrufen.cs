@@ -2355,16 +2355,20 @@ ORDER BY [Stundenplan].[Klasse]";
             Structuren.Klasseneigenschaften properties = new Structuren.Klasseneigenschaften();
             properties.klasse = classname;
             properties.abteilungsID = dep_ID;
+
+            DataTable result = DatenbankAbfrage(
+                "SELECT Klassensprecher, KlassensprecherName, Klassenvorstand, Klasseninfo FROM Klassen WHERE Klasse='" + classname + "' AND AbteilungsID=" + dep_ID);
+     
+            properties.klassensprecher = result.Rows[0]["Klassensprecher"].ToString();
+            properties.klassensprecherName = result.Rows[0]["KlassensprecherName"].ToString();
+            properties.klassenvorstand = result.Rows[0]["Klassenvorstand"].ToString();
+            properties.klasseninfo = result.Rows[0]["Klasseninfo"].ToString();
+
             properties.raum = DatenbankAbfrage(
                 "SELECT Raum FROM Raeume WHERE StandardKlasse='" + classname + "' AND AbteilungsID=" + dep_ID).Rows[0].ItemArray[0].ToString();
-            properties.klassensprecher = DatenbankAbfrage(
-                "SELECT Klassensprecher FROM Klassen WHERE Klasse='" + classname + "' AND AbteilungsID="+dep_ID).Rows[0].ItemArray[0].ToString();
-            properties.klassenvorstand = DatenbankAbfrage(
-                "SELECT Klassenvorstand FROM Klassen WHERE Klasse='" + classname + "' AND AbteilungsID=" + dep_ID).Rows[0].ItemArray[0].ToString();
-            properties.klasseninfo = DatenbankAbfrage(
-                "SELECT Klasseninfo FROM Klassen WHERE Klasse='" + classname + "' AND AbteilungsID=" + dep_ID).Rows[0].ItemArray[0].ToString();
             properties.gebäude = DatenbankAbfrage(
                "SELECT Gebäude FROM Raeume WHERE StandardKlasse='" + classname + "' AND AbteilungsID=" + dep_ID).Rows[0].ItemArray[0].ToString();
+            
             return properties;
         }
 
