@@ -58,6 +58,10 @@ namespace Infoscreen_Verwaltung.admin
 
             Settings.Add(new BoolFeatureSetting("--displayUpcomingExamsTile", "Testkalender", displayUpcomingExamsTile,
                 "Anzeige der kommenden Tests neben dem Stundenplan", true));
+
+            Settings.Add(new MultiFeatureSetting("markActiveLesson", "Stundenmarkierung", markActiveLesson,
+                "Markierungsart der Aktiven Stunde:\nKeine, Nur aktive Stunde hervorheben, Bisher vergangene Stunden hervorheben",
+                new string[3][] { new string[2] { "Keine", "none" }, new string[2] { "Aktive Stunde", "active" }, new string[2] { "Fortschritt", "day" } }, "day"));
         }
 
         private void GetValues()

@@ -281,6 +281,45 @@ select:hover {
         color: #cc0c00;
         background-clip: padding-box;
     }
+
+.radioGroup {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+    .radioGroup > input[type=radio] {
+        display: none;
+    }
+
+    .radioGroup > label {
+        display: block;
+        padding: 0.4em;
+        background-clip: padding-box;
+        background: #86b300;
+        border: 1px transparent solid;
+        border-radius: 1em;
+        transition: background 0.2s, color 0.2s, border 0.2s;
+        cursor: pointer;
+    }
+
+        .radioGroup > label:hover {
+            border-color: #99CC00;
+            background: #99CC00;
+            background-clip: padding-box;
+        }
+
+        .radioGroup > label.unchecked {
+            border-color: transparent;
+            background: #cc0c00;
+            background-clip: padding-box;
+        }
+
+            .radioGroup > label.unchecked:hover {
+                border-color: red;
+                background: red;
+                background-clip: padding-box;
+            }
     
     
 

@@ -24,7 +24,7 @@ namespace Infoscreen_Verwaltung.classes
         public virtual object DefaultValue 
         { 
             get { return defaultValue; } 
-            set { defaultValue = value; GenerateSettingRow(); } 
+            set { defaultValue = value; /*GenerateSettingRow(); -> Setting Row has to be generated in derived class*/ } 
         }
         
         internal object defaultValue;
@@ -34,14 +34,14 @@ namespace Infoscreen_Verwaltung.classes
         public virtual object ParseString(string value) { return value; }
 
         // Base constructor
-        public FeatureSetting(string key, string name, HiddenField clientField, string description, object defaultVal = null)
+        public FeatureSetting(string key, string name, HiddenField clientField, string description)
         {
             // init values
             VarKey = key;
             VarName = name;
             VarDescription = description;
             DataField = clientField;
-            DefaultValue = defaultVal;
+            //DefaultValue = defaultVal; -> Derived class have to set default val so the generation of the row can be controlled
         }
 
         // Function to initialize the row
@@ -87,7 +87,7 @@ namespace Infoscreen_Verwaltung.classes
     public class IntegerFeatureSetting : FeatureSetting
     {
         public IntegerFeatureSetting(string key, string name, HiddenField clientField, string description, Func<int, int> validate=null, int defaultVal = 0) 
-            : base(key, name, clientField, description, defaultVal)
+            : base(key, name, clientField, description)
         {
             DefaultValue = defaultVal;
             Validate = validate;
@@ -136,8 +136,9 @@ namespace Infoscreen_Verwaltung.classes
     // Derived class with controls for bool settings (toggle button)
     public class BoolFeatureSetting : FeatureSetting
     {
+        // Creates a toggle button on client-side, toggle functions and write to data field have to be programmed with JS 
         public BoolFeatureSetting(string key, string name, HiddenField clientField, string description, bool defaultVal = false)
-            : base(key, name, clientField, description, defaultVal)
+            : base(key, name, clientField, description)
         {
             DefaultValue = defaultVal;
         }
@@ -179,5 +180,69 @@ namespace Infoscreen_Verwaltung.classes
 
     }
 
+    // Derived class with controls for multiple choice values (radio button)
+    public class MultiFeatureSetting : FeatureSetting
+    {
+        // Creates a div with radiobuttons on client-side, only animations and write to data field have to be programmed by JS / styled by CSS
 
+        public MultiFeatureSetting(string key, string name, HiddenField clientField, string description, string[][] optionsNameValue, string defaultVal)
+            : base(key, name, clientField, description)
+        {
+            Options = new List<string[]>();
+            for(int iName = 0; iName < optionsNameValue.Length; iName++)
+            {
+                Options.Add(optionsNameValue[iName]);
+            }
+
+            DefaultValue = defaultVal;
+        }
+
+        private List<string[]> Options;
+
+        internal override void GenerateSettingRow()
+        {
+            base.GenerateSettingRow();
+
+            ValueLabel.Attributes["display"] = "none";
+
+            string optionButtons = "";
+            Options.ForEach((option) =>
+            {
+                int index = Options.IndexOf(option);
+                string html = "<input type='radio' id='" + VarKey + index + "' name='" + VarKey + "' value='" + option[1] + "'>";
+                html += "<label for='" + VarKey + index + "'>" + option[0] + "</label>";
+
+                optionButtons += html;
+            });
+
+            InputLabel.Text = optionButtons;
+            InputLabel.Attributes.Add("class", "radioGroup");
+        }
+
+        public override object ParseString(string value)
+        {
+            return value;
+        }
+
+        public override object DefaultValue
+        {
+            get { return defaultValue; }
+            set { // check if default value is value of options array
+                Options.ForEach((option) =>
+                {
+                    if (option[1] == value.ToString()) defaultValue = value;
+                });
+                if (defaultValue == null) defaultValue = Options[0][1];
+                GenerateSettingRow(); 
+            }
+        }
+        public override object GetSettingValue()
+        {
+            object value = base.GetSettingValue();
+            try {
+                return value.ToString();
+            } catch { return DefaultValue; }
+        }
+
+    }
 }

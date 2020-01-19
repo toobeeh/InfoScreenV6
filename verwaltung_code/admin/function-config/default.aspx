@@ -22,6 +22,7 @@
     <asp:HiddenField  runat="server" ID="displayClockTile"/>
     <asp:HiddenField  runat="server" ID="displayClassDetailsTile"/>
     <asp:HiddenField  runat="server" ID="displayUpcomingExamsTile"/>
+    <asp:HiddenField  runat="server" ID="markActiveLesson"/>
 
     <h1>Funktionen anpassen</h1>
     <h3>Achtung: IE11 unterstützt viele Funktionen nicht. Es wird empfohlen einen aktuellen Browser zu verwenden.</h3>

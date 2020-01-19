@@ -15,7 +15,9 @@ $(document).ready(function () {
 
     initSliders();
     
-    initCheckBoxes()
+    initCheckBoxes();
+
+    initRadios();
 
     // Write initial values of checkboxes to span and datafield
 
@@ -26,6 +28,35 @@ $(document).ready(function () {
 
 
 });
+
+function initRadios() {
+
+    //set init value
+    $("input[name='markActiveLesson'][value='" + $("#Content_markActiveLesson_container").attr('data-init') + "']").attr('checked', 'checked');
+    $("#Content_markActiveLesson").val($("input[name='markActiveLesson']:checked").val())
+
+    // set change event
+    $("input[name='markActiveLesson']").change(function () {
+
+        // write value to datafield
+        $("#Content_markActiveLesson").val($("input[name='markActiveLesson']:checked").val())
+
+        //phew... for all labels in a radio group: 
+        //      if the 'by for' linked input value is equal to the ...linked input group selected value... remove unchecked style
+        //      else add unchecked style
+        $(".radioGroup > label").each(function () {
+            if ($("#" + $(this).attr('for')).val() == $("input[name='" + $("#" + $(this).attr('for')).attr('name') + "']:checked").val())
+                $(this).removeClass('unchecked');
+            else $(this).addClass('unchecked');
+        });
+    });
+
+    // Init unchecked style with same algorithm as above
+    $(".radioGroup > label").each(function () {
+        if ($("#" + $(this).attr('for')).val() != $("input[name='" + $("#" + $(this).attr('for')).attr('name') + "']:checked").val())
+            $(this).addClass('unchecked');
+    });
+}
 
 function initSliders() {
 
@@ -106,8 +137,8 @@ function initSliders() {
             },
             create: function (event, ui) {
                 // update value on prog. change
-                $("#Content_examAnimationDuration_container").text(ed); // Span shows (time show + time hide) aka interval length
-                $("#Content_examAnimationDuration").val(ed); // Data field stores how many intervals per cycle are made
+                $("#Content_examAnimationDuration_container").text(ed/1000); // Span shows (time show + time hide) aka interval length
+                $("#Content_examAnimationDuration").val(ed/1000); // Data field stores how many intervals per cycle are made
             }
         }
     );
