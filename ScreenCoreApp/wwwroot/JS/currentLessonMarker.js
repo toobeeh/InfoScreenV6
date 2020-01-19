@@ -22,9 +22,9 @@ $(document).ready(function () {
 
     if (!lessonCell) return;
 
-    let timeMarker = new HTMLDivElement();
-    timeMarker.clientHeight = lessonCell.clientHeight;
-    timeMarker.clientWidth = lessonCell.clientWidth;
+    let timeMarker = document.createElement('div');
+    let height = parseFloat(lessonCell.style.height);
+    timeMarker.style.width = "100%";
     timeMarker.style.position = "absolute";
     timeMarker.style.top = "0";
     timeMarker.style.left = "0";
@@ -33,11 +33,14 @@ $(document).ready(function () {
     let minutes = (new Date() - new Date(lessonStartTimes[lesson])) / 1000 / 60;
     if (minutes > 50) return;
 
-    let heightpermin = timeMarker.clientHeight / 50;
-    let newHeight = heightpermin * minutes;
+    let heightpermin = height / 50;
+    height = heightpermin * minutes;
 
-    timeMarker.clientHeight = newHeight;
+    timeMarker.style.height = height + "vh";
     timeMarker.style.borderBottom = "2px solid red";
+
+    lessonCell.style.position = "relative";
+    lessonCell.appendChild(timeMarker);
 
 
 });

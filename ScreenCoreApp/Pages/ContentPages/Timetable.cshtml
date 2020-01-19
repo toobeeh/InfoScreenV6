@@ -7,8 +7,8 @@
 <script src="~/JS/exam_animation.js"></script>
 <script src="~/JS/tile_control.js"></script>
 <script>
-    var dayOfWeek = 2 @*@((int)DateTime.Now.DayOfWeek)*@;
-    var lesson = 4 @*@Infoscreen_Verwaltung.classes.DatenbankAbrufen.AktuelleStunde()*@;
+    var dayOfWeek = @((int)DateTime.Now.DayOfWeek + 1);
+    var lesson = @Infoscreen_Verwaltung.classes.DatenbankAbrufen.AktuelleStunde();
 </script>
 <script src="~/JS/currentLessonMarker.js"></script>
 
