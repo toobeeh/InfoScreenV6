@@ -19,7 +19,7 @@ namespace ScreenCoreApp
         public bool DisplayGlobal = false;
         public bool NoReplacements = false;
 
-        public void OnGet(string pagenum)
+        public IActionResult OnGet(string pagenum)
         {
             Pagenum = Convert.ToInt32(pagenum);
             if (Pagenum == 0) { NoReplacements = true; Pagenum = 1; }
@@ -40,7 +40,7 @@ namespace ScreenCoreApp
 
             if (Globals.Length > 0 && (NoReplacements || total_rows - item_start <= 10)) DisplayGlobal = true;
 
-            DatenbankAbrufen.DBClose();
+            return Page();
         }
 
         public string GenerateReplacementRows()

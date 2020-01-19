@@ -15,75 +15,35 @@ namespace Infoscreen_Verwaltung.classes
         /// <param name="_Befehl">Der in der Datenbank auszuführende Befehl</param>
         /// <returns>Das ergebnis der Datenbankabfrage</returns>
 
-        static SqlConnection connect = null;
-        static SqlCommand command = null;
+        static string conn_string = @"  data source=ELV-SCREEN-2\INFOSCREEN;
+                                        initial catalog=Infoscreen_1.0;
+                                        persist security info=False;
+                                        user id=SQL_infoscreen;
+                                        password=*x-?password-/secure80):passWoRt*;
+                                        MultipleActiveResultSets=True;
+                                        App=EntityFramework&quot;";
 
-        static public DataTable DatenbankAbfrage(string _Befehl)
+
+        // Open and connection and initialize command and adapter, exec query, close all
+        // Preferred against keeping conn alive due to previous errors and because low frequency of SQL requests
+        static public DataTable DatenbankAbfrage(string _command)
         {
-            //try
-            //{
-            DBOpen();
-            string czaker = _Befehl;
-           
-            command.CommandText = _Befehl;
-            DataTable daten = new DataTable();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-            dataAdapter.Fill(daten);
-            dataAdapter.Dispose();
+            SqlConnection connection = new SqlConnection(conn_string);
+            SqlCommand command = new SqlCommand(_command, connection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable result = new DataTable();
 
-            return daten;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception("Error collecting data! " + ex.Message);
-            //}
+            connection.Open();
+            adapter.Fill(result);
+
+            adapter.Dispose();
+            command.Dispose();
+            connection.Close();
+
+            return result;
+
         }
-        static public int DatenbankManipulation(string _Befehl)
-        {
-            int numberOfChangedLines;
-            //try
-            //{
-            DBOpen();
-            
-            command.CommandText = _Befehl;
-            numberOfChangedLines = command.ExecuteNonQuery();
-
-            return numberOfChangedLines;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception("Error collecting data! " + ex.Message);
        
-        }
-        static public void DBOpen()
-        {
-                if (connect == null)
-                {
-                    connect = new SqlConnection("data source=ELV-SCREEN-2\\INFOSCREEN;initial catalog=Infoscreen_1.0;persist security info=False;user id=SQL_infoscreen;password=*x-?password-/secure80):passWoRt*;MultipleActiveResultSets=True;App=EntityFramework&quot;");
-                    connect.Open();
-                }
-                if (command == null)
-                {
-                    command = new SqlCommand();
-                    command.Connection = connect;
-                }
-        }
-        static public void DBClose()
-        {
-            if (command != null)
-            {
-                command.Dispose();
-                command = null;
-            }
-            if (connect != null)
-            {
-                connect.Dispose();
-
-                connect.Close();
-                connect = null;
-            }
-        }
-
         /// <summary> 
         /// Gibt die anzuzeigenden Elemente des durch die übergebene ID bestimmten Bildschirmes als Structuren.AnzeigeElemente zurück.
         /// </summary>

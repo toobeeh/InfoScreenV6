@@ -347,6 +347,7 @@ body {
     font-size: 2vh;
     background: #131313;
     background: var(--timetable_border_col);
+    color: var(--timetable_tileHeaderText_col);
 }
 
 .timetable_lessonMovedInfo {

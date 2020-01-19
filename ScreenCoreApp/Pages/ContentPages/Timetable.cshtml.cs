@@ -21,7 +21,7 @@ namespace ScreenCoreApp
 
         Dictionary<DateTime, List<Structuren.Tests>> ExamDays = new Dictionary<DateTime, List<Structuren.Tests>>();
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
             // Get data necessairy to fetch timetable
             int screenID = Screen.GetSessionScreenID(HttpContext);
@@ -31,7 +31,8 @@ namespace ScreenCoreApp
 
             if (String.IsNullOrEmpty(defaultClass))
             {
-                Screen.RedirectAndCloseDB("/Pages/NoContent", Response);
+                //Screen.RedirectAndCloseDB("/Pages/NoContent", Response);
+                return Redirect("/Pages/NoContent");
             }
 
 
@@ -91,8 +92,7 @@ namespace ScreenCoreApp
 
             Days = columns;
 
-
-            DatenbankAbrufen.DBClose();
+            return Page();
         }
     }
 }

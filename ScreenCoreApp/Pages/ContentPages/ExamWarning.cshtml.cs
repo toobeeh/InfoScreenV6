@@ -13,7 +13,7 @@ namespace ScreenCoreApp
         public Structuren.Tests Exam;
         public string length;
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
             int screenID = Screen.GetSessionScreenID(HttpContext);
 
@@ -22,6 +22,7 @@ namespace ScreenCoreApp
 
             length = Exam.Stunde + "."+ (Exam.Dauer > 1 ? "-" + (Exam.Stunde + Exam.Dauer - 1).ToString() + "." : "") + " Stunde";
 
+            return Page();
         }
     }
 }

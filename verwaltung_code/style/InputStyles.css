@@ -265,7 +265,6 @@ select:hover {
         border-color: #99CC00;
         background: #99CC00;
         color: #99CC00;
-        background-clip: padding-box;
     }
 
 
@@ -273,14 +272,14 @@ select:hover {
         border-color: red;
         background: red;
         color: red;
-        background-clip: padding-box;
     }
     .checkbox_hit.unchecked {
         border-color: transparent;
         background: #cc0c00;
         color: #cc0c00;
-        background-clip: padding-box;
     }
+
+/*Radio button styles*/
 
 .radioGroup {
     display: flex;
@@ -288,39 +287,33 @@ select:hover {
     flex-direction: row;
 }
 
-    .radioGroup > input[type=radio] {
+    .radioGroup  input[type=radio] {
         display: none;
     }
 
-    .radioGroup > label {
+    .radioGroup  label {
         display: block;
         padding: 0.4em;
         background-clip: padding-box;
-        background: #86b300;
-        border: 1px transparent solid;
-        border-radius: 1em;
+        background: transparent;
+        border: 3px #86b300 solid;
+        border-radius: 0.5em;
         transition: background 0.2s, color 0.2s, border 0.2s;
         cursor: pointer;
+        user-select: none;
     }
 
-        .radioGroup > label:hover {
+        .radioGroup  label:hover {
             border-color: #99CC00;
-            background: #99CC00;
-            background-clip: padding-box;
         }
 
-        .radioGroup > label.unchecked {
+        .radioGroup  label.unchecked {
             border-color: transparent;
-            background: #cc0c00;
-            background-clip: padding-box;
         }
 
-            .radioGroup > label.unchecked:hover {
-                border-color: red;
-                background: red;
-                background-clip: padding-box;
+            .radioGroup  label.unchecked:hover {
+                border-color: #cc0c00;
             }
-    
     
 
 

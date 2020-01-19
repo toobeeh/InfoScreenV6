@@ -18,7 +18,7 @@ namespace ScreenCoreApp
         public bool split;
         public DataTable Rooms;
 
-        public void OnGet(string pagenum)
+        public IActionResult OnGet(string pagenum)
         {
             Pagenum = Convert.ToInt32(pagenum);
 
@@ -32,7 +32,7 @@ namespace ScreenCoreApp
 
             split = (item_end - item_start > 10 ? true : false);
 
-            DatenbankAbrufen.DBClose();
+            return Page();
         }
 
         public string CreateSplitTable(int item_start, int item_end)

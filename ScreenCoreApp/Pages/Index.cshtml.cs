@@ -11,7 +11,7 @@ namespace ScreenCoreApp.Pages
 {
     public class IndexModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
             Screen.CheckScreenID(Request.Query, HttpContext);
             ViewData["Handler"] = "Default";
@@ -25,7 +25,7 @@ namespace ScreenCoreApp.Pages
 
             PreloadPowerpoints();
 
-            DatenbankAbrufen.DBClose();
+            return Page();
         }
 
 
