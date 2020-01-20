@@ -31,8 +31,7 @@ namespace ScreenCoreApp
 
             if (String.IsNullOrEmpty(defaultClass))
             {
-                //Screen.RedirectAndCloseDB("/Pages/NoContent", Response);
-                return Redirect("/Pages/NoContent");
+                return Redirect("/NoContent/?error=418");
             }
 
 

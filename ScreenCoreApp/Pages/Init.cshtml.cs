@@ -23,7 +23,7 @@ namespace ScreenCoreApp.Pages
             int screenID = Screen.GetSessionScreenID(HttpContext);
             if (screenID < 0)
             {
-                return Redirect("NoContent");
+                return Redirect("NoContent/?error=400");
             }
 
             // Check if exam in room is active (highest priority)
@@ -97,11 +97,14 @@ namespace ScreenCoreApp.Pages
                 case 5: // Teacher replacements
                     return RedirectToReplacements();
 
+                case 6:
+                    return Redirect("NoContent/?error=410");
+
                 case 7: // Powerpoint
                     return RedirectToSlide();
 
                 default:
-                    return Redirect("NoContent");
+                    return Redirect("NoContent/?error=410");
             }
         }
 
