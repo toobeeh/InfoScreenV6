@@ -1,14 +1,17 @@
 ﻿//Add clock to div
 var clockContainer;
 
-$(document).ready(function () {
+// IIFE to add JS clock, has to be executed as soon as the container is available and before document is ready 
+// to avoid 'blinkeng' when the clock is added after the frame is activated
+
+(function () {
 
     clockContainer = document.getElementById('js_clock');
     if (clockContainer != null) {
         setTimeValue();
         setInterval(setTimeValue, 200);
     }
-})
+})();
 
 function setTimeValue() {
     let now = new Date();

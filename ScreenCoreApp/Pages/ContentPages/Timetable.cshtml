@@ -11,9 +11,8 @@
     // Sun = 0, Mon = 1, ...
     var dayOfWeek = @((int)DateTime.Now.DayOfWeek);
     var lesson = @(Infoscreen_Verwaltung.classes.DatenbankAbrufen.AktuelleStunde());
+    var showProgress = "@(Infoscreen_Verwaltung.classes.DatenbankAbrufen.GetSettingValue("markActiveLesson"))";
 </script>
-<script src="~/JS/currentLessonMarker.js"></script>
-
 
 <div class="content_header">
     @Model.ClassName
@@ -81,3 +80,6 @@
     </div>
 
 </div>
+
+
+<script src="~/JS/currentLessonMarker.js"></script>

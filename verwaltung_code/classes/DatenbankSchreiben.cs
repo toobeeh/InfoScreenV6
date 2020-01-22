@@ -767,8 +767,11 @@ WHERE [Dateien].[DateiID]='" + _DateiID + "'";
 
         public static bool RemovePastExams()
         {
+            int lesson = DatenbankAbrufen.AktuelleStunde();
+            //if (DateTime.Now.Hour > 8 && lesson == -2) lesson = 12;
+
             string sql = "DELETE FROM Tests WHERE Datum < '" + DateTime.Now.ToString("yyyy-MM-dd") + 
-                "' OR Datum = '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AND Stunde + Dauer < " + DatenbankAbrufen.AktuelleStunde();
+                "' OR Datum = '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AND Stunde + Dauer < " + lesson;
 
             try { DatenbankAbrufen.DatenbankAbfrage(sql); return true; }
             catch { return false; }

@@ -43,9 +43,11 @@ namespace ScreenCoreApp.Classes
 
         private void ResizeContainer()
         {
-            //Resize Array so that lesson 0 to 11 is present
+            //Resize Array so that lesson 0 to Max Lesson is present
+            // If zerothlesson = true TotalLessons is the size of the container, 
+            // else LessonCount is one too small since zeroth hour is anyway part of the container at ind 0
 
-            Structuren.StundenplanEntry[] lessons = new Structuren.StundenplanEntry[TotalLessons];
+            Structuren.StundenplanEntry[] lessons = new Structuren.StundenplanEntry[TotalLessons + (ZerothLesson ? 0 : 1)];
             for(int lessons_index=0; lessons_index < lessons.Length; lessons_index++)
             {
                 for(int day_index = 0; day_index < Day.StundenDaten.Length; day_index++)
@@ -96,11 +98,21 @@ namespace ScreenCoreApp.Classes
                 // unique day/lesson ID for tabledata
                 string id = "id='" + Day.Datum.DayOfWeek.ToInt32() + "_" + i + "'";
 
+
+                // Get active lesson highlight mode
+                string mode = DatenbankAbrufen.GetSettingValue("markActiveLesson");
+
                 // class if lesson is active
-                string active = (DateTime.Now.DayOfWeek.ToInt32() == Day.Datum.DayOfWeek.ToInt32() && DatenbankAbrufen.AktuelleStunde() == i ?
-                    " timetable_activeLesson" : "");
-                //string active = (2 == Day.Datum.DayOfWeek.ToInt32() && 4 == i ?
-                //    " timetable_activeLesson" : "");
+                int lessonNum = DatenbankAbrufen.AktuelleStunde();
+                string active = "";
+
+                if (lessonNum == -2 || lessonNum >= lessons.Count) 
+                    active = "";
+                else if (mode == "active" && DateTime.Now.DayOfWeek.ToInt32() == Day.Datum.DayOfWeek.ToInt32() && lessonNum == i)
+                    active = " timetable_activeLesson";
+                else if (mode == "day" && DateTime.Now.DayOfWeek.ToInt32() == Day.Datum.DayOfWeek.ToInt32() && lessonNum > i)
+                    active = " timetable_activeLessonProgress";
+                else active = " ";
 
 
                 // opening tag of td container with id and height

@@ -65,6 +65,7 @@ function initSliders() {
     let et = parseInt($("#Content_showExamTimeMs_container").attr("data-init"));
     let ets = parseInt($("#Content_examTimesShown_container").attr("data-init"));
     let ed = parseInt($("#Content_examAnimationDuration_container").attr("data-init"));
+    let op = parseInt($("#Content_timetableActiveLessonMarkerOpacity_container").attr("data-init"));
 
     // initialize sliders
 
@@ -139,6 +140,27 @@ function initSliders() {
                 // update value on prog. change
                 $("#Content_examAnimationDuration_container").text(ed/1000); // Span shows (time show + time hide) aka interval length
                 $("#Content_examAnimationDuration").val(ed/1000); // Data field stores how many intervals per cycle are made
+            }
+        }
+    );
+
+    $("#timetableActiveLessonMarkerOpacity").slider(
+        {
+            min: 0,
+            max: 255,
+            value: op,
+            slide: function (event, ui) {
+                $("#Content_timetableActiveLessonMarkerOpacity_container").text(ui.value);
+                $("#Content_timetableActiveLessonMarkerOpacity").val(ui.value); 
+            },
+            change: function (event, ui) {
+                $("#Content_timetableActiveLessonMarkerOpacity_container").text(ui.value);
+                $("#Content_timetableActiveLessonMarkerOpacity").val(ui.value); 
+            },
+            create: function (event, ui) {
+                // update value on prog. change
+                $("#Content_timetableActiveLessonMarkerOpacity_container").text(op); 
+                $("#Content_timetableActiveLessonMarkerOpacity").val(op); 
             }
         }
     );

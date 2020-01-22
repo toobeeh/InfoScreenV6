@@ -60,8 +60,12 @@ namespace Infoscreen_Verwaltung.admin
                 "Anzeige der kommenden Tests neben dem Stundenplan", true));
 
             Settings.Add(new MultiFeatureSetting("markActiveLesson", "Stundenmarkierung", markActiveLesson,
-                "Markierungsart der Aktiven Stunde:\nKeine, Nur aktive Stunde hervorheben, Bisher vergangene Stunden hervorheben",
+                "Markierungsart der Aktiven Stunde: Keine, Nur aktive Stunde hervorheben, Bisher vergangene Stunden hervorheben",
                 new string[3][] { new string[2] { "Keine", "none" }, new string[2] { "Aktive Stunde", "active" }, new string[2] { "Fortschritt", "day" } }, "day"));
+
+            Settings.Add(new IntegerFeatureSetting("timetableActiveLessonMarkerOpacity", "Markertransparenz", timetableActiveLessonMarkerOpacity,
+              "Transparenz des Markers, der die aktive Stunde markiert. 0: Transparent, 255: Keine Transparenz ", null, 100));
+
         }
 
         private void GetValues()

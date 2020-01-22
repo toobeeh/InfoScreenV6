@@ -15,6 +15,10 @@ namespace Infoscreen_Verwaltung.admin.theme
     {
         string ebene = "../../";
 
+        // User with Permission to edit preset themes
+        // -> Not all superadmins to have always a working theme as backup
+        const string themeMaster = "20150562";
+
         // Dictoinarys to assign Theme Builder Color Buttons to variable names
         private IDictionary<string, string> Variables = new Dictionary<string, string>();
         private IDictionary<string, Button> BuilderButtons = new Dictionary<string, Button>();
@@ -49,6 +53,7 @@ namespace Infoscreen_Verwaltung.admin.theme
             Variables.Add("Stunde eingeschoben Textfarbe", "--timetable_lessonMovedIn_textCol");
             Variables.Add("Stunde verschoben Textfarbe", "--timetable_lessonMovedOut_textCol");
             Variables.Add("Stunde Testinfo Textfarbe", "--timetable_examInfoCol");
+            Variables.Add("Aktive Stunde Hintergrundfarbe", "--timetable_activeLessonMarkerCol");
 
             DrawThemeSelector();
             DrawThemeBuilder();
@@ -183,7 +188,7 @@ namespace Infoscreen_Verwaltung.admin.theme
                 if (theme.IndexOf("Dark Preset") >= 0 || theme.IndexOf("Light Preset") >= 0)
                 {
                     rem.Enabled = false;
-                    edit.Enabled = false;
+                    if(classes.Login.User != themeMaster) edit.Enabled = false;
                     rem.CssClass = "ActionButton";
                 }
 
