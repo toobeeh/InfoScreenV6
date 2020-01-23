@@ -42,7 +42,8 @@ var lessonStartTimes = [
 
     timeMarker.style.height = height + "vh";
     //timeMarker.style.borderBottom = "2px solid red";
-    timeMarker.classList.add("timetable_activeLessonProgress, timetable_activeLessonBorder");
+    timeMarker.classList.add("timetable_activeLessonProgress");
+    timeMarker.classList.add("timetable_activeLessonBorder");
 
     lessonCell.style.position = "relative";
     lessonCell.appendChild(timeMarker);
