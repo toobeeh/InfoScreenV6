@@ -10,6 +10,14 @@
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="Content" runat="server">
 
+    <script type="text/javascript" src="/scripts/farbtastic/farbtastic.js"></script>
+    <link rel="stylesheet" href="/scripts/farbtastic/farbtastic.css" type="text/css" />
+    <script>
+        $(document).ready(function () {
+            jQuery.farbtastic('#col_picker').linkTo('#Content_prev');
+        });
+    </script>
+
     <div id="picker_container" runat="server"></div> 
 
     <h1>Farbschema anpassen</h1>

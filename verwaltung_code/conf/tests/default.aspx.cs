@@ -185,6 +185,8 @@ namespace Infoscreen_Verwaltung.conf.tests
 
         private void btÄndern_Click(object sender, EventArgs e)
         {
+            Session["12_Neu"] = null;
+
             Session["12_Daten"] = ((dataButton)sender).Setting;
 
             Session["12_Klasse"] = DropDownListKlasse.SelectedValue;

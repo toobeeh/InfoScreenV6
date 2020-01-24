@@ -41,8 +41,8 @@ body {
 }
 
 .table_container{
-    margin-top: 4%;
-    margin-bottom: 4%;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
     height: 80%;
     z-index: 1;
 }
@@ -107,7 +107,7 @@ body {
     background: var(--header_back_col);
     box-shadow: 0px 0px 15px #131313;
     box-shadow: 0px 0px 15px var(--header_shadow_col);
-    height: 12%;
+    height: 12vh;
 }
 
 .no_content_set {
@@ -160,7 +160,19 @@ body {
     overflow: visible;
     float: left;
     display: flex;
+    display: var(--displaySidebarContainer);
     flex-direction: column;
+}
+
+#class_details{
+    display: block;
+    display: var(--displayClassDetailsTile);
+}
+
+#upcoming_exams {
+    display: block;
+    display: var(--displayUpcomingExamsTile);
+    height: var(--upcomingExamsHeight);
 }
 
 /* Tile div general appearance */
@@ -200,7 +212,7 @@ body {
 
     #class_details > h4::before, #upcoming_exams > div > h3::before {
         content: "⨯ ";
-        margin-left: 10%;
+        /*margin-left: 10%;*/
     }
 
     #upcoming_exams .sidebar_header, #class_details > .sidebar_header {
@@ -218,6 +230,7 @@ body {
 /*DIV which contains the timetable*/
 #timetable {
     width: 70%;
+    width: var(--timetableWidth);
     float: right;
     height: 100%;
 }
@@ -230,7 +243,7 @@ body {
         height: 100%;
         text-align: center;
         font-family: Arial, Verdana;
-        font-size: 3vh;
+        font-size: 2.5vh;
         letter-spacing: 0.05em;
         table-layout: fixed;
         border: #131313 5px solid;
@@ -248,7 +261,9 @@ body {
 
         #timetable .td > div {
             overflow: hidden;
-            width: 100%
+            width: 100%;
+            position:relative;
+            z-index:1;
         }
 
     /* DIV Css tablerow styling */
@@ -299,6 +314,20 @@ body {
     color: var(--timetable_lessonCancelled_textCol);
 }
 
+.timetable_activeLesson {
+    border-radius: 2vh;
+    background-color: var(--timetable_activeLessonBack);
+}
+
+.timetable_activeLessonProgress {
+    background-color: var(--timetable_activeLessonBack);
+    z-index: 0 !important;
+}
+
+.timetable_activeLessonBorder {
+    border-bottom: 2px solid var(--timetable_activeLessonBorder);
+}
+
 .timetable_lessonMovedIn, .timetable_lessonMovedOut, .timetable_lessonCancelled {
     font-size: 1.8vh;
 }
@@ -329,6 +358,7 @@ body {
     font-size: 2vh;
     background: #131313;
     background: var(--timetable_border_col);
+    color: var(--timetable_tileHeaderText_col);
 }
 
 .timetable_lessonMovedInfo {
@@ -368,7 +398,7 @@ body {
     right: 4%;
     top: 0;
     height: 12%;
-    display: flex;
+    display: var(--displayClockTile);
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -381,4 +411,22 @@ body {
 #js_clock > #second{
     font-size: 40px;
 }
+
+/*Exam warning screen*/
+
+#exam_warning_sign {
+    font-size: 85vh;
+    color: var(--timetable_examInfoCol);
+    font-family: Arial, Verdana;
+    line-height: 1em;
+    text-align: center;
+}
+
+#exam_warning_text {
+    font-size: 13vh;
+    color: var(--timetable_examInfoCol);
+    font-family: Arial, Verdana;
+    text-align: center;
+}
+
 

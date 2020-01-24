@@ -371,14 +371,18 @@ namespace Infoscreen_Verwaltung.admin.klassen
             {   
                 using (Entities db = new Entities())
                 {
-                    Klassen eintrag = new classes.Klassen();
-                    eintrag.AbteilungsID = DatenbankAbrufen.GetAbteilungsIdVonAbteilungsname(dropDownAbteilung.SelectedValue);
-                    eintrag.Klasse = dummy[i].Klasse.Text;
-                    eintrag.Klassensprecher = dummy[i].Klassensprecher_ID.Text;
-                    eintrag.Klassenvorstand = dummy[i].Klassenvorstand.Text;
-                    eintrag.Klasseninfo = dummy[i].Klasseninfo.Text;
-                    db.Klassen.Add(eintrag);
-                    db.SaveChanges();
+                    //Klassen eintrag = new classes.Klassen();
+                    //eintrag.AbteilungsID = DatenbankAbrufen.GetAbteilungsIdVonAbteilungsname(dropDownAbteilung.SelectedValue);
+                    //eintrag.Klasse = dummy[i].Klasse.Text;
+                    //eintrag.Klassensprecher = dummy[i].Klassensprecher_ID.Text;
+                    //eintrag.Klassenvorstand = dummy[i].Klassenvorstand.Text;
+                    //eintrag.Klasseninfo = dummy[i].Klasseninfo.Text;
+                    //db.Klassen.Add(eintrag);
+                    //db.SaveChanges();
+                    DatenbankSchreiben.AddKlasseToKlassen(DatenbankAbrufen.GetAbteilungsIdVonAbteilungsname(dropDownAbteilung.SelectedValue),
+                        dummy[i].Klasse.Text, dummy[i].Klassensprecher_ID.Text, 
+                        GetKlassensprecherName(dummy[i].Klassensprecher_ID.Text),  dummy[i].Klasseninfo.Text, dummy[i].Klassenvorstand.Text);
+
                 }
             }
             //for (int i = 0; i < dummy.Length; i++)

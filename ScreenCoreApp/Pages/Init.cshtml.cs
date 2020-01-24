@@ -14,7 +14,7 @@ namespace ScreenCoreApp.Pages
     public class InitModel : PageModel
     {
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
             Screen.CheckScreenID(Request.Query, HttpContext);
             ViewData["ID"] = "Eingegebene ID per QS:" + Screen.GetSessionScreenID(HttpContext);
@@ -23,11 +23,18 @@ namespace ScreenCoreApp.Pages
             int screenID = Screen.GetSessionScreenID(HttpContext);
             if (screenID < 0)
             {
-                DatenbankAbrufen.DBClose();
-                Response.Redirect("NoContent");
-                return;
+                return Redirect("NoContent/?error=400");
             }
 
+            // Check if exam in room is active (highest priority)
+            Structuren.Rauminfo room = DatenbankAbrufen.RauminfoAbrufen(screenID.ToString());
+            Structuren.Tests exam = DatenbankAbrufen.ExamInRoom(room.Gebäude + "-" + room.Raumnummer);
+
+            // If subject isnt empt, redirect to exam screen
+            if (!String.IsNullOrEmpty(exam.Fach) )
+            {
+                return Redirect("/ContentPages/ExamWarning");
+            }
 
             // Refresh mode depending on ZGA (if active)
             TimeSensitiveMode.ZGAAbfragen(screenID);
@@ -40,30 +47,31 @@ namespace ScreenCoreApp.Pages
             if (cycle_index == -1) SetCycleIndex(ref cycle_index, 1); // Initialize cycle variable
             else // If already initialized, get next mode
             {
+                int consPage = Screen.GetConsultationsPage(HttpContext);
+                int roomPage = Screen.GetRoomTablePage(HttpContext);
+                int repPage = Screen.GetReplacementsPage(HttpContext);
+
+
                 bool show_running = Screen.GetPresentationRunningStatus(HttpContext);
-                bool consultations_running = Screen.GetConsultationsPage(HttpContext) > 1 ? true: false;
-                bool roomtable_running = Screen.GetRoomTablePage(HttpContext) > 1 ? true : false;
-                bool replacements_running = Screen.GetReplacementsPage(HttpContext) > 1 ? true : false;
+                bool consultations_running = consPage > 1 ? true: false;
+                bool roomtable_running = roomPage > 1 ? true : false;
+                bool replacements_running = repPage > 1 ? true : false;
 
                 if (show_running)
                 {
-                    RedirectToSlide();
-                    return;
+                    return RedirectToSlide();
                 }
                 else if (consultations_running)
                 {
-                    RedirectToConsultations();
-                    return;
+                    return RedirectToConsultations();
                 }
                 else if (roomtable_running)
                 {
-                    RedirectToRoomTable();
-                    return;
+                   return  RedirectToRoomTable();
                 }
                 else if (replacements_running)
                 {
-                    RedirectToReplacements();
-                    return;
+                    return RedirectToReplacements();
                 }
                 else
                 {
@@ -75,36 +83,28 @@ namespace ScreenCoreApp.Pages
             switch (cycle_index)
             {
                 case 1: // Timetable
-                    Screen.RedirectAndCloseDB("/ContentPages/Timetable", Response);
-                    ViewData["ScreenMode"] = "Timetable";
-                    break;
+                    return Redirect("/ContentPages/Timetable");
+
                 case 2: // Department information
-                    Screen.RedirectAndCloseDB("/ContentPages/DepartmentInfo", Response);
-                    ViewData["ScreenMode"] = "Department Information";
-                    break;
+                    return Redirect("/ContentPages/DepartmentInfo");
+
                 case 3: //Consultation table
-                    RedirectToConsultations();
-                    ViewData["ScreenMode"] = "Consultation table";
-                    break;
+                    return RedirectToConsultations();                    
+
                 case 4: // Room table
-                    RedirectToRoomTable();
-                    ViewData["ScreenMode"] = "Room table";
-                    break;
+                    return RedirectToRoomTable();
+
                 case 5: // Teacher replacements
-                    RedirectToReplacements();
-                    ViewData["ScreenMode"] = "Teacher replacements";
-                    break;
+                    return RedirectToReplacements();
+
                 case 6:
-                    Response.Redirect("NoContent");
-                    ViewData["ScreenMode"] = "...";
-                    break;
+                    return Redirect("NoContent/?error=410");
+
                 case 7: // Powerpoint
-                    RedirectToSlide();
-                    ViewData["ScreenMode"] = "Powerpoint";
-                    break;
+                    return RedirectToSlide();
+
                 default:
-                    Response.Redirect("NoContent");
-                    break;
+                    return Redirect("NoContent/?error=410");
             }
         }
 
@@ -136,7 +136,7 @@ namespace ScreenCoreApp.Pages
             return;
         }
 
-        private void RedirectToSlide()
+        private IActionResult RedirectToSlide()
         {
             int slide = Screen.GetNextPresentationSlide(HttpContext);
             string presentation;
@@ -146,7 +146,7 @@ namespace ScreenCoreApp.Pages
             if (slide >= count ) Screen.SetNextPresentationSlide(1, HttpContext);
             else Screen.SetNextPresentationSlide(slide + 1, HttpContext);
 
-            Screen.RedirectAndCloseDB("ContentPages/PowerPoint/" + slide.ToString() + "_" + presentation, Response);
+            return Redirect("ContentPages/PowerPoint/" + slide.ToString() + "_" + presentation);
         }
 
         private int GetSlideCount(out string presentation)
@@ -167,7 +167,7 @@ namespace ScreenCoreApp.Pages
             return Directory.GetFiles(presentationRoot, "*.png").ToList().Count;
         }
 
-        private void RedirectToConsultations()
+        private IActionResult RedirectToConsultations()
         {
             int page = Screen.GetConsultationsPage(HttpContext);
             int pages;
@@ -181,10 +181,10 @@ namespace ScreenCoreApp.Pages
             if (page < pages) Screen.SetConsultationsPage((page + 1).ToString(), HttpContext);
             else Screen.SetConsultationsPage("1", HttpContext);
 
-            Screen.RedirectAndCloseDB("ContentPages/Consultations/" + page, Response);
+            return Redirect("ContentPages/Consultations/" + page);
         }
 
-        private void RedirectToRoomTable()
+        private IActionResult RedirectToRoomTable()
         {
             int page = Screen.GetRoomTablePage(HttpContext);
             int pages;
@@ -200,10 +200,10 @@ namespace ScreenCoreApp.Pages
             if (page < pages) Screen.SetRoomTablePage((page + 1).ToString(), HttpContext);
             else Screen.SetRoomTablePage("1", HttpContext);
 
-            Screen.RedirectAndCloseDB("ContentPages/Rooms/" + page, Response);
+            return Redirect("ContentPages/Rooms/" + page);
         }
 
-        private void RedirectToReplacements()
+        private IActionResult RedirectToReplacements()
         {
             int page = Screen.GetReplacementsPage(HttpContext);
             int pages, total_rows = 0;
@@ -219,8 +219,7 @@ namespace ScreenCoreApp.Pages
             }
             catch
             {
-                Screen.RedirectAndCloseDB("ContentPages/Replacements/0", Response);
-                return;
+                return Redirect("ContentPages/Replacements/0");
             }
 
             // Layout: Classic replacements, 1 spacer line, globals header, globals - all globals have to fit on one page
@@ -231,7 +230,7 @@ namespace ScreenCoreApp.Pages
             if (page < pages) Screen.SetReplacementsPage((page + 1).ToString(), HttpContext);
             else Screen.SetReplacementsPage("1", HttpContext);
 
-            Screen.RedirectAndCloseDB("ContentPages/Replacements/" + page, Response);
+            return Redirect("ContentPages/Replacements/" + page);
         }
 
 

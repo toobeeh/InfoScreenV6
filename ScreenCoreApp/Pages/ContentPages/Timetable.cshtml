@@ -6,7 +6,13 @@
 
 <script src="~/JS/exam_animation.js"></script>
 <script src="~/JS/tile_control.js"></script>
-
+<script>
+    // Current day and lesson
+    // Sun = 0, Mon = 1, ...
+    var dayOfWeek = @((int)DateTime.Now.DayOfWeek);
+    var lesson = @(Infoscreen_Verwaltung.classes.DatenbankAbrufen.AktuelleStunde());
+    var showProgress = "@(Infoscreen_Verwaltung.classes.DatenbankAbrufen.GetSettingValue("markActiveLesson"))";
+</script>
 
 <div class="content_header">
     @Model.ClassName
@@ -24,8 +30,8 @@
             <h3>@Infoscreen_Verwaltung.classes.StringHelper.ToValidRoomBuilding(Model.Properties.gebäude + "-" + Model.Properties.raum,4,2)</h3>
             <h4>Klassenvorstand</h4>
             <h3>@(String.IsNullOrEmpty(Model.Properties.klassenvorstand) ? "Nicht festgelegt": Model.Properties.klassenvorstand) </h3>
-            <h4>Klassensprecher ID</h4>
-            <h3>@(String.IsNullOrEmpty(Model.Properties.klassensprecher) ? "Nicht festgelegt" : Model.Properties.klassensprecher )</h3>
+            <h4>Klassensprecher</h4>
+            <h3>@(String.IsNullOrEmpty(Model.Properties.klassensprecherName) ? "Nicht festgelegt" : Model.Properties.klassensprecherName )</h3>
         </div>
 
         <div id="upcoming_exams">
@@ -33,7 +39,7 @@
             <div class="sidebar_header">Tests</div>
             @if (Model.Exams.Count == 0)
             {
-                <h3>Keine Tests</h3>
+                <h3 style="display:block; text-align:center">Keine Tests</h3>
             }
             else
             {
@@ -74,3 +80,6 @@
     </div>
 
 </div>
+
+
+<script src="~/JS/currentLessonMarker.js"></script>

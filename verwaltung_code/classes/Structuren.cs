@@ -119,6 +119,7 @@ namespace Infoscreen_Verwaltung.classes
             public string Lehrer;
             public string Testart;
             public string Raum;
+            public string Klasse;
         }
 
         public struct User
@@ -164,6 +165,7 @@ namespace Infoscreen_Verwaltung.classes
             public string klassensprecher;
             public string klassenvorstand;
             public string klasseninfo;
+            public string klassensprecherName;
         }
         #endregion
 

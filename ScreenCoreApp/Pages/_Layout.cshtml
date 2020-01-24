@@ -21,6 +21,7 @@
         @{ string activeTheme = DatenbankAbrufen.GetSettingValue("activeTheme");}
 
         :root {
+            /*Theme-variables*/
             --background_col: @DatenbankAbrufen.GetSettingValue("--background_col", activeTheme);
             --tr_background_col_nth: @DatenbankAbrufen.GetSettingValue("--tr_background_col_nth", activeTheme);
             --header_back_col: @DatenbankAbrufen.GetSettingValue("--header_back_col", activeTheme);
@@ -35,6 +36,20 @@
             --timetable_lessonMovedIn_textCol: @DatenbankAbrufen.GetSettingValue("--timetable_lessonMovedIn_textCol", activeTheme);
             --timetable_lessonMovedOut_textCol: @DatenbankAbrufen.GetSettingValue("--timetable_lessonMovedOut_textCol", activeTheme);
             --timetable_examInfoCol: @DatenbankAbrufen.GetSettingValue("--timetable_examInfoCol", activeTheme);
+            --timetable_activeLessonBorder: @DatenbankAbrufen.GetSettingValue("--timetable_activeLessonMarkerCol", activeTheme);
+            --timetable_activeLessonBack: @DatenbankAbrufen.GetSettingValue("--timetable_activeLessonMarkerCol", activeTheme)@(DatenbankAbrufen.GetSettingValue("timetableActiveLessonMarkerOpacity").ToInt32().ToString("X2"));
+            /* Theme-independent settings*/
+            --displayClockTile: @(bool.Parse(DatenbankAbrufen.GetSettingValue("--displayClockTile")) ? "flex" : "none");
+            --displayClassDetailsTile: @(bool.Parse(DatenbankAbrufen.GetSettingValue("--displayClassDetailsTile")) ? "block" : "none")
+;
+            --displayUpcomingExamsTile:
+    @(bool.Parse(DatenbankAbrufen.GetSettingValue("--displayUpcomingExamsTile")) ? "block" : "none");
+            /* If details are hidden, expand exams ... if both are hidden, expand timetable */
+            --upcomingExamsHeight: @(bool.Parse(DatenbankAbrufen.GetSettingValue("--displayClassDetailsTile")) ? "" : "90%");
+            --timetableWidth: @(bool.Parse(DatenbankAbrufen.GetSettingValue("--displayClassDetailsTile")) || 
+                bool.Parse(DatenbankAbrufen.GetSettingValue("--displayUpcomingExamsTile"))? "70%" : "90%");
+            --displaySidebarContainer: @(bool.Parse(DatenbankAbrufen.GetSettingValue("--displayClassDetailsTile")) ||
+                bool.Parse(DatenbankAbrufen.GetSettingValue("--displayUpcomingExamsTile"))? "block" : "none");
         }
 
     </style>
@@ -48,9 +63,6 @@
         var showExamTimeMs =  @DatenbankAbrufen.GetSettingValue("showExamTimeMs");
         var examAnimationDuration =  @DatenbankAbrufen.GetSettingValue("examAnimationDuration");
         var examTimesShown =  @DatenbankAbrufen.GetSettingValue("examTimesShown");
-        var displayClockTile =  @DatenbankAbrufen.GetSettingValue("displayClockTile");
-        var displayClassDetailsTile =  @DatenbankAbrufen.GetSettingValue("displayClassDetailsTile");
-        var displayUpcomingExamsTile =  @DatenbankAbrufen.GetSettingValue("displayUpcomingExamsTile");
         var animateUpcomingExamLessons = @DatenbankAbrufen.GetSettingValue("animateUpcomingExamLessons");
 
         // Check if recent changes affected switchtime, if so, relaod parent of iframe so changes are applied.
@@ -58,13 +70,16 @@
 
     </script>
     <script src="~/JS/jquery.js"></script>
-    <script src="~/JS/clock.js"></script>
 
 </head>
 <body>
     <div class="res_container">
+
         @ViewData["ScreenMode"]
+
         <div id="js_clock"></div>
+        <script src="~/JS/clock.js"></script>
+
         @RenderBody()
     </div>
 </body>

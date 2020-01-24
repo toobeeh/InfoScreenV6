@@ -15,75 +15,35 @@ namespace Infoscreen_Verwaltung.classes
         /// <param name="_Befehl">Der in der Datenbank auszuführende Befehl</param>
         /// <returns>Das ergebnis der Datenbankabfrage</returns>
 
-        static SqlConnection connect = null;
-        static SqlCommand command = null;
+        static string conn_string = @"  data source=ELV-SCREEN-2\INFOSCREEN;
+                                        initial catalog=Infoscreen_1.0;
+                                        persist security info=False;
+                                        user id=SQL_infoscreen;
+                                        password=*x-?password-/secure80):passWoRt*;
+                                        MultipleActiveResultSets=True;
+                                        App=EntityFramework&quot;";
 
-        static public DataTable DatenbankAbfrage(string _Befehl)
+
+        // Open and connection and initialize command and adapter, exec query, close all
+        // Preferred against keeping conn alive due to previous errors and because low frequency of SQL requests
+        static public DataTable DatenbankAbfrage(string _command)
         {
-            //try
-            //{
-            DBOpen();
-            string czaker = _Befehl;
-           
-            command.CommandText = _Befehl;
-            DataTable daten = new DataTable();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-            dataAdapter.Fill(daten);
-            dataAdapter.Dispose();
+            SqlConnection connection = new SqlConnection(conn_string);
+            SqlCommand command = new SqlCommand(_command, connection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable result = new DataTable();
 
-            return daten;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception("Error collecting data! " + ex.Message);
-            //}
+            connection.Open();
+            adapter.Fill(result);
+
+            adapter.Dispose();
+            command.Dispose();
+            connection.Close();
+
+            return result;
+
         }
-        static public int DatenbankManipulation(string _Befehl)
-        {
-            int numberOfChangedLines;
-            //try
-            //{
-            DBOpen();
-            
-            command.CommandText = _Befehl;
-            numberOfChangedLines = command.ExecuteNonQuery();
-
-            return numberOfChangedLines;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception("Error collecting data! " + ex.Message);
        
-        }
-        static public void DBOpen()
-        {
-                if (connect == null)
-                {
-                    connect = new SqlConnection("data source=ELV-SCREEN-2\\INFOSCREEN;initial catalog=Infoscreen_1.0;persist security info=False;user id=SQL_infoscreen;password=*x-?password-/secure80):passWoRt*;MultipleActiveResultSets=True;App=EntityFramework&quot;");
-                    connect.Open();
-                }
-                if (command == null)
-                {
-                    command = new SqlCommand();
-                    command.Connection = connect;
-                }
-        }
-        static public void DBClose()
-        {
-            if (command != null)
-            {
-                command.Dispose();
-                command = null;
-            }
-            if (connect != null)
-            {
-                connect.Dispose();
-
-                connect.Close();
-                connect = null;
-            }
-        }
-
         /// <summary> 
         /// Gibt die anzuzeigenden Elemente des durch die übergebene ID bestimmten Bildschirmes als Structuren.AnzeigeElemente zurück.
         /// </summary>
@@ -897,6 +857,8 @@ ORDER BY [Abteilungen].[Abteilungsname]";
         /// <returns>Alle Tests der Klasse</returns>
         static public Structuren.Tests[] TestsAbrufen(string _Klasse, bool _LehrerNamen = true, bool Fachkuerzel = false)
         {
+            DatenbankSchreiben.RemovePastExams();
+
             string befehl = @"SELECT
 [Tests].[LehrerKürzel] AS LehrerKürzel,
 [Fächer].[Fach] AS Fach,
@@ -2353,16 +2315,20 @@ ORDER BY [Stundenplan].[Klasse]";
             Structuren.Klasseneigenschaften properties = new Structuren.Klasseneigenschaften();
             properties.klasse = classname;
             properties.abteilungsID = dep_ID;
+
+            DataTable result = DatenbankAbfrage(
+                "SELECT Klassensprecher, KlassensprecherName, Klassenvorstand, Klasseninfo FROM Klassen WHERE Klasse='" + classname + "' AND AbteilungsID=" + dep_ID);
+     
+            properties.klassensprecher = result.Rows[0]["Klassensprecher"].ToString();
+            properties.klassensprecherName = result.Rows[0]["KlassensprecherName"].ToString();
+            properties.klassenvorstand = result.Rows[0]["Klassenvorstand"].ToString();
+            properties.klasseninfo = result.Rows[0]["Klasseninfo"].ToString();
+
             properties.raum = DatenbankAbfrage(
                 "SELECT Raum FROM Raeume WHERE StandardKlasse='" + classname + "' AND AbteilungsID=" + dep_ID).Rows[0].ItemArray[0].ToString();
-            properties.klassensprecher = DatenbankAbfrage(
-                "SELECT Klassensprecher FROM Klassen WHERE Klasse='" + classname + "' AND AbteilungsID="+dep_ID).Rows[0].ItemArray[0].ToString();
-            properties.klassenvorstand = DatenbankAbfrage(
-                "SELECT Klassenvorstand FROM Klassen WHERE Klasse='" + classname + "' AND AbteilungsID=" + dep_ID).Rows[0].ItemArray[0].ToString();
-            properties.klasseninfo = DatenbankAbfrage(
-                "SELECT Klasseninfo FROM Klassen WHERE Klasse='" + classname + "' AND AbteilungsID=" + dep_ID).Rows[0].ItemArray[0].ToString();
             properties.gebäude = DatenbankAbfrage(
                "SELECT Gebäude FROM Raeume WHERE StandardKlasse='" + classname + "' AND AbteilungsID=" + dep_ID).Rows[0].ItemArray[0].ToString();
+            
             return properties;
         }
 
@@ -2385,6 +2351,33 @@ ORDER BY [Stundenplan].[Klasse]";
                 themes.Add(dr.ItemArray[0].ToString());
             }
             return themes;
+        }
+
+        public static Structuren.Tests ExamInRoom(string building_room_Number)
+        {
+            building_room_Number = StringHelper.ToValidRoomBuilding(building_room_Number, 4,2);
+            string date = DateTime.Now.ToString("yyyy-MM-dd");
+            string lesson = AktuelleStunde().ToString();
+            Structuren.Tests exam = new Structuren.Tests();
+
+            string sql = "SELECT Klasse, FachKürzel, Datum, Stunde, Dauer, LehrerKürzel, Testarten.Testart, RaumID FROM Tests " +
+                "LEFT JOIN Testarten ON Tests.TestartID = Testarten.TestartID WHERE Datum = '"
+                + date + "' AND RaumID LIKE '%" + building_room_Number + "%' AND " + lesson + " >= Stunde AND " + lesson + " < Stunde + Dauer";
+
+            DataTable result = DatenbankAbfrage(sql);
+
+            if (result.Rows.Count < 1) return exam;
+
+            exam.Klasse = result.Rows[0]["Klasse"].ToString();
+            exam.Fach = result.Rows[0]["FachKürzel"].ToString();
+            exam.Datum = result.Rows[0]["Datum"].ToDateTime();
+            exam.Stunde = result.Rows[0]["Stunde"].ToInt32();
+            exam.Dauer = result.Rows[0]["Dauer"].ToInt32();
+            exam.Lehrer = result.Rows[0]["LehrerKürzel"].ToString();
+            exam.Testart = result.Rows[0]["Testart"].ToString();
+            exam.Raum = result.Rows[0]["RaumID"].ToString();
+
+            return exam;
         }
 
 

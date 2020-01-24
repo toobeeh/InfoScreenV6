@@ -14,7 +14,6 @@ namespace Infoscreen_Verwaltung
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            DatenbankAbrufen.DBClose();
             Session.Clear();
             Response.BufferOutput = true;
 

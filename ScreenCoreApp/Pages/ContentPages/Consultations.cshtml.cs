@@ -17,7 +17,7 @@ namespace ScreenCoreApp
         public int item_end;
         public Structuren.Sprechstunden[] Consultations;
 
-        public void OnGet(string pagenum)
+        public IActionResult OnGet(string pagenum)
         {
             Pagenum = Convert.ToInt32(pagenum);
             
@@ -30,7 +30,7 @@ namespace ScreenCoreApp
             item_start = (Pagenum - 1) * 15;
             item_end = (item_start + 15 > Consultations.Length - 1 ? Consultations.Length - 1 : item_start + 15);
 
-            DatenbankAbrufen.DBClose();
+            return Page();
         }
     }
 }

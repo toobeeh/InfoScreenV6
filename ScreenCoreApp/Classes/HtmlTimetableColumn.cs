@@ -43,9 +43,11 @@ namespace ScreenCoreApp.Classes
 
         private void ResizeContainer()
         {
-            //Resize Array so that lesson 0 to 11 is present
+            //Resize Array so that lesson 0 to Max Lesson is present
+            // If zerothlesson = true TotalLessons is the size of the container, 
+            // else LessonCount is one too small since zeroth hour is anyway part of the container at ind 0
 
-            Structuren.StundenplanEntry[] lessons = new Structuren.StundenplanEntry[TotalLessons];
+            Structuren.StundenplanEntry[] lessons = new Structuren.StundenplanEntry[TotalLessons + (ZerothLesson ? 0 : 1)];
             for(int lessons_index=0; lessons_index < lessons.Length; lessons_index++)
             {
                 for(int day_index = 0; day_index < Day.StundenDaten.Length; day_index++)
@@ -76,7 +78,9 @@ namespace ScreenCoreApp.Classes
 
         public void CreateTableMarkup()
         {
-            // Generates Markup which can be later used to fill into a table data
+
+
+            // Generates tabledata markup which can be later used to fill into a tablerow element
 
             HtmlTableData.Add("<div class='td' style='height:" + DayHeight + "vh'><div class='timetable_headDay'> <div>" + 
                 Day.Datum.ToString("dddd",new System.Globalization.CultureInfo("de-DE")) + "</div> </div> </div> \n");
@@ -89,46 +93,102 @@ namespace ScreenCoreApp.Classes
                 Structuren.StundenplanEntry lesson = lessons[i];
                 if (i == 0 && !ZerothLesson) continue;
 
+                string html = "";
+
+                // unique day/lesson ID for tabledata
+                string id = "id='" + Day.Datum.DayOfWeek.ToInt32() + "_" + i + "'";
+
+
+                // Get active lesson highlight mode
+                string mode = DatenbankAbrufen.GetSettingValue("markActiveLesson");
+
+                // class if lesson is active
+                int lessonNum = DatenbankAbrufen.AktuelleStunde();
+                string active = "";
+
+                if (lessonNum == -2 || lessonNum >= lessons.Count) 
+                    active = "";
+                else if (mode == "active" && DateTime.Now.DayOfWeek.ToInt32() == Day.Datum.DayOfWeek.ToInt32() && lessonNum == i)
+                    active = " timetable_activeLesson";
+                else if (mode == "day" && DateTime.Now.DayOfWeek.ToInt32() == Day.Datum.DayOfWeek.ToInt32() && lessonNum > i)
+                    active = " timetable_activeLessonProgress";
+                else active = " ";
+
+
+                // opening tag of td container with id and height
+                html += "<div class='td " + active + "' " + id + " style='height:" + LessonHeight + "vh'>";
+
                 //Create text span if exam is in lesson
-                string exam = "";
-                if (!String.IsNullOrEmpty(Exams[i].Fach)) exam = "<span class='timetable_exam' id='" + Exams[i].Datum.ToString("yyyyMMdd") + "-" + Exams[i].Fach + "'>TEST</span>";
+                if (!String.IsNullOrEmpty(Exams[i].Fach)) 
+                    html+= "<span class='timetable_exam' id='" + Exams[i].Datum.ToString("yyyyMMdd") + "-" + Exams[i].Fach + "'>TEST</span>";
+
+                // lesson info container:
 
                 // If a lesson from another day moved here
                 if (!String.IsNullOrEmpty(Moved_lessons[i].Lehrer))
-                        HtmlTableData.Add("<div class='td' style='height:" + LessonHeight + "vh'>" + exam + "<div class='timetable_lessonMovedIn'> \n <div class='timetable_subjectInfo'>" +
-                                Moved_lessons[i].Fach + "</div> \n <div class='timetable_teacherInfo'>" +
-                                Moved_lessons[i].Lehrer + "</div> \n <div class='timetable_lessonMovedInfo'>" +
-                                "Von " + Moved_lessons[i].ZiehtVorDatum.ToString("dd.MM") + "</div> </div> \n" +
-                                "</div> \n");
+                    html +=     "<div class='timetable_lessonMovedIn'>" +
+                                    "<div class='timetable_subjectInfo'>" +
+                                        Moved_lessons[i].Fach + 
+                                    "</div> " +
+                                    "<div class='timetable_teacherInfo'>" +
+                                        Moved_lessons[i].Lehrer + 
+                                    "</div> " +
+                                    "<div class='timetable_lessonMovedInfo'>" +
+                                        "Von " + Moved_lessons[i].ZiehtVorDatum.ToString("dd.MM") + 
+                                    "</div> " + 
+                                "</div>";
 
                 // if there is no entry on this lesson
                 else if (String.IsNullOrEmpty(lesson.Fach))
-                    HtmlTableData.Add("<div class='td' style='height:" + LessonHeight + "vh'>" + exam + "<div class='timetable_noLesson'> \n <div style ='opacity: 0; background-color: transparent' class='timetable_subjectInfo'>" +
-                            "Lesson_Fill" + "</div> \n <div style ='opacity: 0; background - color: divansparent' class='timetable_teacherInfo'>" +
-                            "Teacher_Fill" + "</div> \n" +
-                            "</div> </div>\n");
+                    html +=     "<div class='timetable_noLesson'> " +
+                                    "<div style ='opacity: 0; background-color: transparent' class='timetable_subjectInfo'>" +
+                                        "Lesson_Fill" + 
+                                    "</div> " + 
+                                    "<div style ='opacity: 0; background - color: divansparent' class='timetable_teacherInfo'>" +
+                                        "Teacher_Fill" + 
+                                    "</div>" +
+                                "</div>";
 
                 // if lesson is cancelled
                 else if (lesson.Entfällt)
-                    HtmlTableData.Add("<div class='td' style='height:" + LessonHeight + "vh'>" + exam + "<div class='timetable_lessonCancelled'> \n <div class='timetable_subjectInfo'>" +
-                            lesson.Fach + "</div> \n <div class='timetable_teacherInfo'>" +
-                            lesson.Lehrer + "</div> \n" +
-                            "</div> </div>\n");
+                    html +=     "<div class='timetable_lessonCancelled'> " +
+                                    "<div class='timetable_subjectInfo'>" +
+                                        lesson.Fach + 
+                                    "</div> " +
+                                    "<div class='timetable_teacherInfo'>" +
+                                        lesson.Lehrer + 
+                                    "</div> " +
+                                "</div>";
 
                 // if lesson moved to another day
                 else if (lesson.ZiehtVor >= 0)
-                    HtmlTableData.Add("<div class='td' style='height:" + LessonHeight + "vh'>" + exam + "<div class='timetable_lessonMovedOut'> \n <div class='timetable_subjectInfo'>" +
-                            lesson.Fach + "</div> \n <div class='timetable_teacherInfo'>" +
-                            lesson.Lehrer + "</div> \n <div class='timetable_lessonMovedInfo'>" +
-                            "Auf " + lesson.ZiehtVorDatum.ToString("dd.MM") + "</div>  \n" +
-                            "</div> </div>\n");
+                    html +=     "<div class='timetable_lessonMovedOut'>" + 
+                                    "<div class='timetable_subjectInfo'>" +
+                                        lesson.Fach + 
+                                    "</div>" +
+                                    "<div class='timetable_teacherInfo'>" +
+                                        lesson.Lehrer + 
+                                    "</div> " +
+                                    "<div class='timetable_lessonMovedInfo'>" +
+                                        "Auf " + lesson.ZiehtVorDatum.ToString("dd.MM") + 
+                                    "</div>" +
+                                "</div>";
 
-                // if normal lesson
+                // normal lesson
                 else
-                    HtmlTableData.Add("<div class='td' style='height:" + LessonHeight + "vh'>" + exam + "<div class='timetable_lesson'> \n <div class='timetable_subjectInfo'>" +
-                            lesson.Fach + "</div> \n <div class='timetable_teacherInfo'>" +
-                            lesson.Lehrer + "</div> \n" +
-                            "</div> </div>\n");
+                    html +=     "<div class='timetable_lesson'>" + 
+                                    "<div class='timetable_subjectInfo'>" +
+                                        lesson.Fach + 
+                                    "</div>" + 
+                                    "<div class='timetable_teacherInfo'>" +
+                                        lesson.Lehrer + 
+                                    "</div>" + 
+                                "</div>";
+
+                // close container
+                html += "</div>";
+
+                HtmlTableData.Add(html);
                 
             }
         }

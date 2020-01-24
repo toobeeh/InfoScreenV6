@@ -1,21 +1,62 @@
 ﻿// Javascript / jQuery to initialise controls of advanced features like sliders and checkboxes
 
+var CbExamsAnimation;
+var CbClockTile;
+var CbClassDetailsTile;
+var CbUpcomingExamsTile;
+
+
 $(document).ready(function () {
+
+    CbExamsAnimation = document.getElementById("animateUpcomingExamLessons");
+    CbClockTile = document.getElementById("--displayClockTile");
+    CbClassDetailsTile = document.getElementById("--displayClassDetailsTile");
+    CbUpcomingExamsTile = document.getElementById("--displayUpcomingExamsTile");
 
     initSliders();
     
-    initCheckBoxes()
+    initCheckBoxes();
 
+    initRadios();
 
     // Write initial values of checkboxes to span and datafield
 
-    $("#animateUpcomingExamLessons").trigger('change');
-    $("#displayClockTile").trigger('change');
-    $("#displayClassDetailsTile").trigger('change');
-    $("#displayUpcomingExamsTile").trigger('change');
+    $(CbExamsAnimation).trigger('change');
+    $(CbClockTile).trigger('change');
+    $(CbClassDetailsTile).trigger('change');
+    $(CbUpcomingExamsTile).trigger('change');
 
 
 });
+
+function initRadios() {
+
+    //set init value
+    $("input[name='markActiveLesson'][value='" + $("#Content_markActiveLesson_container").attr('data-init') + "']").attr('checked', 'checked');
+    $("#Content_markActiveLesson").val($("input[name='markActiveLesson']:checked").val())
+
+    // set change event
+    $("input[name='markActiveLesson']").change(function () {
+
+        // write value to datafield
+        $("#Content_markActiveLesson").val($("input[name='markActiveLesson']:checked").val())
+
+        //phew... for all labels in a radio group: 
+        //      if the 'by for' linked input value is equal to the ...linked input group selected value... remove unchecked style
+        //      else add unchecked style
+        $(".radioGroup > label").each(function () {
+            if ($("#" + $(this).attr('for')).val() == $("input[name='" + $("#" + $(this).attr('for')).attr('name') + "']:checked").val())
+                $(this).removeClass('unchecked');
+            else $(this).addClass('unchecked');
+        });
+    });
+
+    // Init unchecked style with same algorithm as above
+    $(".radioGroup > label").each(function () {
+        if ($("#" + $(this).attr('for')).val() != $("input[name='" + $("#" + $(this).attr('for')).attr('name') + "']:checked").val())
+            $(this).addClass('unchecked');
+    });
+}
 
 function initSliders() {
 
@@ -24,6 +65,7 @@ function initSliders() {
     let et = parseInt($("#Content_showExamTimeMs_container").attr("data-init"));
     let ets = parseInt($("#Content_examTimesShown_container").attr("data-init"));
     let ed = parseInt($("#Content_examAnimationDuration_container").attr("data-init"));
+    let op = parseInt($("#Content_timetableActiveLessonMarkerOpacity_container").attr("data-init"));
 
     // initialize sliders
 
@@ -96,8 +138,29 @@ function initSliders() {
             },
             create: function (event, ui) {
                 // update value on prog. change
-                $("#Content_examAnimationDuration_container").text(ed); // Span shows (time show + time hide) aka interval length
-                $("#Content_examAnimationDuration").val(ed); // Data field stores how many intervals per cycle are made
+                $("#Content_examAnimationDuration_container").text(ed/1000); // Span shows (time show + time hide) aka interval length
+                $("#Content_examAnimationDuration").val(ed/1000); // Data field stores how many intervals per cycle are made
+            }
+        }
+    );
+
+    $("#timetableActiveLessonMarkerOpacity").slider(
+        {
+            min: 0,
+            max: 255,
+            value: op,
+            slide: function (event, ui) {
+                $("#Content_timetableActiveLessonMarkerOpacity_container").text(ui.value);
+                $("#Content_timetableActiveLessonMarkerOpacity").val(ui.value); 
+            },
+            change: function (event, ui) {
+                $("#Content_timetableActiveLessonMarkerOpacity_container").text(ui.value);
+                $("#Content_timetableActiveLessonMarkerOpacity").val(ui.value); 
+            },
+            create: function (event, ui) {
+                // update value on prog. change
+                $("#Content_timetableActiveLessonMarkerOpacity_container").text(op); 
+                $("#Content_timetableActiveLessonMarkerOpacity").val(op); 
             }
         }
     );
@@ -107,41 +170,36 @@ function initSliders() {
 function initCheckBoxes() {
     // initialize checkbox events
 
-    $("#animateUpcomingExamLessons").change(function () {
-        $("#Content_animateUpcomingExamLessons_container").text(this.checked ? "Aktiviert" : "Deaktiviert");
-        $("#Content_animateUpcomingExamLessons").val(this.checked ? "true" : "false");
+    $(CbExamsAnimation).change(function () {
+        $("#Content_animateUpcomingExamLessons").val(CbExamsAnimation.checked ? "true" : "false");
     });
 
-    $("#displayClockTile").change(function () {
-        $("#Content_displayClockTile_container").text(this.checked ? "Aktiviert" : "Deaktiviert");
-        $("#Content_displayClockTile").val(this.checked ? "true" : "false");
+    $(CbClockTile).change(function () {
+        $("#Content_displayClockTile").val(CbClockTile.checked ? "true" : "false");
     });
 
-    $("#displayClassDetailsTile").change(function () {
-        $("#Content_displayClassDetailsTile_container").text(this.checked ? "Aktiviert" : "Deaktiviert");
-        $("#Content_displayClassDetailsTile").val(this.checked ? "true" : "false");
+    $(CbClassDetailsTile).change(function () {
+        $("#Content_displayClassDetailsTile").val(CbClassDetailsTile.checked ? "true" : "false");
     });
 
-    $("#displayUpcomingExamsTile").change(function () {
-        $("#Content_displayUpcomingExamsTile_container").text(this.checked ? "Aktiviert" : "Deaktiviert");
-        $("#Content_displayUpcomingExamsTile").val(this.checked ? "true" : "false");
+    $(CbUpcomingExamsTile).change(function () {
+        $("#Content_displayUpcomingExamsTile").val(CbUpcomingExamsTile.checked ? "true" : "false");
     });
 
     // Get and set initial values
 
-    $("#animateUpcomingExamLessons").prop('checked',
-        $("#Content_animateUpcomingExamLessons_container").attr("data-init").includes("true"));
+    $(CbExamsAnimation).prop('checked',
+        $("#Content_animateUpcomingExamLessons_container").attr("data-init").toLowerCase().includes("true"));
 
-    $("#displayClockTile").prop('checked',
-        $("#Content_displayClockTile_container").attr("data-init").includes("true"));
+    $(CbClockTile).prop('checked',
+        $("#Content_--displayClockTile_container").attr("data-init").toLowerCase().includes("true"));
 
-    $("#displayClassDetailsTile").prop('checked',
-        $("#Content_displayClassDetailsTile_container").attr("data-init").includes("true"));
+    $(CbClassDetailsTile).prop('checked',
+        $("#Content_--displayClassDetailsTile_container").attr("data-init").toLowerCase().includes("true"));
 
-    $("#displayUpcomingExamsTile").prop('checked',
-        $("#Content_displayUpcomingExamsTile_container").attr("data-init").includes("true"));
+    $(CbUpcomingExamsTile).prop('checked',
+        $("#Content_--displayUpcomingExamsTile_container").attr("data-init").toLowerCase().includes("true"));
 }
-
 
 function sliderChanged(event, ui) {
 
@@ -192,7 +250,6 @@ function sliderChanged(event, ui) {
     $("#Content_examAnimationDuration").val(animationDuration);
 
 }
-
 
 function getValues(slidetime, testtime ) {
 

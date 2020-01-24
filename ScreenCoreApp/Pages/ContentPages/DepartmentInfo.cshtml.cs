@@ -13,13 +13,13 @@ namespace ScreenCoreApp
     {
 
         public string InfoHtmlMarkup;
-        public void OnGet()
+        public IActionResult OnGet()
         {
             int screenID = Screen.GetSessionScreenID(HttpContext);
 
             InfoHtmlMarkup = GeneralFunctions.ConvertBBtoHTML(DatenbankAbrufen.AbteilungsinfoAbrufen(screenID.ToString()));
 
-            DatenbankAbrufen.DBClose();
+            return Page();
         }
     }
 }

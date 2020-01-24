@@ -13,11 +13,13 @@ namespace ScreenCoreApp.Pages.ContentPages
 
         public string Slide;
         public string Webpath;
-        public void OnGet(string slide)
+        public IActionResult OnGet(string slide)
         {
             Slide = slide.Substring(0,slide.IndexOf('_'));
             Webpath = slide.Substring(slide.IndexOf('_') + 1);
             Webpath = Webpath.Replace("-", "\\");
+
+            return Page();
         }
 
     }

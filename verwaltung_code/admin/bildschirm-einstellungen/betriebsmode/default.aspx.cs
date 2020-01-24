@@ -15,8 +15,7 @@ namespace Infoscreen_Verwaltung.admin.bildschirm_einstellungen.betriebsmode
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //System.Diagnostics.Process.Start("Notepad.exe");
-
+           
             if (!classes.Login.Angemeldet)
             {
                 Session.Clear();
@@ -33,8 +32,6 @@ namespace Infoscreen_Verwaltung.admin.bildschirm_einstellungen.betriebsmode
                 Response.Redirect("../");
                 return;
             }
-
-           
 
             überschrift.InnerText = "Betriebsmode '" + ((Structuren.Betriebsmodi)Session["21_Daten"]).bezeichnung + "' verwalten";
 
@@ -90,11 +87,6 @@ namespace Infoscreen_Verwaltung.admin.bildschirm_einstellungen.betriebsmode
 
             cell = new TableCell();
             cell.Text = "Supplierplan";
-            cell.CssClass = "head";
-            row.Cells.Add(cell);
-
-            cell = new TableCell();
-            cell.Text = "Aktuelle Suppl.";
             cell.CssClass = "head";
             row.Cells.Add(cell);
 

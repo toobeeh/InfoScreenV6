@@ -21,7 +21,7 @@ namespace ScreenCoreApp
 
         Dictionary<DateTime, List<Structuren.Tests>> ExamDays = new Dictionary<DateTime, List<Structuren.Tests>>();
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
             // Get data necessairy to fetch timetable
             int screenID = Screen.GetSessionScreenID(HttpContext);
@@ -31,7 +31,7 @@ namespace ScreenCoreApp
 
             if (String.IsNullOrEmpty(defaultClass))
             {
-                Screen.RedirectAndCloseDB("/Pages/NoContent", Response);
+                return Redirect("/NoContent/?error=418");
             }
 
 
@@ -43,14 +43,13 @@ namespace ScreenCoreApp
 
             //Get Tests
             Exams = DatenbankAbrufen.TestsAbrufen(ClassName, false, true).ToList();
-            //if(Exams.Count > 5) Exams.RemoveRange(4, Exams.Count - 5);
 
             //Get timetable
             List<Structuren.StundenplanTag> timetable_days =  SubjectFunctions.StundenplanAbrufen(defaultClass, false).ToList();
             
             List<List<Structuren.StundenplanEntry>> moved_lessons_days = new List<List<Structuren.StundenplanEntry>>();
 
-            //Get all moved lessons per day for each days in timetable
+            //Get all moved lessons per day for each day in timetable
             timetable_days.ForEach((day) =>
             {
                 moved_lessons_days.Add(DatenbankAbrufen.GetMovedLessonsOfDay(depID, defaultClass, day.Datum));
@@ -64,13 +63,13 @@ namespace ScreenCoreApp
             });
             ZerothLesson = zerothLesson;
 
-            //Get highes amount of lessons per day
+            //Get highest amount of lessons per day
             int maxLesson = 0;
             timetable_days.ForEach((day) =>
             {
                 if (day.StundenDaten[day.StundenDaten.Length-1].Stunde > maxLesson) maxLesson = day.StundenDaten[day.StundenDaten.Length - 1].Stunde;
             });
-            LessonCount = maxLesson;
+            LessonCount = maxLesson + (zerothLesson ? 1 : 0);
 
             //Fill Test-Day Dictionary
             Exams.ForEach((exam) =>
@@ -87,13 +86,12 @@ namespace ScreenCoreApp
             List<Classes.HtmlTimetableColumn> columns = new List<HtmlTimetableColumn>();
             timetable_days.ForEach((day) =>
             {
-                columns.Add(new HtmlTimetableColumn(day, (ExamDays.ContainsKey(day.Datum) ? ExamDays[day.Datum] : new List<Structuren.Tests>()), moved_lessons_days[timetable_days.IndexOf(day)], zerothLesson, maxLesson+1));
+                columns.Add(new HtmlTimetableColumn(day, (ExamDays.ContainsKey(day.Datum) ? ExamDays[day.Datum] : new List<Structuren.Tests>()), moved_lessons_days[timetable_days.IndexOf(day)], zerothLesson, LessonCount));
             });
 
             Days = columns;
 
-
-            DatenbankAbrufen.DBClose();
+            return Page();
         }
     }
 }

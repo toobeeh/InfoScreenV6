@@ -35,8 +35,6 @@ namespace ScreenCoreApp.Classes
                 ret[i].Zeit = Daten.Rows[i]["Zeit"].ToDateTime();
             }
 
-            DatenbankAbrufen.DBClose();
-
             return ret;
         }
         static public void ZGALoeschen(ZGA _ZGA) //Löscht die übergebene ZGA in der DB
@@ -46,9 +44,8 @@ namespace ScreenCoreApp.Classes
         AND [BetriebsmodeID] = '" + _ZGA.BetriebsmodeID + @"'
         AND [Zeit] = '" + _ZGA.Zeit + "'";
 
-            Infoscreen_Verwaltung.classes.DatenbankAbrufen.DatenbankAbfrage(Befehl);
+            DatenbankAbrufen.DatenbankAbfrage(Befehl);
 
-            DatenbankAbrufen.DBClose();
         }
         static public void ZGAAbfragen(int _BildschirmID) //Überprüft ob die ZGA ausgelöst wurde, ändert den Standard-Betriebsmodus und löscht den Eintrag
         {
@@ -75,7 +72,6 @@ namespace ScreenCoreApp.Classes
                 ZGALoeschen(dummy[0]);
             }
 
-            DatenbankAbrufen.DBClose();
         }
     }
     
