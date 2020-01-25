@@ -314,6 +314,11 @@ body {
     color: var(--timetable_lessonCancelled_textCol);
 }
 
+.timetable_lessonReplaced {
+    color: red;
+    color: var(--timetable_lessonCancelled_textCol);
+}
+
 .timetable_activeLesson {
     border-radius: 2vh;
     background-color: var(--timetable_activeLessonBack);
@@ -328,19 +333,20 @@ body {
     border-bottom: 2px solid var(--timetable_activeLessonBorder);
 }
 
-.timetable_lessonMovedIn, .timetable_lessonMovedOut, .timetable_lessonCancelled {
+.timetable_lessonMovedIn, .timetable_lessonMovedOut, .timetable_lessonCancelled, .timetable_lessonReplaced {
     font-size: 1.8vh;
 }
 
     .timetable_lessonMovedOut > .timetable_subjectInfo, .timetable_lessonMovedOut > .timetable_teacherInfo,
-        .timetable_lessonCancelled > .timetable_subjectInfo, .timetable_lessonCancelled > .timetable_teacherInfo,
-        .timetable_lessonMovedIn > .timetable_subjectInfo, .timetable_lessonMovedIn > .timetable_teacherInfo {
+    .timetable_lessonCancelled > .timetable_subjectInfo, .timetable_lessonCancelled > .timetable_teacherInfo,
+    .timetable_lessonMovedIn > .timetable_subjectInfo, .timetable_lessonMovedIn > .timetable_teacherInfo,
+    .timetable_lessonReplaced > .timetable_subjectInfo, .timetable_lessonReplaced > .timetable_teacherInfo {
         display: inline;
         /*text-decoration: line-through;*/
     }
 
         .timetable_lessonMovedIn > .timetable_subjectInfo::after, .timetable_lessonMovedOut > .timetable_subjectInfo::after,
-            .timetable_lessonCancelled > .timetable_subjectInfo::after {
+        .timetable_lessonCancelled > .timetable_subjectInfo::after, .timetable_lessonReplaced > .timetable_subjectInfo::after {
             content: " / ";
         }
 
@@ -352,6 +358,18 @@ body {
         color: red;
         color: var(--timetable_lessonCancelled_textCol);
     }
+
+
+.timetable_teacherReplacement::before{
+    content: "Ersatz: ";
+}
+    .timetable_teacherReplacement {
+    display: block;
+    font-size: 2vh;
+    font-weight: bolder;
+    color: white;
+    color: var(--font_col);
+}
 
 .timetable_lessonNum {
     width: 5% !important;
@@ -372,14 +390,20 @@ body {
     font-weight: bolder;
 }
 
+.timetable_lesson {
+    transition: color var(--examAnimationDuration);
+}
+
 .timetable_lesson .timetable_teacherInfo{display:none;}
 
 .timetable_exam {
     display: none;
+    height: 0;
     border: 3px solid var(--timetable_examInfoCol);
     border-radius: 3px;
     padding: 3px;
     color: var(--timetable_examInfoCol);
+    transition: color var(--examAnimationDuration), border-color var(--examAnimationDuration);
 }
 
 /* Styling for class information displayed over the header row */

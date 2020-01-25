@@ -41,12 +41,10 @@ var lessonStartTimes = [
     height = heightpermin * minutes;
 
     timeMarker.style.height = height + "vh";
-    //timeMarker.style.borderBottom = "2px solid red";
     timeMarker.classList.add("timetable_activeLessonProgress");
     timeMarker.classList.add("timetable_activeLessonBorder");
 
     lessonCell.style.position = "relative";
     lessonCell.appendChild(timeMarker);
-
 
 })();

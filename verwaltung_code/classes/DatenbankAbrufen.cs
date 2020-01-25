@@ -602,7 +602,7 @@ ORDER BY [Supplierungen].[Datum] , [Supplierungen].[Stunde] , [Supplierungen].[K
             }
             else
             {
-                befehl = @"SELECT
+                befehl = @"SELECT DISTINCT
 [Supplierungen].[ErsatzFach] AS ErsatzFach,
 [Supplierungen].[StattLehrerKürzel] AS StattLehrerKürzel,
 [Supplierungen].[ErsatzLehrerKürzel] AS ErsatzLehrerKürzel,

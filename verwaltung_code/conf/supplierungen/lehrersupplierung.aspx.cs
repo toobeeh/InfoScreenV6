@@ -151,7 +151,7 @@ namespace Infoscreen_Verwaltung.conf.supplierungen
                         try
                         {
                             DatenbankSchreiben.SupplierungenEintragen(abtID, eintrag, -1, tbGrund.Text);
-                            Response.Redirect("table.aspx");
+                            //Response.Redirect("table.aspx");
                             // ISv6: Redir to table
                             supplehrer[i].Enabled = true;
                             entfall[i].Checked = false;
@@ -202,7 +202,7 @@ namespace Infoscreen_Verwaltung.conf.supplierungen
                         DatenbankSchreiben.SupplierungenEintragen(abtID, eintrag, -1, tbGrund.Text);
                         supplehrer[i].Text = "";
                         lbHinweis.Text = "Supplierung erfolgreich eingetragen!";
-                        Response.Redirect("table.aspx");
+                        //Response.Redirect("table.aspx");
                         // ISv6: Redir to table
                         lbHinweis.ForeColor = System.Drawing.Color.Green;
                     }

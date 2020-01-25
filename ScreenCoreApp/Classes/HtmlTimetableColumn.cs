@@ -120,7 +120,7 @@ namespace ScreenCoreApp.Classes
 
                 //Create text span if exam is in lesson
                 if (!String.IsNullOrEmpty(Exams[i].Fach)) 
-                    html+= "<span class='timetable_exam' id='" + Exams[i].Datum.ToString("yyyyMMdd") + "-" + Exams[i].Fach + "'>TEST</span>";
+                    html+= "<span class='timetable_exam' style='color:transparent; border-color:transparent' id='" + Exams[i].Datum.ToString("yyyyMMdd") + "-" + Exams[i].Fach + "-" + Exams[i].Stunde + "'>TEST</span>";
 
                 // lesson info container:
 
@@ -157,6 +157,20 @@ namespace ScreenCoreApp.Classes
                                     "</div> " +
                                     "<div class='timetable_teacherInfo'>" +
                                         lesson.Lehrer + 
+                                    "</div> " +
+                                "</div>";
+
+                // if teacher is replaced
+                else if (lesson.Supplierung)
+                    html += "<div class='timetable_lessonReplaced'> " +
+                                    "<div class='timetable_subjectInfo'>" +
+                                        lesson.Fach +
+                                    "</div> " +
+                                     "<div class='timetable_teacherInfo'>" +
+                                        lesson.Lehrer +
+                                    "</div> " +
+                                    "<div class='timetable_teacherReplacement'>" +
+                                        lesson.Ersatzlehrer +
                                     "</div> " +
                                 "</div>";
 

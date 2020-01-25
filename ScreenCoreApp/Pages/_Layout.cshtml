@@ -40,7 +40,8 @@
             --timetable_activeLessonBack: @DatenbankAbrufen.GetSettingValue("--timetable_activeLessonMarkerCol", activeTheme)@(DatenbankAbrufen.GetSettingValue("timetableActiveLessonMarkerOpacity").ToInt32().ToString("X2"));
             /* Theme-independent settings*/
             --displayClockTile: @(bool.Parse(DatenbankAbrufen.GetSettingValue("--displayClockTile")) ? "flex" : "none");
-            --displayClassDetailsTile: @(bool.Parse(DatenbankAbrufen.GetSettingValue("--displayClassDetailsTile")) ? "block" : "none")
+            --displayClassDetailsTile: @(bool.Parse(DatenbankAbrufen.GetSettingValue("--displayClassDetailsTile")) ? "block" : "none");
+            --examAnimationDuration: @(DatenbankAbrufen.GetSettingValue("examAnimationDuration").ToInt32()/2)ms;
 ;
             --displayUpcomingExamsTile:
     @(bool.Parse(DatenbankAbrufen.GetSettingValue("--displayUpcomingExamsTile")) ? "block" : "none");
