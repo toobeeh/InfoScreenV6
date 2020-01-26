@@ -86,7 +86,7 @@ namespace ScreenCoreApp
             List<Classes.HtmlTimetableColumn> columns = new List<HtmlTimetableColumn>();
             timetable_days.ForEach((day) =>
             {
-                columns.Add(new HtmlTimetableColumn(day, (ExamDays.ContainsKey(day.Datum) ? ExamDays[day.Datum] : new List<Structuren.Tests>()), moved_lessons_days[timetable_days.IndexOf(day)], zerothLesson, LessonCount));
+                columns.Add(new HtmlTimetableColumn(day, ClassName, (ExamDays.ContainsKey(day.Datum) ? ExamDays[day.Datum] : new List<Structuren.Tests>()), moved_lessons_days[timetable_days.IndexOf(day)], zerothLesson, LessonCount));
             });
 
             Days = columns;

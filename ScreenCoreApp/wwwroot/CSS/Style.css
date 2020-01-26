@@ -371,6 +371,16 @@ body {
     color: var(--font_col);
 }
 
+.timetable_replacedTeacherInfo {
+    display: inline;
+}
+
+.timetable_lessonReplaced > .timetable_teacherInfo {
+    color: white;
+    color: var(--font_col);
+    font-size: 1.8vh;
+}
+
 .timetable_lessonNum {
     width: 5% !important;
     font-size: 2vh;

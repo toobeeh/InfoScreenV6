@@ -2380,6 +2380,40 @@ ORDER BY [Stundenplan].[Klasse]";
             return exam;
         }
 
+        public static Structuren.Supplierungen GetReplacementOfLesson(Structuren.StundenplanEntry lesson, string className, DateTime date)
+        {
+            string sql = $"SELECT * FROM Supplierungen WHERE " +
+                            $"Klasse='{className}' AND Datum='{date.ToString("yyyy-MM-dd")}' AND Stunde={lesson.Stunde} ";
+            DataTable result = DatenbankAbfrage(sql);
+
+            Structuren.Supplierungen replacement = new Structuren.Supplierungen();
+            replacement.Datum = date;
+            replacement.Entfällt = lesson.Entfällt;
+            replacement.Stunde = lesson.Stunde;
+            replacement.Raum = lesson.Raum.ToString();
+            replacement.ZiehtVor = lesson.ZiehtVor;
+            replacement.ZiehtVorDatum = lesson.ZiehtVorDatum;
+
+            if (result.Rows.Count < 1) return replacement;
+
+            string repTeachers = "";
+            string origTeachers = "";
+
+            for(int row = 0; row<result.Rows.Count; row++)
+            {
+                if (!repTeachers.Contains(result.Rows[row]["ErsatzLehrerKürzel"].ToString())) 
+                    repTeachers+= result.Rows[row]["ErsatzLehrerKürzel"].ToString() + "/";
+                if (!origTeachers.Contains(result.Rows[row]["StattLehrerKürzel"].ToString()))
+                    origTeachers += result.Rows[row]["StattLehrerKürzel"].ToString() + "/";
+            }
+
+            replacement.Ersatzlehrer = repTeachers.Substring(0, repTeachers.Length - 1);
+            replacement.Ursprungslehrer = origTeachers.Substring(0, origTeachers.Length - 1);
+
+            return replacement;
+
+        }
+
 
         #endregion
 

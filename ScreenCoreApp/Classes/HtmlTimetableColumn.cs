@@ -18,11 +18,12 @@ namespace ScreenCoreApp.Classes
         const double DayHeight = 1.8;
         const double DateHeight = 1.5;
         double LessonHeight;
+        string ClassName;
 
         public List<string> HtmlTableData { get; private set; }
 
 
-        public HtmlTimetableColumn(Structuren.StundenplanTag day, List<Structuren.Tests> exams, List<Structuren.StundenplanEntry> moved_lessons, bool _zerothLesson = false, int _totalLessons = 12)
+        public HtmlTimetableColumn(Structuren.StundenplanTag day, string className, List<Structuren.Tests> exams, List<Structuren.StundenplanEntry> moved_lessons, bool _zerothLesson = false, int _totalLessons = 12)
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
             Day = day;
@@ -30,6 +31,7 @@ namespace ScreenCoreApp.Classes
             TotalLessons = _totalLessons;
             ZerothLesson = _zerothLesson;
             Exams = exams;
+            ClassName = className;
 
             HtmlTableData = new List<string>();
 
@@ -126,77 +128,92 @@ namespace ScreenCoreApp.Classes
 
                 // If a lesson from another day moved here
                 if (!String.IsNullOrEmpty(Moved_lessons[i].Lehrer))
-                    html +=     "<div class='timetable_lessonMovedIn'>" +
+                    html += "<div class='timetable_lessonMovedIn'>" +
                                     "<div class='timetable_subjectInfo'>" +
-                                        Moved_lessons[i].Fach + 
+                                        Moved_lessons[i].Fach +
                                     "</div> " +
                                     "<div class='timetable_teacherInfo'>" +
-                                        Moved_lessons[i].Lehrer + 
+                                        Moved_lessons[i].Lehrer +
                                     "</div> " +
                                     "<div class='timetable_lessonMovedInfo'>" +
-                                        "Von " + Moved_lessons[i].ZiehtVorDatum.ToString("dd.MM") + 
-                                    "</div> " + 
+                                        "Von " + Moved_lessons[i].ZiehtVorDatum.ToString("dd.MM") +
+                                    "</div> " +
                                 "</div>";
 
                 // if there is no entry on this lesson
                 else if (String.IsNullOrEmpty(lesson.Fach))
-                    html +=     "<div class='timetable_noLesson'> " +
+                    html += "<div class='timetable_noLesson'> " +
                                     "<div style ='opacity: 0; background-color: transparent' class='timetable_subjectInfo'>" +
-                                        "Lesson_Fill" + 
-                                    "</div> " + 
+                                        "Lesson_Fill" +
+                                    "</div> " +
                                     "<div style ='opacity: 0; background - color: divansparent' class='timetable_teacherInfo'>" +
-                                        "Teacher_Fill" + 
+                                        "Teacher_Fill" +
                                     "</div>" +
                                 "</div>";
 
                 // if lesson is cancelled
                 else if (lesson.Entfällt)
-                    html +=     "<div class='timetable_lessonCancelled'> " +
+                    html += "<div class='timetable_lessonCancelled'> " +
                                     "<div class='timetable_subjectInfo'>" +
-                                        lesson.Fach + 
+                                        lesson.Fach +
                                     "</div> " +
                                     "<div class='timetable_teacherInfo'>" +
-                                        lesson.Lehrer + 
+                                        lesson.Lehrer +
                                     "</div> " +
                                 "</div>";
 
                 // if teacher is replaced
                 else if (lesson.Supplierung)
+                {
+                    Structuren.Supplierungen replacement = DatenbankAbrufen.GetReplacementOfLesson(lesson, ClassName, Day.Datum);
+
+
+                    List<string> replacedTeachers = replacement.Ursprungslehrer.Split('/').ToList();
+                    replacedTeachers.ForEach((teacher) =>
+                    {
+                        lesson.Lehrer=lesson.Lehrer.Replace(teacher.Trim('/'), "").Trim('/');
+                    });
+
                     html += "<div class='timetable_lessonReplaced'> " +
                                     "<div class='timetable_subjectInfo'>" +
                                         lesson.Fach +
+                                    "</div> " +
+                                    "<div class='timetable_replacedTeacherInfo'>" +
+                                        replacement.Ursprungslehrer +
                                     "</div> " +
                                      "<div class='timetable_teacherInfo'>" +
                                         lesson.Lehrer +
                                     "</div> " +
                                     "<div class='timetable_teacherReplacement'>" +
-                                        lesson.Ersatzlehrer +
+                                        replacement.Ersatzlehrer +
                                     "</div> " +
                                 "</div>";
+                }
+
 
                 // if lesson moved to another day
                 else if (lesson.ZiehtVor >= 0)
-                    html +=     "<div class='timetable_lessonMovedOut'>" + 
+                    html += "<div class='timetable_lessonMovedOut'>" +
                                     "<div class='timetable_subjectInfo'>" +
-                                        lesson.Fach + 
+                                        lesson.Fach +
                                     "</div>" +
                                     "<div class='timetable_teacherInfo'>" +
-                                        lesson.Lehrer + 
+                                        lesson.Lehrer +
                                     "</div> " +
                                     "<div class='timetable_lessonMovedInfo'>" +
-                                        "Auf " + lesson.ZiehtVorDatum.ToString("dd.MM") + 
+                                        "Auf " + lesson.ZiehtVorDatum.ToString("dd.MM") +
                                     "</div>" +
                                 "</div>";
 
                 // normal lesson
                 else
-                    html +=     "<div class='timetable_lesson'>" + 
+                    html += "<div class='timetable_lesson'>" +
                                     "<div class='timetable_subjectInfo'>" +
-                                        lesson.Fach + 
-                                    "</div>" + 
+                                        lesson.Fach +
+                                    "</div>" +
                                     "<div class='timetable_teacherInfo'>" +
-                                        lesson.Lehrer + 
-                                    "</div>" + 
+                                        lesson.Lehrer +
+                                    "</div>" +
                                 "</div>";
 
                 // close container
