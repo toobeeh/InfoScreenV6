@@ -167,7 +167,7 @@ namespace ScreenCoreApp.Classes
                 {
                     Structuren.Supplierungen replacement = DatenbankAbrufen.GetReplacementOfLesson(lesson, ClassName, Day.Datum);
 
-
+                    // Remove replaced teachers from teachers and display in an separate div with different style
                     List<string> replacedTeachers = replacement.Ursprungslehrer.Split('/').ToList();
                     replacedTeachers.ForEach((teacher) =>
                     {

@@ -24,11 +24,11 @@ namespace ScreenCoreApp
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
 
-            // app.UseDeveloperExceptionPage(); -> For debugging
-            app.UseExceptionHandler("/NoContent?error={0}"); // For Internal error page
+            app.UseDeveloperExceptionPage(); //-> For debugging
+            //app.UseExceptionHandler("/NoContent?error={0}"); // For Internal error page
             app.UseHsts(); // For Internal error page
 
-            app.UseStatusCodePagesWithRedirects("/NoContent?error={0}");
+           // app.UseStatusCodePagesWithRedirects("/NoContent?error={0}");
             app.UseSession();
             app.UseStaticFiles();
             app.UseMvc();

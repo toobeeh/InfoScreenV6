@@ -49,7 +49,7 @@ namespace Infoscreen_Verwaltung.admin.bildschirm_einstellungen.betriebsmode
             lbFehler.Text = "";
 
             int id = DatenbankSchreiben.NeueDatei(((Structuren.Betriebsmodi)Session["21_Daten"]).id, tbName.Text);
-            string pfad = @"D:\infoscreen_publish\Screen\presentations\" + ((Structuren.Betriebsmodi)Session["21_Daten"]).id.ToString() + "\\" + id.ToString() + "\\";
+            string pfad = Properties.Resources.speicherort + ((Structuren.Betriebsmodi)Session["21_Daten"]).id.ToString() + "\\" + id.ToString() + "\\";
             System.IO.Directory.CreateDirectory(pfad);
             file.SaveAs(pfad + "Datei." + fileende);
 

@@ -2380,12 +2380,20 @@ ORDER BY [Stundenplan].[Klasse]";
             return exam;
         }
 
+        /// <summary>
+        /// Gets all replaced teachers for a lesson
+        /// </summary>
+        /// <param name="lesson">The source lesson</param>
+        /// <param name="className">The affected class</param>
+        /// <param name="date">The date</param>
+        /// <returns></returns>
         public static Structuren.Supplierungen GetReplacementOfLesson(Structuren.StundenplanEntry lesson, string className, DateTime date)
         {
-            string sql = $"SELECT * FROM Supplierungen WHERE " +
+            string sql = "SELECT * FROM Supplierungen WHERE " +
                             $"Klasse='{className}' AND Datum='{date.ToString("yyyy-MM-dd")}' AND Stunde={lesson.Stunde} ";
             DataTable result = DatenbankAbfrage(sql);
 
+            // New empty replacement
             Structuren.Supplierungen replacement = new Structuren.Supplierungen();
             replacement.Datum = date;
             replacement.Entfällt = lesson.Entfällt;
@@ -2399,6 +2407,7 @@ ORDER BY [Stundenplan].[Klasse]";
             string repTeachers = "";
             string origTeachers = "";
 
+            // get all replaced teachers and new teachers
             for(int row = 0; row<result.Rows.Count; row++)
             {
                 if (!repTeachers.Contains(result.Rows[row]["ErsatzLehrerKürzel"].ToString())) 

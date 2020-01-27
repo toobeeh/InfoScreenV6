@@ -162,7 +162,7 @@ namespace ScreenCoreApp.Pages
             if (powerpointID == -1) return -1;
 
 
-            string presentationRoot = Path.Combine(new string[] { @"D:\infoscreen_publish\Screen\Presentations\", modeID.ToString(),powerpointID.ToString() });
+            string presentationRoot = Path.Combine(new string[] {Properties.Resources.pptPath, modeID.ToString(),powerpointID.ToString() });
             presentation = powerpointID.ToString();
             return Directory.GetFiles(presentationRoot, "*.png").ToList().Count;
         }

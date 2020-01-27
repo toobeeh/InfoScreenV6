@@ -117,56 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="sql_database" xml:space="preserve">
-    <value>Infoscreen_1.0</value>
-    <comment>SQL Datenbank zu der eine Verbindung aufgebaut wird.</comment>
-  </data>
-  <data name="sql_datumformat" xml:space="preserve">
-    <value>yyyy-MM-dd</value>
-    <comment>Der Format des Datums in der Datenbank.</comment>
-  </data>
-  <data name="sql_password" xml:space="preserve">
-    <value>*x-?password-/secure80):passWoRt*</value>
-    <comment>Das Passwort das zum Aufbau der SQL-Verbindung verwendet wird.</comment>
-  </data>
-  <data name="sql_server" xml:space="preserve">
-    <value>ELV-SCREEN-2\INFOSCREEN</value>
-    <comment>Der Servername zu dem eine SQL Verbindung aufgebaut wird.</comment>
-  </data>
-  <data name="sql_user" xml:space="preserve">
-    <value>SQL_infoscreen</value>
-    <comment>Der Benutzername der verwendet wird, um die SQL-verbindung aufzubauen.</comment>
-  </data>
-  <data name="standardDomain" xml:space="preserve">
-    <value>htl-md.schule</value>
-    <comment>Die Standarddomain, die verwendet wird, sofern keine andere angegeben wird</comment>
-  </data>
-  <data name="maximaleStunden" xml:space="preserve">
-    <value>11</value>
-    <comment>Die maximal letzte Stunde als INT</comment>
-  </data>
-  <data name="domainPassword" xml:space="preserve">
-    <value>M:U#ddi,1.a7F+1</value>
-    <comment>Das Kennwort des Domainensniffers</comment>
-  </data>
-  <data name="domainUser" xml:space="preserve">
-    <value>EL_Infoscreen_AD</value>
-    <comment>Der Benutzername, welcher in der Domaine zum lesen alleer Informationen berechtigt ist.</comment>
-  </data>
-  <data name="speicherort" xml:space="preserve">
-    <value>D:\infoscreen_publish\PPT2PNG\Presentations\</value>
-    <comment>Der Pfad zum Ordner, an welchem die Präsentationen gespeichert werden.</comment>
-  </data>
-  <data name="PfadPowerPointTextDatei" xml:space="preserve">
-    <value>E:\infoscreen\bildschirm_code\presentations\revise.txt</value>
-    <comment>Der Pfad an welchem sich die Textdatei zur Übernahme der PowerPoint Dateien befindet.</comment>
-  </data>
-  <data name="StandardBild" xml:space="preserve">
-    <value>E:\infoscreen\bildschirm_code\presentations\standard.png</value>
-    <comment>Das Bild welches bis zur Überarbeitung gezeigt wird.</comment>
-  </data>
-  <data name="sandardRaumnummer" xml:space="preserve">
-    <value>0000</value>
-    <comment>Format der Raumnummern</comment>
+  <data name="pptPath" xml:space="preserve">
+    <value>D:\infoscreen_publish\PPT2PNG\Presentations</value>
   </data>
 </root>

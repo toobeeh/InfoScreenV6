@@ -46,6 +46,8 @@ namespace Infoscreen_Verwaltung.admin.converter
 
             Status.Text += "\n\nAusstehende Konvertierungen:" + linebreak;
 
+            if (convertInfo.Count == 0) Status.Text = " - Keine Konvertierung ausstehend";
+
             foreach (string line in convertInfo)
             {
                 if (line.Length > 1) Status.Text += "- " + line + linebreak;

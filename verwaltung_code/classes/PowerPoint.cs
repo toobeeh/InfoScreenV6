@@ -19,7 +19,7 @@ namespace Infoscreen_Verwaltung.classes
         public static void ZuBild(string _pfad, string _datei)
         {
             File.AppendAllText(@"D:\infoscreen_publish\PPT2PNG\convert.txt", _pfad + "\n");
-            File.Copy(@"D:\infoscreen_publish\Screen\presentations\standard.png", _pfad + "1.png");
+            File.Copy(Properties.Resources.speicherort + @"\standard.png", _pfad + "1.png");
         }
     }
 }

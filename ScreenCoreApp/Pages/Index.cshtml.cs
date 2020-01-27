@@ -47,7 +47,9 @@ namespace ScreenCoreApp.Pages
             int powerpointID = elements.PowerPoints;
             if (powerpointID == -1) return;
 
-            string presentationRoot = Path.Combine(new string[] { @"D:\infoscreen_publish\Screen\Presentations\", modeID.ToString(), powerpointID.ToString() });
+            
+
+            string presentationRoot = Path.Combine(new string[] { Properties.Resources.pptPath, modeID.ToString(), powerpointID.ToString() });
 
             PptPicturePaths = Directory.GetFiles(presentationRoot, "*.png").ToList();
             pptID = powerpointID;
