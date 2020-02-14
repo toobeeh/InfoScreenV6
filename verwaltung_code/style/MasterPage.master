@@ -3,6 +3,9 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server" >
 <meta charset="utf-8" /> 
+
+    <link runat="server" rel="shortcut icon" href="~/favicon.ico?" type="image/x-icon" />
+    <link runat="server" rel="icon" href="~/favicon.ico?" type="image/ico" />
     
     <link rel="stylesheet" id="MasterStyle" type="text/css" href="~/style/MasterPage.css" />
     <link rel="stylesheet" id="InputStyles" type="text/css" href="~/style/InputStyles.css" />

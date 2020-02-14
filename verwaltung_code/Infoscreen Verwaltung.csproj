@@ -102,6 +102,7 @@
     <Content Include="conf\supplierungen\table.aspx" />
     <Content Include="conf\tests\default.aspx" />
     <Content Include="conf\tests\modify.aspx" />
+    <Content Include="favicon.ico" />
     <Content Include="info\impressum.aspx" />
     <Content Include="info\kontakt.aspx" />
     <Content Include="info\version.aspx" />
